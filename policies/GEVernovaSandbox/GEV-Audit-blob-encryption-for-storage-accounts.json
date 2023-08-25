@@ -1,6 +1,6 @@
 {
   "properties": {
-    "Name": "GEV-Audit App Gateway Insecure Listeners",
+    "Name": "GEV-Audit-blob-encryption-for-storage-accounts",
     "displayName": "GEV-Audit App Gateway Insecure Listeners",
     "policyType": "Custom",
     "mode": "All",
