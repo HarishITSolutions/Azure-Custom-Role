@@ -49,7 +49,7 @@
 		  ]
 		},
       "then": {
-        "effect": "${effect}",
+        "effect": "audit",
 		  "details": [
 			{
 			  "field": "Microsoft.Network/virtualNetworks/subnets/routeTable.id",
