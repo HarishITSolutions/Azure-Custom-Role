@@ -12,10 +12,82 @@ trigger: none # Disable CI triggers.
 pool:
   vmImage: ubuntu-latest
 
+parameters:
+- name: environmentType
+  displayName: "Environment Type:"
+  default: 'Sandbox'
+  values:
+  - 'Sandbox'
+  - 'Prod'
+- name: policyInitiativeDeployment
+  displayName: "Deployment"
+  type: boolean
+  default: false
+- name: Assignments
+  displayName: "Assignment"
+  type: boolean
+  default: false
+
 variables:
   - group: 'Constants for Azure Build Sandbox'
   - group: 'Constants for Azure Build Prod' 
-  #   value: '-var storageName=$(Storage-Name) -var containerName=$(Container-Name) -var stateFileName=$(State-FileName) -var accessKey=$(Access-Key)'
+  - name: "client_id"
+    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+      value: $(clientID_Sandbox)
+    ${{ else }}:
+      value: $(clientID_Production)
+  - name: "client_secret"
+    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+      value: $(clientSecret_Sandbox)
+    ${{ else }}:
+      value: $(clientSecret_Production)
+  - name: "tenant_id"
+    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+      value: $(tenant_id_Sandbox)
+    ${{ else }}:
+      value: $(tenant_id_Production)
+  - name: "subscription_id"
+    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+      value: $(subscription_id_Sandbox)
+    ${{ else }}:
+      value: $(subscription_id_Production)
+  - name: "sourcePolicy-YAML"
+    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+      value: "azurePolicy-sandbox.yaml"
+    ${{ else }}:
+      value: "azurePolicy-prod.yaml"
+  - name: "sourceMGYAML"
+    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+      value: "azureMG-sandbox.yaml"
+    ${{ else }}:
+      value: "azureMG-prod.yaml"
+  - name: "Storage"
+    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+      value: "vernovasandboxtfstate"
+    ${{ else }}:
+      value: "vernovasandboxtfstate"
+  - name: "Container"
+    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+      value: "vernovasandboxtfstate"
+    ${{ else }}:
+      value: "vernovasandboxtfstate"
+  - name: "RG"
+    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+      value: "azurebuildRG"
+    ${{ else }}:
+      value: "azurebuildRG"
+  - name: "StateFile"
+    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+      value: "policysandbox"
+    ${{ else }}:
+      value: "policyprod"
+  - name: "accessKey"
+    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+      value: "$(accessKeySandbox)"
+    ${{ else }}:
+      value: "$(accessKeyProd)"
+  
+    
 
 stages:
   - stage: Build_Approval
@@ -23,59 +95,21 @@ stages:
     jobs:
     - deployment: ContinuousIntegrationJob
       displayName: ContinuousIntegrationJob
-      variables:
-        serviceConnection: 'sandbox-devops'
-        azureLocation: 'eastus'
-        terraformWorkingDirectory: '$(System.DefaultWorkingDirectory)'
-        terraformVersion: '1.5.4'
       environment: 'sandbox'
       strategy:
         runOnce:
           deploy:
             steps:
-            - task: AzureCLI@2
-              displayName: 'Azure CLI - Authentication'
-              inputs:
-                azureSubscription: 'sandbox-devops'
-                addSpnToEnvironment: true
-                scriptType: 'bash'
-                scriptLocation: 'inlineScript'
-                inlineScript: |
-                  echo "##vso[task.setvariable variable=ARM_SUBSCRIPTION_ID]$(az account show --query="id" -o tsv)"
-                  echo "##vso[task.setvariable variable=ARM_CLIENT_ID]${servicePrincipalId}"
-                  echo "##vso[task.setvariable variable=ARM_CLIENT_SECRET]${servicePrincipalKey}"
-                  echo "##vso[task.setvariable variable=ARM_TENANT_ID]${tenantId}"
             - task: PowerShell@2
-              displayName: "hosted IP"
+              displayName: "Microsoft Agent IP"
               inputs:
                 targetType: 'inline'
                 script: |
                   $ip = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
                   Write-Host "ip is : $ip"
-            # - task: AzurePowerShell@5
-            #   inputs:
-            #     azureSubscription: 'prod-devops'
-            #     ScriptType: 'InlineScript'
-            #     Inline: |
-            #       $ip = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
-            #       Write-Host "ip is : $ip"
-            #       Connect-AzAccount -Subscription '567-gevernovabuildtestsub'
-            #       Add-AzStorageAccountNetworkRule -ResourceGroupName "azurebuildRG" -Name "vernovasandboxtfstate" -IPAddressOrRange "$ip"
-            #     azurePowerShellVersion: 'LatestVersion'
-            # # - task: AzureCLI@1
-            #   displayName: "Add IP to the storage"
-            #   inputs:
-            #     azureSubscription: 'prod-devops'
-            #     scriptLocation: 'inlineScript'
-            #     inlineScript: 
-            #       $ip = $(Invoke-RestMethod http://ipinfo.io/json | Select -exp ip)
-            #       #export ipinfo =$(curl http://ipinfo.io/json)
-            #       #export ip=$(echo $ipinfo| jq -r .ip)
-            #       echo $ip
-            #       az account set -s 567-gevernovabuildtestsub
-            #       az storage account network-rule add --account-name vernovasandboxtfstate -g cs-securitylogs  --ip-address $ip
   
-  - stage: Terraform_Steps
+  - stage: Terraform_Policy_Initiative_Deployement
+    condition: eq('${{ parameters.policyInitiativeDeployment }}', 'true')
     displayName: Terraform Jobs
     jobs:
     - job: ContinuousIntegrationJob
@@ -89,34 +123,29 @@ stages:
                   $ip = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
                   Write-Host "ip is : $ip"
                   Connect-AzAccount -Subscription '567-gevernovabuildtestsub'
-                  Add-AzStorageAccountNetworkRule -ResourceGroupName "azurebuildRG" -Name "vernovasandboxtfstate" -IPAddressOrRange "$ip"
+                  Add-AzStorageAccountNetworkRule -ResourceGroupName "$(RG)" -Name "$(Storage)" -IPAddressOrRange "$ip"
                 azurePowerShellVersion: 'LatestVersion'
-          displayName: 'Update Hosted agent IP in storage account'
-        - task: AzureCLI@2
-          displayName: 'Azure CLI - Authentication'
-          inputs:
-            azureSubscription: 'sandbox-devops'
-            addSpnToEnvironment: true
-            scriptType: 'bash'
-            scriptLocation: 'inlineScript'
-            inlineScript: |
-              echo "##vso[task.setvariable variable=ARM_SUBSCRIPTION_ID]$(az account show --query="id" -o tsv)"
-              echo "##vso[task.setvariable variable=ARM_CLIENT_ID]${servicePrincipalId}"
-              echo "##vso[task.setvariable variable=ARM_CLIENT_SECRET]${servicePrincipalKey}"
-              echo "##vso[task.setvariable variable=ARM_TENANT_ID]${tenantId}"      
+          displayName: 'Added agent IP in storage account'      
         - task: TerraformCLI@0
+          displayName: 'Terraform Init'
           inputs:
             command: 'init'
             workingDirectory: '$(System.DefaultWorkingDirectory)'
-            commandOptions: '-backend-config="storage_account_name=$(Storage-Name)" -backend-config="container_name=$(Container-Name)" -backend-config="key=$(State-FileName)" -backend-config="access_key=$(Access-Key)"'
-#            commandOptions: '-var storageName=$(Storage-Name) -var containerName=$(Container-Name) -var stateFileName=$(State-FileName) -var accessKey=$(Access-Key) -var yamlFileName=$(Yaml-File)'
-#            secureVarsFile: 'secret.tfvars'
+            commandOptions: '-reconfigure -backend-config="storage_account_name=$(Storage)" -backend-config="container_name=$(Container)" -backend-config="key=$(StateFile).tfstate" -backend-config="access_key=$(accessKey)"'
             allowTelemetryCollection: true
+
+        - task: TerraformCLI@0
+          displayName: 'Terraform Validate'
+          inputs:
+            command: 'validate'
+            allowTelemetryCollection: true
+            workingDirectory: '$(System.DefaultWorkingDirectory)'
+
         - task: TerraformCLI@0
           displayName: 'Terraform Plan'
           inputs:
             command: 'plan'
-            # commandOptions: '$(inputvariables)'
+            commandOptions: '-target="module.PolicyandInitiativeCreation" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML)'
             allowTelemetryCollection: true
             workingDirectory: '$(System.DefaultWorkingDirectory)'
         
@@ -141,6 +170,72 @@ stages:
           displayName: 'Publish Plan to plan.out'
           inputs:
             command: 'plan'
-            # commandOptions: '$(inputvariables)'
+            commandOptions: '-target="module.PolicyandInitiativeCreation" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML)'
+            allowTelemetryCollection: true
+            publishPlanResults: 'plan.out' 
+
+  - stage: Terraform_MG_Policy_INI_Assignments
+    condition: eq('${{ parameters.Assignments }}', 'true')
+    displayName: Terraform Jobs
+    jobs:
+    - job: ContinuousIntegrationJob
+      displayName: ContinuousIntegrationJob
+      steps:
+        - task: AzurePowerShell@5
+          inputs:
+                azureSubscription: 'prod-devops'
+                ScriptType: 'InlineScript'
+                Inline: |
+                  $ip = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
+                  Write-Host "ip is : $ip"
+                  Connect-AzAccount -Subscription '567-gevernovabuildtestsub'
+                  Add-AzStorageAccountNetworkRule -ResourceGroupName "$(RG)" -Name "$(Storage)" -IPAddressOrRange "$ip"
+                azurePowerShellVersion: 'LatestVersion'
+          displayName: 'Added agent IP in storage account'      
+        - task: TerraformCLI@0
+          displayName: 'Terraform Init'
+          inputs:
+            command: 'init'
+            workingDirectory: '$(System.DefaultWorkingDirectory)'
+            commandOptions: '-reconfigure -backend-config="storage_account_name=$(Storage)" -backend-config="container_name=$(Container)" -backend-config="key=$(StateFile).tfstate" -backend-config="access_key=$(accessKey)"'
+            allowTelemetryCollection: true
+
+        - task: TerraformCLI@0
+          displayName: 'Terraform Validate'
+          inputs:
+            command: 'validate'
+            allowTelemetryCollection: true
+            workingDirectory: '$(System.DefaultWorkingDirectory)'
+
+        - task: TerraformCLI@0
+          displayName: 'Terraform Plan'
+          inputs:
+            command: 'plan'
+            commandOptions: '-target="module.PolicyandInitiativeCreation" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML)'
+            allowTelemetryCollection: true
+            workingDirectory: '$(System.DefaultWorkingDirectory)'
+        
+        - task: ArchiveFiles@2
+          displayName: 'Create Plan Artifact'
+          inputs:
+            rootFolderOrFile: '$(Build.SourcesDirectory)'
+            includeRootFolder: false
+            archiveType: 'tar'
+            tarCompression: 'gz'
+            archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).tgz'
+            replaceExistingArchive: true
+        
+        - task: PublishBuildArtifacts@1
+          displayName: 'Publish Plan Artifact'
+          inputs:
+            PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+            ArtifactName: '$(Build.BuildId)-tfplan'
+            publishLocation: 'Container'
+        
+        - task: TerraformCLI@0
+          displayName: 'Publish Plan to plan.out'
+          inputs:
+            command: 'plan'
+            commandOptions: '-target="module.PolicyandInitiativeCreation" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML)'
             allowTelemetryCollection: true
             publishPlanResults: 'plan.out' 
