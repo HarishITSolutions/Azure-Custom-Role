@@ -5,8 +5,6 @@ policyrootctrl:
       - GEV-Append-rt-Private-if-no-RT-on-subnet
       - GEV-Audit-blob-encryption-for-storage-accounts
       - GEV-Audit-Customer-Tag-Enforcement
-      - GEV-Audit-Disk-Snapshot
-      - GEV-Audit-File-Encryption-in-Storage-account
     initiatives:
       - name: "GEV-GR-Standard-Inititative"
         displayName: "GEV-GR-Standard-Inititative"
@@ -16,14 +14,11 @@ policyrootctrl:
           - GEV-Append-rt-Private-if-no-RT-on-subnet
           - GEV-Audit-blob-encryption-for-storage-accounts
           - GEV-Audit-Customer-Tag-Enforcement
-          - GEV-Audit-Disk-Snapshot
-          - GEV-Audit-File-Encryption-in-Storage-account
       - name: "GEV-GR-Limited-Inititative"
         displayName: "GEV-GR-Limited-Inititative"
         description: "GEV-GR-Limited-Inititative"
         Policies:
           - GEV-Audit-Customer-Tag-Enforcement
-          - GEV-Audit-Disk-Snapshot
-          - GEV-Audit-File-Encryption-in-Storage-account
+
 
           
