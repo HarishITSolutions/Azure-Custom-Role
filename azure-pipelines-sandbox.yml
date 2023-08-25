@@ -1,0 +1,146 @@
+
+# Azure Pipeline that run basic continuous integration on a Terraform project
+# Running Pipeline from Main Branch, Creating artifacts, Publishing the artifacts and create plan.out
+
+trigger: none # Disable CI triggers.
+
+# trigger:
+#  branches:
+#    include:
+#   - main
+#    - Development/*
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  - group: 'Constants for Azure Build Sandbox'
+  - group: 'Constants for Azure Build Prod' 
+  #   value: '-var storageName=$(Storage-Name) -var containerName=$(Container-Name) -var stateFileName=$(State-FileName) -var accessKey=$(Access-Key)'
+
+stages:
+  - stage: Build_Approval
+    displayName: Build Approval
+    jobs:
+    - deployment: ContinuousIntegrationJob
+      displayName: ContinuousIntegrationJob
+      variables:
+        serviceConnection: 'sandbox-devops'
+        azureLocation: 'eastus'
+        terraformWorkingDirectory: '$(System.DefaultWorkingDirectory)'
+        terraformVersion: '1.5.4'
+      environment: 'sandbox'
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - task: AzureCLI@2
+              displayName: 'Azure CLI - Authentication'
+              inputs:
+                azureSubscription: 'sandbox-devops'
+                addSpnToEnvironment: true
+                scriptType: 'bash'
+                scriptLocation: 'inlineScript'
+                inlineScript: |
+                  echo "##vso[task.setvariable variable=ARM_SUBSCRIPTION_ID]$(az account show --query="id" -o tsv)"
+                  echo "##vso[task.setvariable variable=ARM_CLIENT_ID]${servicePrincipalId}"
+                  echo "##vso[task.setvariable variable=ARM_CLIENT_SECRET]${servicePrincipalKey}"
+                  echo "##vso[task.setvariable variable=ARM_TENANT_ID]${tenantId}"
+            - task: PowerShell@2
+              displayName: "hosted IP"
+              inputs:
+                targetType: 'inline'
+                script: |
+                  $ip = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
+                  Write-Host "ip is : $ip"
+            # - task: AzurePowerShell@5
+            #   inputs:
+            #     azureSubscription: 'prod-devops'
+            #     ScriptType: 'InlineScript'
+            #     Inline: |
+            #       $ip = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
+            #       Write-Host "ip is : $ip"
+            #       Connect-AzAccount -Subscription '567-gevernovabuildtestsub'
+            #       Add-AzStorageAccountNetworkRule -ResourceGroupName "azurebuildRG" -Name "vernovasandboxtfstate" -IPAddressOrRange "$ip"
+            #     azurePowerShellVersion: 'LatestVersion'
+            # # - task: AzureCLI@1
+            #   displayName: "Add IP to the storage"
+            #   inputs:
+            #     azureSubscription: 'prod-devops'
+            #     scriptLocation: 'inlineScript'
+            #     inlineScript: 
+            #       $ip = $(Invoke-RestMethod http://ipinfo.io/json | Select -exp ip)
+            #       #export ipinfo =$(curl http://ipinfo.io/json)
+            #       #export ip=$(echo $ipinfo| jq -r .ip)
+            #       echo $ip
+            #       az account set -s 567-gevernovabuildtestsub
+            #       az storage account network-rule add --account-name vernovasandboxtfstate -g cs-securitylogs  --ip-address $ip
+  
+  - stage: Terraform_Steps
+    displayName: Terraform Jobs
+    jobs:
+    - job: ContinuousIntegrationJob
+      displayName: ContinuousIntegrationJob
+      steps:
+        - task: AzurePowerShell@5
+          inputs:
+                azureSubscription: 'prod-devops'
+                ScriptType: 'InlineScript'
+                Inline: |
+                  $ip = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
+                  Write-Host "ip is : $ip"
+                  Connect-AzAccount -Subscription '567-gevernovabuildtestsub'
+                  Add-AzStorageAccountNetworkRule -ResourceGroupName "azurebuildRG" -Name "vernovasandboxtfstate" -IPAddressOrRange "$ip"
+                azurePowerShellVersion: 'LatestVersion'
+          displayName: 'Update Hosted agent IP in storage account'
+        - task: AzureCLI@2
+          displayName: 'Azure CLI - Authentication'
+          inputs:
+            azureSubscription: 'sandbox-devops'
+            addSpnToEnvironment: true
+            scriptType: 'bash'
+            scriptLocation: 'inlineScript'
+            inlineScript: |
+              echo "##vso[task.setvariable variable=ARM_SUBSCRIPTION_ID]$(az account show --query="id" -o tsv)"
+              echo "##vso[task.setvariable variable=ARM_CLIENT_ID]${servicePrincipalId}"
+              echo "##vso[task.setvariable variable=ARM_CLIENT_SECRET]${servicePrincipalKey}"
+              echo "##vso[task.setvariable variable=ARM_TENANT_ID]${tenantId}"      
+        - task: TerraformCLI@0
+          inputs:
+            command: 'init'
+            workingDirectory: '$(System.DefaultWorkingDirectory)'
+            commandOptions: '-backend-config="storage_account_name=$(Storage-Name)" -backend-config="container_name=$(Container-Name)" -backend-config="key=$(State-FileName)" -backend-config="access_key=$(Access-Key)"'
+#            commandOptions: '-var storageName=$(Storage-Name) -var containerName=$(Container-Name) -var stateFileName=$(State-FileName) -var accessKey=$(Access-Key) -var yamlFileName=$(Yaml-File)'
+#            secureVarsFile: 'secret.tfvars'
+            allowTelemetryCollection: true
+        - task: TerraformCLI@0
+          displayName: 'Terraform Plan'
+          inputs:
+            command: 'plan'
+            # commandOptions: '$(inputvariables)'
+            allowTelemetryCollection: true
+            workingDirectory: '$(System.DefaultWorkingDirectory)'
+        
+        - task: ArchiveFiles@2
+          displayName: 'Create Plan Artifact'
+          inputs:
+            rootFolderOrFile: '$(Build.SourcesDirectory)'
+            includeRootFolder: false
+            archiveType: 'tar'
+            tarCompression: 'gz'
+            archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).tgz'
+            replaceExistingArchive: true
+        
+        - task: PublishBuildArtifacts@1
+          displayName: 'Publish Plan Artifact'
+          inputs:
+            PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+            ArtifactName: '$(Build.BuildId)-tfplan'
+            publishLocation: 'Container'
+        
+        - task: TerraformCLI@0
+          displayName: 'Publish Plan to plan.out'
+          inputs:
+            command: 'plan'
+            # commandOptions: '$(inputvariables)'
+            allowTelemetryCollection: true
+            publishPlanResults: 'plan.out' 
