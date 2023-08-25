@@ -110,7 +110,7 @@ stages:
   
   - stage: Terraform_Policy_Initiative_Deployement
     condition: eq('${{ parameters.policyInitiativeDeployment }}', 'true')
-    displayName: Terraform Jobs
+    displayName: Deployement of Policy and Initiative 
     jobs:
     - job: ContinuousIntegrationJob
       displayName: ContinuousIntegrationJob
@@ -176,7 +176,7 @@ stages:
 
   - stage: Terraform_MG_Policy_INI_Assignments
     condition: eq('${{ parameters.Assignments }}', 'true')
-    displayName: Terraform Jobs
+    displayName: Assignment of Policy and Initiative
     jobs:
     - job: ContinuousIntegrationJob
       displayName: ContinuousIntegrationJob
@@ -211,7 +211,7 @@ stages:
           displayName: 'Terraform Plan'
           inputs:
             command: 'plan'
-            commandOptions: '-target="module.PolicyandInitiativeCreation" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML)'
+            commandOptions: '-target="module.MG-RA-POL-INI-Assignment" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML)'
             allowTelemetryCollection: true
             workingDirectory: '$(System.DefaultWorkingDirectory)'
         
@@ -236,6 +236,6 @@ stages:
           displayName: 'Publish Plan to plan.out'
           inputs:
             command: 'plan'
-            commandOptions: '-target="module.PolicyandInitiativeCreation" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML)'
+            commandOptions: '-target="module.MG-RA-POL-INI-Assignment" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML)'
             allowTelemetryCollection: true
             publishPlanResults: 'plan.out' 
