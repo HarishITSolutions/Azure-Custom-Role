@@ -1,6 +1,6 @@
 {
   "properties": {
-    "Name": "GEV-Audit VNET Creation",
+    "Name": "GEV-Audit-VNet-Peering",
     "displayName": "GEV-Audit VNET Creation",
     "policyType": "Custom",
     "mode": "All",
