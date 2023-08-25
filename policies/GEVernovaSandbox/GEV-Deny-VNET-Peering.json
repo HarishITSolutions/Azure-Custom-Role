@@ -1,6 +1,6 @@
 {
   "properties": {
-	"Name": "GEV-Audit moving disks between subscriptions",
+	"Name": "GEV-Deny-VNET-Peering",
     "displayName": "GEV-Audit moving disks between subscriptions",
     "policyType": "Custom",
     "mode": "All",
