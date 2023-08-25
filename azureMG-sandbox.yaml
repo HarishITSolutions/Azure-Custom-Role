@@ -1,6 +1,10 @@
+##########################################################
+#          GEVernovaSandbox Management Groups            #
+##########################################################
+
 managementGroups:
-  - Name: GEVernova009
-    DisplayName: GEVernova009
+  - Name: Decommisioned
+    DisplayName: Decommisioned
     ParentManagementGroup: GEVernovaSandbox
     roleassignments:
       - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
@@ -9,11 +13,894 @@ managementGroups:
       - principal: "Test-group-for-policy-assignment"
         type: group
         role: Reader
-    policyAssignmentEnabled: true
-    policyAssignment:
-      - policyName: GEV122
-        assignmentName: GEVernova-122
-    initiativeAssignmentEnabled: true
-    initiativeAssignment:
-      - initiativeName: GEV-INI-1222
-        assignmentName: GEVernova-222
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
+        
+managementGroups:
+  - Name: Guardrails
+    DisplayName: Guardrails
+    ParentManagementGroup: GEVernovaSandbox
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
+
+managementGroups:
+  - Name: UnderConstruction
+    DisplayName: UnderConstruction
+    ParentManagementGroup: GEVernovaSandbox
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
+
+###########################################################
+#           Guardrails Management Groups                  #
+###########################################################
+
+ managementGroups:
+  - Name: Azure-Special
+    DisplayName: Azure-Special
+    ParentManagementGroup: Guardrails
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative    
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
+
+ managementGroups:
+  - Name: Azure-Standard
+    DisplayName: Azure-Standard
+    ParentManagementGroup: Guardrails
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative 
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
+
+ managementGroups:
+  - Name: Azure-Limited
+    DisplayName: Azure-Limited
+    ParentManagementGroup: Guardrails
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative  
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
+
+ managementGroups:
+  - Name: Azure-Commercial
+    DisplayName: Azure-Commercial
+    ParentManagementGroup: Guardrails
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative    
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
+
+##########################################################
+#           Azure-Special Management Groups              #
+##########################################################
+
+ managementGroups:
+  - Name: Vernova-Dev
+    DisplayName: Vernova-Dev
+    ParentManagementGroup: Azure-Special
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative    
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
+
+ managementGroups:
+  - Name: Vernova-QA
+    DisplayName: Vernova-QA
+    ParentManagementGroup: Azure-Special
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
+
+##########################################################
+#           Azure-Standard Management Groups             #
+##########################################################
+
+ managementGroups:
+  - Name: EFS
+    DisplayName: EFS
+    ParentManagementGroup: Azure-Standard
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
+
+ managementGroups:
+  - Name: Gas-Power
+    DisplayName: Gas-Power
+    ParentManagementGroup: Azure-Standard
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative 
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
+
+ managementGroups:
+  - Name: Grid-Solutions
+    DisplayName: Grid-Solutions
+    ParentManagementGroup: Azure-Standard
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
+
+ managementGroups:
+  - Name: Hybrid-Solutions
+    DisplayName: Hybrid-Solutions
+    ParentManagementGroup: Azure-Standard
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
+
+ managementGroups:
+  - Name: Hydro
+    DisplayName: Hydro
+    ParentManagementGroup: Azure-Standard
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative 
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
+
+ managementGroups:
+  - Name: LM-Wind
+    DisplayName: LM-Wind
+    ParentManagementGroup: Azure-Standard
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative 
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
+
+ managementGroups:
+  - Name: Nuclear
+    DisplayName: Nuclear
+    ParentManagementGroup: Azure-Standard
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative 
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
+
+ managementGroups:
+  - Name: Offshore-Wind
+    DisplayName: Offshore-Wind
+    ParentManagementGroup: Azure-Standard
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
+
+ managementGroups:
+  - Name: Onshore-Wind
+    DisplayName: Onshore-Wind
+    ParentManagementGroup: Azure-Standard
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
+
+ managementGroups:
+  - Name: Power-Conversion
+    DisplayName: Power-Conversion
+    ParentManagementGroup: Azure-Standard
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative 
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
+
+ managementGroups:
+  - Name: Steam-Power-Gas
+    DisplayName: Steam-Power-Gas
+    ParentManagementGroup: Azure-Standard
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative 
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
+
+ managementGroups:
+  - Name: Vernova-HQ
+    DisplayName: Vernova-HQ
+    ParentManagementGroup: Azure-Standard
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative 
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
+
+##########################################################
+#           Azure-Limited Management Groups              #
+##########################################################
+
+ managementGroups:
+  - Name: EFS
+    DisplayName: EFS
+    ParentManagementGroup: Azure-Limited
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative 
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
+
+ managementGroups:
+  - Name: Gas-Power
+    DisplayName: Gas-Power
+    ParentManagementGroup: Azure-Limited
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
+
+ managementGroups:
+  - Name: Grid-Solutions
+    DisplayName: Grid-Solutions
+    ParentManagementGroup: Azure-Limited
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
+
+ managementGroups:
+  - Name: Hybrid-Solutions
+    DisplayName: Hybrid-Solutions
+    ParentManagementGroup: Azure-Limited
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
+
+ managementGroups:
+  - Name: Hydro
+    DisplayName: Hydro
+    ParentManagementGroup: Azure-Limited
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
+
+ managementGroups:
+  - Name: LM-Wind
+    DisplayName: LM-Wind
+    ParentManagementGroup: Azure-Limited
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative 
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
+
+ managementGroups:
+  - Name: Nuclear
+    DisplayName: Nuclear
+    ParentManagementGroup: Azure-Limited
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative 
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
+
+ managementGroups:
+  - Name: Offshore-Wind
+    DisplayName: Offshore-Wind
+    ParentManagementGroup: Azure-Limited
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
+
+ managementGroups:
+  - Name: Onshore-Wind
+    DisplayName: Onshore-Wind
+    ParentManagementGroup: Azure-Limited
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
+
+ managementGroups:
+  - Name: Power-Conversion
+    DisplayName: Power-Conversion
+    ParentManagementGroup: Azure-Limited
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
+
+ managementGroups:
+  - Name: Steam-Power-Gas
+    DisplayName: Steam-Power-Gas
+    ParentManagementGroup: Azure-Limited
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative 
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
+
+ managementGroups:
+  - Name: Vernova-HQ
+    DisplayName: Vernova-HQ
+    ParentManagementGroup: Azure-Limited
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative  
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
+##########################################################
+#           Azure-Commercial Management Groups           #
+##########################################################
+
+ managementGroups:
+  - Name: Digital
+    DisplayName: Digital
+    ParentManagementGroup: Azure-Commercial
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policies_custom_assignment_enabled: false
+    policiesCustom:
+      - Id: GEV-Audit-Disk-Snapshot
+        Name: GEV-Audit-Disk-Snapshot
+    policies_builtin_assignment_enabled: false
+    policiesBuiltin:
+      - Id: GEV-Audit-Customer-Tag-Enforcement
+        Name: GEV-Audit-Customer-Tag-Enforcement
+    initiatives_assignment_enabled: false
+    initiatives:
+      - Id: GEV-GR-Standard-Initiative
+        Name: GEV-GR-Standard-Initiative
+      - Id: GEV-GR-Limited-Initiative
+        Name: GEV-GR-Limited-Initiative
