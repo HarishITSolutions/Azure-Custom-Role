@@ -7,13 +7,6 @@ policyrootctrl:
       - GEV-Audit-Customer-Tag-Enforcement
       - GEV-Audit-Disk-Snapshot
       - GEV-Audit-File-Encryption-in-Storage-account
-      - GEV-Deny-VNET-Creation
-      - GEV-Deny-VNET-Peering
-      - GEV-Deny-VPN-Gateway
-      - GEV-Audit-Subnet-without-NSG
-      - GEV-Audit-VNET-Creation
-      - GEV-Audit-VNet-Peering
-      - GEV-Audit-VPN-Gateway
     initiatives:
       - name: "GEV-GR-Standard-Inititative"
         displayName: "GEV-GR-Standard-Inititative"
@@ -25,16 +18,12 @@ policyrootctrl:
           - GEV-Audit-Customer-Tag-Enforcement
           - GEV-Audit-Disk-Snapshot
           - GEV-Audit-File-Encryption-in-Storage-account
-          - GEV-Deny-VNET-Creation
       - name: "GEV-GR-Limited-Inititative"
         displayName: "GEV-GR-Limited-Inititative"
         description: "GEV-GR-Limited-Inititative"
         Policies:
-          - GEV-Deny-VNET-Peering
-          - GEV-Deny-VPN-Gateway
-          - GEV-Audit-Subnet-without-NSG
-          - GEV-Audit-VNET-Creation
-          - GEV-Audit-VNet-Peering
-          - GEV-Audit-VPN-Gateway
+          - GEV-Audit-Customer-Tag-Enforcement
+          - GEV-Audit-Disk-Snapshot
+          - GEV-Audit-File-Encryption-in-Storage-account
 
           
