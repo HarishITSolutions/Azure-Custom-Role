@@ -1,6 +1,6 @@
 {
   "properties": {
-    "Name": "GEV-Audit soft delete not enabled on blob storage",
+    "Name": "GEV-Audit-Subnet-without-NSG",
     "displayName": "GEV-Audit soft delete not enabled on blob storage",
     "policyType": "Custom",
     "mode": "All",
