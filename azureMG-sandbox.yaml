@@ -22,11 +22,8 @@ managementGroups:
     DisplayName: Decommisioned
     ParentManagementGroup: GEVernovaSandbox
     roleassignments:
-      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+      - principal: "Harish.Nerella_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
         type: user
-        role: Reader
-      - principal: "Test-group-for-policy-assignment"
-        type: group
         role: Reader
     policyAssignmentEnabled: false
     policyAssignment:
@@ -41,11 +38,8 @@ managementGroups:
     DisplayName: UnderConstruction
     ParentManagementGroup: GEVernovaSandbox
     roleassignments:
-      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+      - principal: "Veerabhadra.Rao_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
         type: user
-        role: Reader
-      - principal: "Test-group-for-policy-assignment"
-        type: group
         role: Reader
     policyAssignmentEnabled: false
     policyAssignment:
