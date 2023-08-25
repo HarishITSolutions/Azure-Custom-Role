@@ -1,6 +1,6 @@
 {
   "properties": {
-	"Name": "GEV-Customer Tag Enforcement",
+	"Name": "GEV-Audit-Disk-Snapshot",
     "displayName": "GEV-Customer Tag Enforcement",
     "policyType": "Custom",
     "mode": "All",
