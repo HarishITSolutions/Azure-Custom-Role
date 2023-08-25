@@ -91,6 +91,17 @@ variables:
       value: "$(accessKeySandbox)"
     ${{ else }}:
       value: "$(accessKeyProd)"
+  - name: "artifact"
+    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+      value: "sandbox-artifact"
+    ${{ else }}:
+      value: "prod-artifact"
+  - name: "artifact-policy"
+    ${{ if eq(parameters.policyInitiativeDeployment, 'true') }}:
+      value: "policy"
+  - name: "artifact-MG"
+    ${{ if eq(parameters.Assignments, 'true') }}:
+      value: "MG"
   
     
 
@@ -162,14 +173,14 @@ stages:
             includeRootFolder: false
             archiveType: 'tar'
             tarCompression: 'gz'
-            archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).tgz'
+            archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-$(artifact)-$(artifact-policy).tgz'
             replaceExistingArchive: true
         
         - task: PublishBuildArtifacts@1
           displayName: 'Publish Plan Artifact'
           inputs:
             PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-            ArtifactName: '$(Build.BuildId)-tfplan'
+            ArtifactName: '$(Build.BuildId)-$(artifact)-$(artifact-policy)-tfplan'
             publishLocation: 'Container'
         
         - task: TerraformCLI@0
@@ -229,14 +240,14 @@ stages:
             includeRootFolder: false
             archiveType: 'tar'
             tarCompression: 'gz'
-            archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).tgz'
+            archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-$(artifact)-$(artifact-MG).tgz'
             replaceExistingArchive: true
         
         - task: PublishBuildArtifacts@1
           displayName: 'Publish Plan Artifact'
           inputs:
             PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-            ArtifactName: '$(Build.BuildId)-tfplan'
+            ArtifactName: '$(Build.BuildId)-$(artifact)-$(artifact-MG)-tfplan'
             publishLocation: 'Container'
         
         - task: TerraformCLI@0
