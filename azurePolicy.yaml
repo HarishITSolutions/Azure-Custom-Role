@@ -1,0 +1,13 @@
+policyrootctrl:
+  - scope: GEVernovaSandbox
+    policies:
+      - GEV122
+      # - GEV-Audit-App-Gateway-Insecure-Listeners
+      # - GEV-Audit-blob-Encryption-Storage-Accounts
+      # - GEV-Customer-Tag-Enforcement
+    initiatives:
+      - name: "GEV-INI-1222"
+        displayName: "GEVernova-Standard"
+        description: "GEVernova-Standard"
+        Policies:
+          - GEV122

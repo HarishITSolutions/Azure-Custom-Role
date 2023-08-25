@@ -1,0 +1,19 @@
+managementGroups:
+  - Name: GEVernova008
+    DisplayName: GEVernova008
+    ParentManagementGroup: GEVernovaSandbox
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+      - principal: "Test-group-for-policy-assignment"
+        type: group
+        role: Reader
+    policyAssignmentEnabled: true
+    policyAssignment:
+      - policyName: GEV122
+        assignmentName: GEVernova-122
+    initiativeAssignmentEnabled: true
+    initiativeAssignment:
+      - initiativeName: GEV-INI-1222
+        assignmentName: GEVernova-222
