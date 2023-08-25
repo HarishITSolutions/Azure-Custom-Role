@@ -129,6 +129,7 @@ stages:
                   Write-Host "ip is : $ip"
                   Connect-AzAccount -Subscription '567-gevernovabuildtestsub'
                   Add-AzStorageAccountNetworkRule -ResourceGroupName "$(RG)" -Name "$(Storage)" -IPAddressOrRange "$ip"
+                  Start-Sleep -s 20
                 azurePowerShellVersion: 'LatestVersion'
           displayName: 'Added agent IP in storage account'      
         - task: TerraformCLI@0
@@ -195,6 +196,7 @@ stages:
                   Write-Host "ip is : $ip"
                   Connect-AzAccount -Subscription '567-gevernovabuildtestsub'
                   Add-AzStorageAccountNetworkRule -ResourceGroupName "$(RG)" -Name "$(Storage)" -IPAddressOrRange "$ip"
+                  Start-Sleep -s 20
                 azurePowerShellVersion: 'LatestVersion'
           displayName: 'Added agent IP in storage account'      
         - task: TerraformCLI@0
