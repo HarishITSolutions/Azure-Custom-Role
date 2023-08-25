@@ -1,6 +1,6 @@
 {
   "properties": {
-    "Name": "GEV-Audit Disk Snapshot",
+    "Name": "GEV-Audit-File-Encryption-in-Storage-account",
     "displayName": "GEV-Audit Disk Snapshot",
     "policyType": "Custom",
     "mode": "All",
