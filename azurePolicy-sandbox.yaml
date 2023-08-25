@@ -1,127 +1,40 @@
 policyrootctrl:
   - scope: GEVernovaSandbox
     policies:
-      # - GEV-Append-nsg-Private-if-no-NSG-on-subnet.pd
-      # - GEV-Append-rt-Private-if-no-RT-on-subnet.pd
-      - GEV-Audit-blob-encryption-for-storage-accounts.pd
-      # - GEV-Audit-Customer-Tag-Enforcement.pd
-      # - GEV-Audit-Disk-Snapshot.pd
-      # - GEV-Audit-File-Encryption-in-Storage-account.pd
-      # - GEV-Audit-moving-disks-between-subscriptions.pd
-      # - GEV-Audit-shared-snapshots-between-subscriptions.pd
-      # - GEV-Audit-soft-delete-not-enabled-on-blob-storage.pd
-      # - GEV-Audit-Storage-Account-Encryption-in-Transit.pd
-      # - GEV-Audit-Storage-account-with-public-access-policy.pd
-      # - GEV-Audit-Subnets-Created-by-Terraform-with-No-RT-or-NSG-associated.pd
-      # - GEV-AuditIfNotExists-Azure-Backup-should-be-enabled-for-Virtual-Machines.pd
-      # - GEV-AuditIfNotExists-managed-Resource-Groups-have-their-No-Delete-Locks-removed.pd
-      # - GEV-AuditIfNotExists-managed-Resource-Groups-have-their-Readonly-Locks-removed.pd
-      # - GEV-Deny-Allow-All-NSG-Rule-Creation.pd
-      # - GEV-Deny-Azure-ActiveDirectory-B2C.pd
-      # - GEV-Deny-Creation-New-Address-Space-GR.pd
-      # - GEV-Deny-Creation-PrivateDNSZone-Named-Privatelink.pd
-      # - GEV-Deny-Creation-PrivateDNSZoneGroups-DNS-integration-Except-DINE-Policies-With-DeployedByPolicy-In-Name.pd
-      # - GEV-Deny-Enabling-the-MDE-integration-in-ASC.pd
-      # - GEV-Deny-Express-Route-Circuit.pd
-      # - GEV-Deny-if-Public-IP-on-a-NIC.pd
-      # - GEV-Deny-LocalNetwork-Gateway.pd
-      # - GEV-Deny-sharing-images-via-the-shared-image-gallery-to-other-tenants-or-with-Microsoft-accounts.pd
-      # - GEV-Deny-VNET-Creation.pd
-      # - GEV-Deny-VNET-Peering.pd
-      # - GEV-Deny-VPN-Gateway.pd
-      # - GEV-DeployIfNotExists-Automatically-Configure-NSG-To-Enable-Flowlogs.pd
-      # - GEV-DeployIfNotExists-Automatically-Create-Required-PrivateDNSZoneGroup-AzureFiles.pd
-      # - GEV-DeployIfNotExists-Automatically-Create-Required-PrivateDNSZoneGroup-Blob.pd
-      # - GEV-DeployIfNotExists-Automatically-Create-Required-PrivateDNSZoneGroup-KeyVault.pd
-      # - GEV-DeployIfNotExists-Automatically-Create-Required-PrivateDNSZoneGroup-SQL.pd
-      # - GEV-DeployIfNotExists-Diagnostic-Settings-for-Key-Vault-to-Log-Analytics-workspace.pd
-      # - GEV-DeployIfNotExists-SQL-DB-transparent-data-encryption.pd
-      # - GEV-DINE-Auto-Create-PrivateDNSZoneGroup-azurewebsites.pd
-      # - GEV-DINE-Auto-Create-PrivateDNSZoneGroup-bot.pd
-      # - GEV-DINE-Auto-Create-PrivateDNSZoneGroup-cluster.pd
-      # - GEV-DINE-Auto-Create-PrivateDNSZoneGroup-cognitiveservices.pd
-      # - GEV-DINE-Auto-Create-PrivateDNSZoneGroup-dfs.pd
-      # - GEV-DINE-Auto-Create-PrivateDNSZoneGroup-namespace.pd
-      # - GEV-DINE-Auto-Create-PrivateDNSZoneGroup-postgresqlServer.pd
-      # - GEV-DINE-Auto-Create-PrivateDNSZoneGroup-queue.pd
-      # - GEV-DINE-Auto-Create-PrivateDNSZoneGroup-StorageAccount-table.pd
-      # - GEV-DINE-Auto-Create-PrivateDNSZoneGroup-StorageAccount-web.pd
-      # - GEV-DINE-Auto-Create-PrivateDNSZoneGroup-token.pd
-      # - GEV-Modify-Inherit-a-tag-from-the-resource-group-if-missing.pd
-      # - GEV-Audit-App-Gateway-Insecure-Listeners.pd
-      # - GEV-Audit-Subnet-without-NSG.pd
-      # - GEV-Audit-VNET-Creation.pd
-      # - GEV-Audit-VNet-Peering.pd
-      # - GEV-Audit-VPN-Gateway.pd
+      - GEV-Append-nsg-Private-if-no-NSG-on-subnet
+      - GEV-Append-rt-Private-if-no-RT-on-subnet
+      - GEV-Audit-blob-encryption-for-storage-accounts
+      - GEV-Audit-Customer-Tag-Enforcement
+      - GEV-Audit-Disk-Snapshot
+      - GEV-Audit-File-Encryption-in-Storage-account
+      - GEV-Deny-VNET-Creation
+      - GEV-Deny-VNET-Peering
+      - GEV-Deny-VPN-Gateway
+      - GEV-Audit-Subnet-without-NSG
+      - GEV-Audit-VNET-Creation
+      - GEV-Audit-VNet-Peering
+      - GEV-Audit-VPN-Gateway
     initiatives:
       - name: "GEV-GR-Standard-Inititative"
         displayName: "GEV-GR-Standard-Inititative"
         description: "GEV-GR-Standard-Inititative"
         Policies:
-          # - GEV-Append-nsg-Private-if-no-NSG-on-subnet.pd
-          # - GEV-Append-rt-Private-if-no-RT-on-subnet.pd
-          - GEV-Audit-blob-encryption-for-storage-accounts.pd
-          # - GEV-Audit-Customer-Tag-Enforcement.pd
-          # - GEV-Audit-Disk-Snapshot.pd
-          # - GEV-Audit-File-Encryption-in-Storage-account.pd
-          # - GEV-Audit-moving-disks-between-subscriptions.pd
-          # - GEV-Audit-shared-snapshots-between-subscriptions.pd
-          # - GEV-Audit-soft-delete-not-enabled-on-blob-storage.pd
-          # - GEV-Audit-Storage-Account-Encryption-in-Transit.pd
-          # - GEV-Audit-Storage-account-with-public-access-policy.pd
-          # - GEV-Audit-Subnets-Created-by-Terraform-with-No-RT-or-NSG-associated.pd
-          # - GEV-AuditIfNotExists-Azure-Backup-should-be-enabled-for-Virtual-Machines.pd
-          # - GEV-AuditIfNotExists-managed-Resource-Groups-have-their-No-Delete-Locks-removed.pd
-          # - GEV-AuditIfNotExists-managed-Resource-Groups-have-their-Readonly-Locks-removed.pd
-          # - GEV-Deny-Allow-All-NSG-Rule-Creation.pd
-          # - GEV-Deny-Azure-ActiveDirectory-B2C.pd
-          # - GEV-Deny-Creation-New-Address-Space-GR.pd
-          # - GEV-Deny-Creation-PrivateDNSZone-Named-Privatelink.pd
-          # - GEV-Deny-Creation-PrivateDNSZoneGroups-DNS-integration-Except-DINE-Policies-With-DeployedByPolicy-In-Name.pd
-          # - GEV-Deny-Enabling-the-MDE-integration-in-ASC.pd
-          # - GEV-Deny-Express-Route-Circuit.pd
-          # - GEV-Deny-if-Public-IP-on-a-NIC.pd
-          # - GEV-Deny-LocalNetwork-Gateway.pd
-          # - GEV-Deny-sharing-images-via-the-shared-image-gallery-to-other-tenants-or-with-Microsoft-accounts.pd
-          # - GEV-Deny-VNET-Creation.pd
-          # - GEV-Deny-VNET-Peering.pd
-          # - GEV-Deny-VPN-Gateway.pd
-          # - GEV-DeployIfNotExists-Automatically-Configure-NSG-To-Enable-Flowlogs.pd
-          # - GEV-DeployIfNotExists-Automatically-Create-Required-PrivateDNSZoneGroup-AzureFiles.pd
-          # - GEV-DeployIfNotExists-Automatically-Create-Required-PrivateDNSZoneGroup-Blob.pd
-          # - GEV-DeployIfNotExists-Automatically-Create-Required-PrivateDNSZoneGroup-KeyVault.pd
-          # - GEV-DeployIfNotExists-Automatically-Create-Required-PrivateDNSZoneGroup-SQL.pd
-          # - GEV-DeployIfNotExists-Diagnostic-Settings-for-Key-Vault-to-Log-Analytics-workspace.pd
-          # - GEV-DeployIfNotExists-SQL-DB-transparent-data-encryption.pd
-          # - GEV-DINE-Auto-Create-PrivateDNSZoneGroup-azurewebsites.pd
-          # - GEV-DINE-Auto-Create-PrivateDNSZoneGroup-bot.pd
-          # - GEV-DINE-Auto-Create-PrivateDNSZoneGroup-cluster.pd
-          # - GEV-DINE-Auto-Create-PrivateDNSZoneGroup-cognitiveservices.pd
-          # - GEV-DINE-Auto-Create-PrivateDNSZoneGroup-dfs.pd
-          # - GEV-DINE-Auto-Create-PrivateDNSZoneGroup-namespace.pd
-          # - GEV-DINE-Auto-Create-PrivateDNSZoneGroup-postgresqlServer.pd
-          # - GEV-DINE-Auto-Create-PrivateDNSZoneGroup-queue.pd
-          # - GEV-DINE-Auto-Create-PrivateDNSZoneGroup-StorageAccount-table.pd
-          # - GEV-DINE-Auto-Create-PrivateDNSZoneGroup-StorageAccount-web.pd
-          # - GEV-DINE-Auto-Create-PrivateDNSZoneGroup-token.pd
-      #     - GEV-Modify-Inherit-a-tag-from-the-resource-group-if-missing.pd
-      # - name: "GEV-GR-Limited-Inititative"
-      #   displayName: "GEV-GR-Limited-Inititative"
-      #   description: "GEV-GR-Limited-Inititative"
-      #   Policies:
-          # - GEV-Audit-App-Gateway-Insecure-Listeners.pd
-          # - GEV-Audit-blob-encryption-for-storage-accounts.pd
-          # - GEV-Audit-Customer-Tag-Enforcement.pd
-          # - GEV-Audit-File-Encryption-in-Storage-account.pd
-          # - GEV-Audit-Storage-Account-Encryption-in-Transit.pd
-          # - GEV-Audit-Storage-account-with-public-access-policy.pd
-          # - GEV-Audit-Subnet-without-NSG.pd
-          # - GEV-Audit-VNET-Creation.pd
-          # - GEV-Audit-VNet-Peering.pd
-          # - GEV-Audit-VPN-Gateway.pd
-          # - GEV-Deny-Azure-ActiveDirectory-B2C.pd
-          # - GEV-Deny-Enabling-the-MDE-integration-in-ASC.pd
-          # - GEV-Deny-Express-Route-Circuit.pd
-          # - GEV-DeployIfNotExists-Automatically-Configure-NSG-To-Enable-Flowlogs.pd
-          # - GEV-Modify-Inherit-a-tag-from-the-resource-group-if-missing.pd
+          - GEV-Append-nsg-Private-if-no-NSG-on-subnet
+          - GEV-Append-rt-Private-if-no-RT-on-subnet
+          - GEV-Audit-blob-encryption-for-storage-accounts
+          - GEV-Audit-Customer-Tag-Enforcement
+          - GEV-Audit-Disk-Snapshot
+          - GEV-Audit-File-Encryption-in-Storage-account
+          - GEV-Deny-VNET-Creation
+      - name: "GEV-GR-Limited-Inititative"
+        displayName: "GEV-GR-Limited-Inititative"
+        description: "GEV-GR-Limited-Inititative"
+        Policies:
+          - GEV-Deny-VNET-Peering
+          - GEV-Deny-VPN-Gateway
+          - GEV-Audit-Subnet-without-NSG
+          - GEV-Audit-VNET-Creation
+          - GEV-Audit-VNet-Peering
+          - GEV-Audit-VPN-Gateway
+
           
