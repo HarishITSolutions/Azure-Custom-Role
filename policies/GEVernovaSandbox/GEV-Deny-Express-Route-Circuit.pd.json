@@ -1,0 +1,22 @@
+{
+  "properties": {
+    "displayName": "GEV-Deny Express Route Circuit",
+    "policyType": "Custom",
+    "mode": "All",
+    "description": "GEV-Disallows GR-AZURE-Limited subscriptions from creating their own Express Route circuit",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "General"
+    },
+    "parameters": {},
+    "policyRule": {
+		"if": {
+		  "field": "type",
+		  "equals": "Microsoft.Network/expressRouteCircuits"
+		},
+      "then": {
+        "effect": "${effect}"
+      }
+    }
+  }
+}

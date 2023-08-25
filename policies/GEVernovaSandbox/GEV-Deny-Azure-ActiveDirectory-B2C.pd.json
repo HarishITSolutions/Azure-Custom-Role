@@ -1,0 +1,22 @@
+{
+  "properties": {
+    "displayName": "GEV-Deny-Azure-ActiveDirectory-B2C",
+    "policyType": "Custom",
+    "mode": "All",
+    "description": "GEV-Deny-Azure-ActiveDirectory-B2C",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "General"
+    },
+    "parameters": {},
+    "policyRule": {
+		"if": {
+		  "field": "type",
+		  "equals": "Microsoft.AzureADB2C"
+		},
+      "then": {
+        "effect": "${effect}"
+      }
+    }
+  }
+}

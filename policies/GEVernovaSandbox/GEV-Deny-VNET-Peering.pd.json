@@ -1,0 +1,22 @@
+{
+  "properties": {
+    "displayName": "GEV-Deny VNET Peering",
+    "policyType": "Custom",
+    "mode": "All",
+    "description": "GEV-Denies VNET peering",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "General"
+    },
+    "parameters": {},
+    "policyRule": {
+		"if": {
+		  "field": "type",
+		  "equals": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings"
+		},
+      "then": {
+        "effect": "${effect}"
+      }
+    }
+  }
+}

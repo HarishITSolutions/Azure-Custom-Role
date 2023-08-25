@@ -1,0 +1,62 @@
+{
+  "properties": {
+    "displayName": "GEV-Deny-Creation-PrivateDNSZoneGroups-DNS-integration-Except-DINE-Policies-With-DeployedByPolicy-In-Name",
+    "policyType": "Custom",
+    "mode": "All",
+    "description": "GEV-This policy restricts the creation of privateDNSZoneGroups that are centrally deloyed and managed by the Cloud Hosting Team.  It which prevents enabling DNS integration for a Private Endpoint.",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "General"
+    },
+    "parameters": {
+		"listOfPrivateDnsZoneConfigsNotAllowedInYourSubscription": {
+		  "type": "Array",
+		  "metadata": {},
+		  "defaultValue": [
+			"privatelink-database-windows-net",
+			"privatelink-blob-core-windows-net",
+			"privatelink-file-core-windows-net",
+			"privatelink-vaultcore-azure-net",
+			"privatelink-dfs-core-windows-net",
+			"privatelink-cognitiveservices-azure-com",
+			"privatelink-azurewebsites-net",
+			"privatelink-postgres-database-azure-com",
+			"privatelink-web-core-windows-net",
+			"privatelink-servicebus-windows-net",
+			"privatelink-table-core-windows-net",
+			"privatelink-queue-core-windows-net",
+			"privatelink-eastus-kusto-windows-net",
+			"privatelink-token-botframework-com",
+			"privatelink-directline-botframework-com"
+		  ]
+		}
+	  },
+    "policyRule": {
+		"if": {
+		  "allOf": [
+			{
+			  "field": "type",
+			  "equals": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups"
+			},
+			{
+			  "field": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups/privateDnsZoneConfigs",
+			  "exists": "true"
+			},
+			{
+			  "not": {
+				"field": "name",
+				"like": "*deployedByPolicy"
+			  }
+			},
+			{
+			  "field": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups/privateDnsZoneConfigs[*].name",
+			  "in": "[parameters('listOfPrivateDnsZoneConfigsNotAllowedInYourSubscription')]"
+			}
+		  ]
+		},
+      "then": {
+        "effect": "${effect}"
+      }
+    }
+  }
+}

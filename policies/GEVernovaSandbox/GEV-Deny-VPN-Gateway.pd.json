@@ -1,0 +1,22 @@
+{
+  "properties": {
+    "displayName": "GEV-Deny-VPN-Gateway",
+    "policyType": "Custom",
+    "mode": "All",
+    "description": "GEV-Denies VPN-Gateway",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "General"
+    },
+    "parameters": {},
+    "policyRule": {
+		"if": {
+		  "field": "type",
+		  "equals": "Microsoft.Network/virtualNetworkGateways"
+		},
+      "then": {
+        "effect": "${effect}"
+      }
+    }
+  }
+}

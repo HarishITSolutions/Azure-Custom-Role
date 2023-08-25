@@ -1,0 +1,36 @@
+{
+  "properties": {
+    "displayName": "GEV-New-Deny-Creation-New-Address-Space-GR",
+    "policyType": "Custom",
+    "mode": "All",
+    "description": "GEV-Denies the creation of any new address spaces on the xxx-gr-vnet by customers for Guardrails subscriptions. (Only one address space allowed)",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "General"
+    },
+    "parameters": {},
+    "policyRule": {
+		"if": {
+		  "allOf": [
+			{
+			  "field": "type",
+			  "equals": "Microsoft.Network/virtualNetworks"
+			},
+			{
+			  "field": "name",
+			  "like": "*-gr-vnet"
+			},
+			{
+			  "count": {
+				"field": "Microsoft.Network/virtualNetworks/addressSpace.addressPrefixes[*]"
+			  },
+			  "greater": 1
+			}
+		  ]
+		},
+      "then": {
+        "effect": "${effect}"
+      }
+    }
+  }
+}
