@@ -1,5 +1,6 @@
 {
   "properties": {
+	"Name": "GEV-Deny Allow All NSG Rule Creation",
     "displayName": "GEV-Deny Allow All NSG Rule Creation",
     "policyType": "Custom",
     "mode": "All",

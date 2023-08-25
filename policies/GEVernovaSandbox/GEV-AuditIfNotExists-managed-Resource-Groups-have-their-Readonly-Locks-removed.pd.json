@@ -2,6 +2,7 @@
   "properties":{
 	  "policyType": "Custom",
 	  "mode": "All",
+	  "Name": "GEV-Audit if managed Resource Groups have their Readonly Locks removed",
 	  "displayName": "GEV-Audit if managed Resource Groups have their Readonly Locks removed",
 	  "description": "GEV-Will audit if the resource groups [\"cs-expressroute\"] have any readonly locks removed",
 	  "policyRule": {

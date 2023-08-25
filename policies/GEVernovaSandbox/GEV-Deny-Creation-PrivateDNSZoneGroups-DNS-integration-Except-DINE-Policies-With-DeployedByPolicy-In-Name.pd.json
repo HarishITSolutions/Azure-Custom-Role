@@ -1,5 +1,6 @@
 {
   "properties": {
+	"Name": "GEV-Deny-Creation-PrivateDNSZoneGroups-DNS-integration-Except-DINE-Policies-With-DeployedByPolicy-In-Name",
     "displayName": "GEV-Deny-Creation-PrivateDNSZoneGroups-DNS-integration-Except-DINE-Policies-With-DeployedByPolicy-In-Name",
     "policyType": "Custom",
     "mode": "All",

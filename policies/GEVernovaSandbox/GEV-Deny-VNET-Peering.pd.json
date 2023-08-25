@@ -1,5 +1,6 @@
 {
   "properties": {
+    "Name": "GEV-Deny VNET Peering",
     "displayName": "GEV-Deny VNET Peering",
     "policyType": "Custom",
     "mode": "All",

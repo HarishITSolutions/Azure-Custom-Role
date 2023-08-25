@@ -1,5 +1,6 @@
 {
   "properties": {
+    "Name": "GEV-Deny Express Route Circuit",
     "displayName": "GEV-Deny Express Route Circuit",
     "policyType": "Custom",
     "mode": "All",

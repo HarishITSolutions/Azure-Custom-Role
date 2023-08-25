@@ -2,6 +2,7 @@
   "properties":{
 	  "policyType": "Custom",
 	  "mode": "Indexed",
+	  "Name": "GEV-DINE-Auto-Create-PrivateDNSZoneGroup-StorageAccount-table",
 	  "displayName": "GEV-DINE-Auto-Create-PrivateDNSZoneGroup-StorageAccount-table",
 	  "description": "GEV-updated to handle Stotage accounts table resources only and exclue any other table resource ie.. Cosmos table ",
 	  "policyRule": {

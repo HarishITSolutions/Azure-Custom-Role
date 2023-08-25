@@ -1,5 +1,6 @@
 {
   "properties": {
+    "Name": "GEV-Audit-VPN-Gateway",
     "displayName": "GEV-Audit-VPN-Gateway",
     "policyType": "Custom",
     "mode": "All",

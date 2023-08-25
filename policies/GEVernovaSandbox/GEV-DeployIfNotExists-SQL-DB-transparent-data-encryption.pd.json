@@ -2,6 +2,7 @@
   "properties":{
 	  "policyType": "BuiltIn",
 	  "mode": "Indexed",
+	  "Name": "GEV-Deploy SQL DB transparent data encryption",
 	  "displayName": "GEV-Deploy SQL DB transparent data encryption",
 	  "description": "GEV-Enables transparent data encryption on SQL databases",
 	  "policyRule": {

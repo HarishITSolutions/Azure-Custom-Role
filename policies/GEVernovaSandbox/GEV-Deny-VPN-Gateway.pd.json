@@ -1,5 +1,6 @@
 {
   "properties": {
+    "Name": "GEV-Deny-VPN-Gateway",
     "displayName": "GEV-Deny-VPN-Gateway",
     "policyType": "Custom",
     "mode": "All",

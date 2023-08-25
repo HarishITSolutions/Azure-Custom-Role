@@ -2,6 +2,7 @@
   "properties":{
 	  "policyType": "Custom",
 	  "mode": "Indexed",
+	  "Name": "GEV-DINE-Auto-Create-PrivateDNSZoneGroup-StorageAccount-web",
 	  "displayName": "GEV-DINE-Auto-Create-PrivateDNSZoneGroup-StorageAccount-web",
 	  "description": "GEV-updated to handle Stotage accounts web resources only and exclue any other web resource ie.. synapse web ",
 	  "policyRule": {

@@ -2,6 +2,7 @@
   "properties":{
 	  "policyType": "Custom",
 	  "mode": "Indexed",
+	  "Name": "GEV-DINE-Auto-Create-PrivateDNSZoneGroup-azurewebsites",
 	  "displayName": "GEV-DINE-Auto-Create-PrivateDNSZoneGroup-azurewebsites",
 	  "policyRule": {
 		"if": {

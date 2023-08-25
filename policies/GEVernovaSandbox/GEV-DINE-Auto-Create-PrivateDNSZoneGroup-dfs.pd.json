@@ -2,6 +2,7 @@
   "properties":{
 	  "policyType": "Custom",
 	  "mode": "Indexed",
+	  "Name": "GEV-DINE-Auto-Create-PrivateDNSZoneGroup-dfs",
 	  "displayName": "GEV-DINE-Auto-Create-PrivateDNSZoneGroup-dfs",
 	  "policyRule": {
 		"if": {

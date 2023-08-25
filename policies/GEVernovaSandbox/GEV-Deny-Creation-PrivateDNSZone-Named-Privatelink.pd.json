@@ -1,5 +1,6 @@
 {
   "properties": {
+	"Name": "GEV-Deny-Creation-PrivateDNSZone-Named-Privatelink",
     "displayName": "GEV-Deny-Creation-PrivateDNSZone-Named-Privatelink",
     "policyType": "Custom",
     "mode": "All",

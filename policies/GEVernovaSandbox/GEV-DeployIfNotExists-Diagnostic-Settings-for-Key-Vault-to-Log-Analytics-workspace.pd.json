@@ -2,6 +2,7 @@
   "properties":{
 	  "policyType": "BuiltIn",
 	  "mode": "Indexed",
+	  "Name": "GEV-Deploy Diagnostic Settings for Key Vault to Log Analytics workspace",
 	  "displayName": "GEV-Deploy Diagnostic Settings for Key Vault to Log Analytics workspace",
 	  "description": "GEV-Deploys the diagnostic settings for Key Vault to stream to a regional Log Analytics workspace when any Key Vault which is missing this diagnostic settings is created or updated.",
 	  "policyRule": {

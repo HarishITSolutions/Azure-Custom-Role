@@ -2,6 +2,7 @@
   "properties":{
 	  "policyType": "Custom",
 	  "mode": "All",
+	  "Name": "GEV-Audit if managed Resource Groups have their No-Delete Locks removed",
 	  "displayName": "GEV-Audit if managed Resource Groups have their No-Delete Locks removed",
 	  "description": "GEV-Will audit if the resource groups [\"cs-services\"] have any no-delete locks removed from them",
 	  "policyRule": {

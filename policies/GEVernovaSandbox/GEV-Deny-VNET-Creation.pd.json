@@ -1,5 +1,6 @@
 {
   "properties": {
+	"Name": "GEV-Deny VNET Creation",
     "displayName": "GEV-Deny VNET Creation",
     "policyType": "Custom",
     "mode": "All",

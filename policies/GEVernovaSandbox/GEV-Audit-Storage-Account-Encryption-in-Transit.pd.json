@@ -1,5 +1,6 @@
 {
   "properties": {
+    "Name": "GEV-Audit Storage Account Encryption in Transit",
     "displayName": "GEV-Audit Storage Account Encryption in Transit",
     "policyType": "Custom",
     "mode": "All",

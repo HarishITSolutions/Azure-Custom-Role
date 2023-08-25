@@ -2,6 +2,7 @@
   "properties":{
 	  "policyType": "Custom",
 	  "mode": "Indexed",
+	  "Name": "GEV-DINE-Auto-Create-PrivateDNSZoneGroup-postgresqlServer",
 	  "displayName": "GEV-DINE-Auto-Create-PrivateDNSZoneGroup-postgresqlServer",
 	  "description": "GEV-Deploy if not Exist postgresqlServer DNS for postgresqlServer resources ",
 	  "policyRule": {

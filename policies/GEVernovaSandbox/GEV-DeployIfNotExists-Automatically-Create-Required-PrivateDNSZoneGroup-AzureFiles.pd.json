@@ -2,6 +2,7 @@
   "properties":{
 	  "policyType": "Custom",
 	  "mode": "All",
+	  "Name": "GEV-DeployIfNotExists-Automatically-Create-Required-PrivateDNSZoneGroup-AzureFiles",
 	  "displayName": "GEV-DeployIfNotExists-Automatically-Create-Required-PrivateDNSZoneGroup-AzureFiles",
 	  "policyRule": {
 		"if": {

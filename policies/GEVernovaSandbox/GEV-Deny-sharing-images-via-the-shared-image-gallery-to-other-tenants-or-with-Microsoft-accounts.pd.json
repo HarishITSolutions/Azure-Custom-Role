@@ -1,5 +1,6 @@
 {
   "properties": {
+	"Name": "GEV-Deny sharing images via the shared image gallery to other tenants or with Microsoft accounts",
     "displayName": "GEV-Deny sharing images via the shared image gallery to other tenants or with Microsoft accounts",
     "policyType": "Custom",
     "mode": "All",

@@ -1,5 +1,6 @@
 {
   "properties": {
+    "Name": "GEV-Deny-LocalNetwork-Gateway",
     "displayName": "GEV-Deny-LocalNetwork-Gateway",
     "policyType": "Custom",
     "mode": "All",

@@ -1,5 +1,6 @@
 {
   "properties": {
+	"Name": "GEV-New-Deny-Creation-New-Address-Space-GR",
     "displayName": "GEV-New-Deny-Creation-New-Address-Space-GR",
     "policyType": "Custom",
     "mode": "All",

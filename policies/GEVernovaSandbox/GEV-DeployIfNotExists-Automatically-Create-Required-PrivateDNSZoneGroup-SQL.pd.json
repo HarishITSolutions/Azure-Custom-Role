@@ -2,6 +2,7 @@
   "properties":{
 	  "policyType": "Custom",
 	  "mode": "All",
+	  "Name": "GEV-DeployIfNotExists-Automatically-Create-Required-PrivateDNSZoneGroup-SQL",
 	  "displayName": "GEV-DeployIfNotExists-Automatically-Create-Required-PrivateDNSZoneGroup-SQL",
 	  "policyRule": {
 		"if": {

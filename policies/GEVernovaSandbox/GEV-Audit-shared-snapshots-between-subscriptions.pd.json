@@ -1,5 +1,6 @@
 {
   "properties": {
+	"Name": "GEV-Audit shared snapshots between subscriptions",
     "displayName": "GEV-Audit shared snapshots between subscriptions",
     "policyType": "Custom",
     "mode": "All",

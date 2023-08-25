@@ -1,5 +1,6 @@
 {
   "properties": {
+    "Name": "GEV-Deny if Public IP on a NIC",
     "displayName": "GEV-Deny if Public IP on a NIC",
     "policyType": "Custom",
     "mode": "All",

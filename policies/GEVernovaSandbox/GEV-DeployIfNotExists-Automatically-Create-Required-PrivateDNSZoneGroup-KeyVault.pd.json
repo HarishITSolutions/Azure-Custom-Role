@@ -2,6 +2,7 @@
   "properties":{
 	  "policyType": "Custom",
 	  "mode": "All",
+	  "Name": "GEV-DeployIfNotExists-Automatically-Create-Required-PrivateDNSZoneGroup-KeyVault",
 	  "displayName": "GEV-DeployIfNotExists-Automatically-Create-Required-PrivateDNSZoneGroup-KeyVault",
 	  "policyRule": {
 		"if": {

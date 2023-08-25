@@ -1,5 +1,6 @@
 {
   "properties": {
+    "Name": "GEV-Deny-Azure-ActiveDirectory-B2C",
     "displayName": "GEV-Deny-Azure-ActiveDirectory-B2C",
     "policyType": "Custom",
     "mode": "All",

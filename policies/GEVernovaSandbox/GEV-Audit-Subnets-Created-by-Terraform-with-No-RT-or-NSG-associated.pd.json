@@ -1,5 +1,6 @@
 {
   "properties": {
+	"Name": "GEV-Audit Subnets Created by Terraform with No RT or NSG associated",
     "displayName": "GEV-Audit Subnets Created by Terraform with No RT or NSG associated",
     "policyType": "Custom",
     "mode": "All",

@@ -1,5 +1,6 @@
 {
   "properties": {
+	"Name": "GEV-Azure Backup should be enabled for Virtual Machines",
     "displayName": "GEV-Azure Backup should be enabled for Virtual Machines",
     "policyType": "Custom",
     "mode": "All",
