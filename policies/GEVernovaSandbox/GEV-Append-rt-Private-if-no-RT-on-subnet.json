@@ -1,6 +1,6 @@
 {
   "properties": {
-	"Name": "GEV-Append rt-Private if no RT on subnet",
+	"Name": "GEV-Append-rt-Private-if-no-RT-on-subnet",
     "displayName": "GEV-Append rt-Private if no RT on subnet",
     "policyType": "Custom",
     "mode": "All",
