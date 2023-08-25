@@ -1,6 +1,6 @@
 managementGroups:
-  - Name: GEVernova008
-    DisplayName: GEVernova008
+  - Name: GEVernova009
+    DisplayName: GEVernova009
     ParentManagementGroup: GEVernovaSandbox
     roleassignments:
       - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
