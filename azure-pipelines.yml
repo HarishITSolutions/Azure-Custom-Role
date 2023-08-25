@@ -151,7 +151,7 @@ stages:
           displayName: 'Terraform Plan'
           inputs:
             command: 'plan'
-            commandOptions: '-target="module.PolicyandInitiativeCreation" -var sourcePolicyYAML=$(sourcePolicy-YAML).yaml -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML).yaml'
+            commandOptions: '-target="module.PolicyandInitiativeCreation" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML)'
             allowTelemetryCollection: true
             workingDirectory: '$(System.DefaultWorkingDirectory)'
         
@@ -176,7 +176,7 @@ stages:
           displayName: 'Publish Plan to plan.out'
           inputs:
             command: 'plan'
-            commandOptions: '-target="module.PolicyandInitiativeCreation" -var sourcePolicyYAML=$(sourcePolicy-YAML).yaml -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML).yaml'
+            commandOptions: '-target="module.PolicyandInitiativeCreation" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML)'
             allowTelemetryCollection: true
             publishPlanResults: 'plan.out' 
 
