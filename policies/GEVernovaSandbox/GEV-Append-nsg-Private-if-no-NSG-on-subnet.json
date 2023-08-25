@@ -1,6 +1,6 @@
 {
   "properties": {
-	"Name": "GEV-Append nsg-Private if no NSG on subnet",
+	"Name": "GEV-Append-nsg-Private-if-no-NSG-on-subnet",
     "displayName": "GEV-Append nsg-Private if no NSG on subnet",
     "policyType": "Custom",
     "mode": "All",
