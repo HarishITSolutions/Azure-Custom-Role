@@ -20,11 +20,11 @@ parameters:
   - 'Sandbox'
   - 'Prod'
 - name: policyInitiativeDeployment
-  displayName: "Deployment"
+  displayName: "Policy Initiative Deployment"
   type: boolean
   default: false
 - name: Assignments
-  displayName: "Assignment"
+  displayName: "MG RA Policy's Assignment"
   type: boolean
   default: false
 
