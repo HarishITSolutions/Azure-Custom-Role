@@ -53,7 +53,7 @@
 		  ]
 		},
       "then": {
-        "effect": "audit",
+        "effect": "append",
 		  "details": [
 			{
 			  "field": "Microsoft.Network/virtualNetworks/subnets/networkSecurityGroup.id",
