@@ -16,7 +16,7 @@
 		  "equals": "Microsoft.Compute/snapshots"
 		},
       "then": {
-        "effect": "${effect}"
+        "effect": "audit"
       }
     }
   }
