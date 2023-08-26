@@ -1,0 +1,62 @@
+{
+  "properties": {
+	"Name": "GEV-Append rt-Private if no RT on subnet",
+    "displayName": "GEV-Append rt-Private if no RT on subnet",
+    "policyType": "Custom",
+    "mode": "All",
+    "description": "GEV-This is a policy managed by the GR team, it appends the rt-Private Resource to Subnet with no Route Table.",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "General"
+    },
+    "parameters": {},
+    "policyRule": {
+      "if": {
+		  "allOf": [
+			{
+			  "field": "type",
+			  "equals": "Microsoft.Network/virtualNetworks/subnets"
+			},
+			{
+			  "field": "Microsoft.Network/virtualNetworks/subnets/routeTable.id",
+			  "exists": "false"
+			},
+			{
+			  "field": "Microsoft.Network/virtualNetworks/subnets/delegations[*].serviceName",
+			  "notIn": [
+				"Microsoft.Netapp/volumes"
+			  ]
+			},
+			{
+			  "field": "name",
+			  "notIn": [
+				"GatewaySubnet",
+				"AzureFirewallSubnet",
+				"AzureFirewallManagementSubnet",
+				"TCAppGatewaySubnet",
+				"AzureBastionSubnet",
+				"AppGatewaySubnet",
+				"AppGatewaySubnet-Dev",
+				"AppGatewaySubnet-Qa",
+				"ARO-POC-subnet1",
+				"ARO-POC-subnet2"
+			  ]
+			},
+			{
+			  "field": "name",
+			  "notlike": "*-TF"
+			}
+		  ]
+		},
+      "then": {
+        "effect": "append",
+		  "details": [
+			{
+			  "field": "Microsoft.Network/virtualNetworks/subnets/routeTable.id",
+			  "value": "[concat(resourceGroup().id, '/providers/Microsoft.Network/routeTables/rt-Private')]"
+			}
+		  ]		
+      }
+    }
+  }
+}

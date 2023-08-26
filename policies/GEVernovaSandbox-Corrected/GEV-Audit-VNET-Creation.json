@@ -1,0 +1,23 @@
+{
+  "properties": {
+    "Name": "GEV-Audit VNET Creation",
+    "displayName": "GEV-Audit VNET Creation",
+    "policyType": "Custom",
+    "mode": "All",
+    "description": "GEV-Audits the creation of VNET within an subscription",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "General"
+    },
+    "parameters": {},
+    "policyRule": {
+      "if": {
+            "field": "type",
+            "equals": "Microsoft.Network/virtualNetworks"
+      },
+      "then": {
+        "effect": "audit"
+      }
+    }
+  }
+}
