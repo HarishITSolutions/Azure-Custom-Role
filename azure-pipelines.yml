@@ -200,7 +200,7 @@ stages:
                   Connect-AzAccount -Subscription '567-gevernovabuildtestsub'
                   Remove-AzStorageAccountNetworkRule -ResourceGroupName "$(RG)" -Name "$(Storage)" -IPAddressOrRange "$ip"
                   Start-Sleep -s 20
-            displayName: "Removal of Hosted IP"
+          displayName: "Removal of Hosted IP"
   - stage: Terraform_MG_Policy_INI_Assignments
     condition: eq('${{ parameters.Assignments }}', 'true')
     displayName: Assignment of Policy and Initiative
@@ -277,4 +277,4 @@ stages:
                   Connect-AzAccount -Subscription '567-gevernovabuildtestsub'
                   Remove-AzStorageAccountNetworkRule -ResourceGroupName "$(RG)" -Name "$(Storage)" -IPAddressOrRange "$ip"
                   Start-Sleep -s 20
-            displayName: "Removal of Hosted IP"
+          displayName: "Removal of Hosted IP"
