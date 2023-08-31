@@ -2,13 +2,12 @@
 # Azure Pipeline that run basic continuous integration on a Terraform project
 # Running Pipeline from Main Branch, Creating artifacts, Publishing the artifacts and create plan.out
 
-trigger: none # Disable CI triggers.
+#trigger: none # Disable CI triggers.
 
-# trigger:
-#  branches:
-#    include:
-#   - main
-#    - Development/*
+trigger:
+ branches:
+   include:
+   - "*"
 pool:
   vmImage: ubuntu-latest
 
