@@ -107,7 +107,7 @@ variables:
     
 
 stages:
-  - stage: Build Process
+  - stage: Build_Process
     displayName: Build Process
     jobs:
     - deployment: Fetching_Agent_IP
