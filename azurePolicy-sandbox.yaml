@@ -34,8 +34,8 @@ policyrootctrl:
           - GEV-Deny-Azure-ActiveDirectory-B2C
           - GEV-Deny-Enabling-the-MDE-integration-in-ASC
           - GEV-Deny-Express-Route-Circuit
-          # - GEV-DeployIfNotExists-Automatically-Configure-NSG-To-Enable-Flowlogs
-          # - GEV-Modify-Inherit-a-tag-from-the-resource-group-if-missing 
+          - GEV-DINE-Auto-Config-NSG-To-Enable-Flowlogs
+          - GEV-Mod-Inherit-tag-from-RG-if-missing 
 
 
           
