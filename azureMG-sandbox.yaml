@@ -134,8 +134,8 @@ managementGroups:
       - policyName: 
         assignmentName: 
 
-  - Name: Power-GR-Standard
-    DisplayName: Power-GR-Standard
+  - Name: Vernova-Power-GR-Standard
+    DisplayName: Vernova-Power-GR-Standard
     ParentManagementGroup: Vernova-Azure-Standard
     GroupLevel: 3
     roleAssignmentsEnabled: false
