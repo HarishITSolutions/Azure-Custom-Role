@@ -21,8 +21,8 @@ policyrootctrl:
         displayName: "GEV-GR-Limited-Inititative"
         description: "GEV-GR-Limited-Inititative"
         Policies:
-       - GEV-Audit-App-Gateway-Insecure-Listeners
-       - GEV-Audit-blob-encryption-for-storage-accounts
+          - GEV-Audit-App-Gateway-Insecure-Listeners
+          - GEV-Audit-blob-encryption-for-storage-accounts
           - GEV-Audit-Customer-Tag-Enforcement
           - GEV-Audit-File-Encryption-in-Storage-account
           - GEV-Audit-Storage-Account-Encryption-in-Transit
@@ -34,23 +34,8 @@ policyrootctrl:
           - GEV-Deny-Azure-ActiveDirectory-B2C
           - GEV-Deny-Enabling-the-MDE-integration-in-ASC
           - GEV-Deny-Express-Route-Circuit
-          - GEV-DeployIfNotExists-Automatically-Configure-NSG-To-Enable-Flowlogs
-          - GEV-Modify-Inherit-a-tag-from-the-resource-group-if-missing 
-      - name: "GEV-GR-Standard-Inititative2"
-        displayName: "GEV-GR-Standard-Inititative2"
-        description: "GEV-GR-Standard-Inititative2"
-        Policies:
-          - GEV-Append-rt-Private-if-no-RT-on-subnet
-      - name: "GEV-GR-Standard-Inititative3"
-        displayName: "GEV-GR-Standard-Inititative3"
-        description: "GEV-GR-Standard-Inititative3"
-        Policies:
-          - GEV-Audit-blob-encryption-for-storage-accounts
-      - name: "GEV-GR-Standard-Inititative4"
-        displayName: "GEV-GR-Standard-Inititative4"
-        description: "GEV-GR-Standard-Inititative4"
-        Policies:
-          - GEV-Audit-Disk-Snapshot
+          # - GEV-DeployIfNotExists-Automatically-Configure-NSG-To-Enable-Flowlogs
+          # - GEV-Modify-Inherit-a-tag-from-the-resource-group-if-missing 
 
 
           
