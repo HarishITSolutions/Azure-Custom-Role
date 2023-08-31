@@ -161,6 +161,10 @@ resource "azurerm_management_group_policy_assignment" "initiative_assignment" {
   policy_definition_id = "/providers/Microsoft.Management/managementGroups/GEVernovaSandbox/providers/Microsoft.Authorization/policySetDefinitions/${each.value.initiativeID}"
   management_group_id  = "/providers/Microsoft.Management/managementGroups/${each.value.mgName}"
   depends_on           = [azurerm_role_assignment.roles, data.azuread_user.users, data.azuread_group.groups, data.azuread_service_principal.servicePrincipal]
+
+  identity {
+    type = "SystemAssigned"
+  }
 }
 
 # Azure Custom Policy Assignment Locals
@@ -186,6 +190,10 @@ resource "azurerm_management_group_policy_assignment" "custom_policy_assignment"
   policy_definition_id = "/providers/Microsoft.Management/managementGroups/GEVernovaSandbox/providers/Microsoft.Authorization/policyDefinitions/${each.value.policyDefinitionName}"
   management_group_id  = "/providers/Microsoft.Management/managementGroups/${each.value.mgName}"
   depends_on           = [azurerm_management_group_policy_assignment.initiative_assignment]
+
+  identity {
+    type = "SystemAssigned"
+  }
 }
 
 # Azure Built-in Policy Assignment Locals
@@ -211,4 +219,8 @@ resource "azurerm_management_group_policy_assignment" "builtin_policy_assignment
   policy_definition_id = "/providers/Microsoft.Authorization/policyDefinitions/${each.value.policyDefinitionID}"
   management_group_id  = "/providers/Microsoft.Management/managementGroups/${each.value.mgName}"
   depends_on           = [azurerm_management_group_policy_assignment.custom_policy_assignment]
+
+  identity {
+    type = "SystemAssigned"
+  }
 }
