@@ -1,0 +1,23 @@
+{
+  "properties": {
+    "Name": "GEV-Audit Disk Snapshot",
+    "displayName": "GEV-Audit Disk Snapshot",
+    "policyType": "Custom",
+    "mode": "All",
+    "description": "GEV-Audit Disk Snapshot",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "General"
+    },
+    "parameters": {},
+    "policyRule": {
+		"if": {
+		  "field": "type",
+		  "equals": "Microsoft.Compute/snapshots"
+		},
+      "then": {
+        "effect": "audit"
+      }
+    }
+  }
+}

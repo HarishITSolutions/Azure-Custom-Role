@@ -1,0 +1,43 @@
+{
+  "properties": {
+	"Name": "GEV-Audit Subnets Created by Terraform with No RT or NSG associated",
+    "displayName": "GEV-Audit Subnets Created by Terraform with No RT or NSG associated",
+    "policyType": "Custom",
+    "mode": "All",
+    "description": "GEV-GR policy used to check for Subnets that are created by Terraform but do not have an NSG or RT associated",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "General"
+    },
+    "parameters": {},
+    "policyRule": {
+      "if": {
+		  "allOf": [
+			{
+			  "field": "name",
+			  "like": "*-TF"
+			},
+			{
+			  "field": "type",
+			  "equals": "Microsoft.Network/virtualNetworks/subnets"
+			},
+			{
+			  "anyOf": [
+				{
+				  "field": "Microsoft.Network/virtualNetworks/subnets/networkSecurityGroup.id",
+				  "exists": false
+				},
+				{
+				  "field": "Microsoft.Network/virtualNetworks/subnets/routeTable.id",
+				  "exists": false
+				}
+			  ]
+			}
+		  ]
+		},
+      "then": {
+        "effect": "audit"
+      }
+    }
+  }
+}

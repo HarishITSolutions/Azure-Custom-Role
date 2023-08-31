@@ -1,0 +1,279 @@
+
+# Azure Pipeline that run basic continuous integration on a Terraform project
+# Running Pipeline from Main Branch, Creating artifacts, Publishing the artifacts and create plan.out
+
+trigger: none # Disable CI triggers.
+
+# trigger:
+#  branches:
+#    include:
+#   - main
+#    - Development/*
+pool:
+  vmImage: ubuntu-latest
+
+parameters:
+- name: environmentType
+  displayName: "Environment Type:"
+  default: 'Sandbox'
+  values:
+  - 'Sandbox'
+  - 'Prod'
+- name: policyInitiativeDeployment
+  displayName: "Policy Initiative Deployment"
+  type: boolean
+  default: false
+- name: Assignments
+  displayName: "MG RA Policy's Assignment"
+  type: boolean
+  default: false
+
+variables:
+  - group: 'Constants for Azure Build Sandbox'
+  - group: 'Constants for Azure Build Prod' 
+  - name: "client_id"
+    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+      value: $(clientID_Sandbox)
+    ${{ else }}:
+      value: $(clientID_Production)
+  - name: "client_secret"
+    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+      value: $(clientSecret_Sandbox)
+    ${{ else }}:
+      value: $(clientSecret_Production)
+  - name: "tenant_id"
+    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+      value: $(tenant_id_Sandbox)
+    ${{ else }}:
+      value: $(tenant_id_Production)
+  - name: "subscription_id"
+    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+      value: $(subscription_id_Sandbox)
+    ${{ else }}:
+      value: $(subscription_id_Production)
+  - name: "sourcePolicy-YAML"
+    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+      value: "$(sourcePolicyYAMLSandbox)"
+    ${{ else }}:
+      value: "$(sourcePolicyYAMLProd)"
+  - name: "sourceMGYAML"
+    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+      value: "$(sourceMGYAMLSandbox)"
+    ${{ else }}:
+      value: "$(sourceMGYAMLProd)"
+  - name: "Storage"
+    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+      value: "$(StorageSandbox)"
+    ${{ else }}:
+      value: "$(StorageProd)"
+  - name: "Container"
+    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+      value: "$(ContainerSandbox)"
+    ${{ else }}:
+      value: "$(ContainerProd)"
+  - name: "RG"
+    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+      value: "$(RGSandbox)"
+    ${{ else }}:
+      value: "$(RGProd)"
+  - name: "policyStateFile"
+    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+      value: "$(StateFileSandbox)"
+    ${{ else }}:
+      value: "$(StateFileProd)"
+  - name: "assignmentsStateFile"
+    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+      value: "$(AssignmnetStateFileSandbox)"
+    ${{ else }}:
+      value: "$(AssignmnetStateFileProd)"
+  - name: "accessKey"
+    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+      value: "$(accessKeySandbox)"
+    ${{ else }}:
+      value: "$(accessKeyProd)"
+  - name: "artifact"
+    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+      value: "sandbox-artifact"
+    ${{ else }}:
+      value: "prod-artifact"
+  - name: "artifact-policy"
+    ${{ if eq(parameters.policyInitiativeDeployment, 'true') }}:
+      value: "policy"
+  - name: "artifact-MG"
+    ${{ if eq(parameters.Assignments, 'true') }}:
+      value: "MG"
+  
+    
+
+stages:
+  - stage: Build_Approval
+    displayName: Build Approval
+    jobs:
+    - deployment: ContinuousIntegrationJob
+      displayName: ContinuousIntegrationJob
+      environment: 'sandbox'
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - task: PowerShell@2
+              displayName: "Microsoft Agent IP"
+              inputs:
+                targetType: 'inline'
+                script: |
+                  $ip = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
+                  Write-Host "ip is : $ip"
+  
+  - stage: Terraform_Policy_Initiative_Deployement
+    condition: eq('${{ parameters.policyInitiativeDeployment }}', 'true')
+    displayName: Deployement of Policy and Initiative 
+    jobs:
+    - job: ContinuousIntegrationJob
+      displayName: ContinuousIntegrationJob
+      steps:
+        - task: AzurePowerShell@5
+          inputs:
+                azureSubscription: 'prod-devops'
+                ScriptType: 'InlineScript'
+                Inline: |
+                  $ip = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
+                  Write-Host "ip is : $ip"
+                  Connect-AzAccount -Subscription '567-gevernovabuildtestsub'
+                  Add-AzStorageAccountNetworkRule -ResourceGroupName "$(RG)" -Name "$(Storage)" -IPAddressOrRange "$ip"
+                  Start-Sleep -s 20
+                azurePowerShellVersion: 'LatestVersion'
+          displayName: 'Added agent IP in storage account'      
+        - task: TerraformCLI@0
+          displayName: 'Terraform Init'
+          inputs:
+            command: 'init'
+            workingDirectory: '$(System.DefaultWorkingDirectory)'
+            commandOptions: '-reconfigure -backend-config="storage_account_name=$(Storage)" -backend-config="container_name=$(Container)" -backend-config="key=$(policyStateFile).tfstate" -backend-config="access_key=$(accessKey)"'
+            allowTelemetryCollection: true
+
+        - task: TerraformCLI@0
+          displayName: 'Terraform Validate'
+          inputs:
+            command: 'validate'
+            allowTelemetryCollection: true
+            workingDirectory: '$(System.DefaultWorkingDirectory)'
+
+        - task: TerraformCLI@0
+          displayName: 'Terraform Plan'
+          inputs:
+            command: 'plan'
+            commandOptions: '-target="module.PolicyandInitiativeCreation" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML)'
+            allowTelemetryCollection: true
+            workingDirectory: '$(System.DefaultWorkingDirectory)'
+        
+        - task: ArchiveFiles@2
+          displayName: 'Create Plan Artifact'
+          inputs:
+            rootFolderOrFile: '$(Build.SourcesDirectory)'
+            includeRootFolder: false
+            archiveType: 'tar'
+            tarCompression: 'gz'
+            archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-$(artifact)-$(artifact-policy).tgz'
+            replaceExistingArchive: true
+        
+        - task: PublishBuildArtifacts@1
+          displayName: 'Publish Plan Artifact'
+          inputs:
+            PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+            ArtifactName: '$(Build.BuildId)-$(artifact)-$(artifact-policy)-tfplan'
+            publishLocation: 'Container'
+        
+        - task: TerraformCLI@0
+          displayName: 'Publish Plan to plan.out'
+          inputs:
+            command: 'plan'
+            commandOptions: '-target="module.PolicyandInitiativeCreation" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML)'
+            allowTelemetryCollection: true
+            publishPlanResults: 'plan.out' 
+        - task: AzurePowerShell@5
+          inputs:
+                azureSubscription: 'prod-devops'
+                ScriptType: 'InlineScript'
+                Inline: |
+                  $ip = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
+                  Write-Host "ip is : $ip"
+                  Connect-AzAccount -Subscription '567-gevernovabuildtestsub'
+                  Remove-AzStorageAccountNetworkRule -ResourceGroupName "$(RG)" -Name "$(Storage)" -IPAddressOrRange "$ip"
+                  Start-Sleep -s 20
+
+  - stage: Terraform_MG_Policy_INI_Assignments
+    condition: eq('${{ parameters.Assignments }}', 'true')
+    displayName: Assignment of Policy and Initiative
+    jobs:
+    - job: ContinuousIntegrationJob
+      displayName: ContinuousIntegrationJob
+      steps:
+        - task: AzurePowerShell@5
+          inputs:
+                azureSubscription: 'prod-devops'
+                ScriptType: 'InlineScript'
+                Inline: |
+                  $ip = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
+                  Write-Host "ip is : $ip"
+                  Connect-AzAccount -Subscription '567-gevernovabuildtestsub'
+                  Add-AzStorageAccountNetworkRule -ResourceGroupName "$(RG)" -Name "$(Storage)" -IPAddressOrRange "$ip"
+                  Start-Sleep -s 20
+                azurePowerShellVersion: 'LatestVersion'
+          displayName: 'Added agent IP in storage account'      
+        - task: TerraformCLI@0
+          displayName: 'Terraform Init'
+          inputs:
+            command: 'init'
+            workingDirectory: '$(System.DefaultWorkingDirectory)'
+            commandOptions: '-reconfigure -backend-config="storage_account_name=$(Storage)" -backend-config="container_name=$(Container)" -backend-config="key=$(AssignmnetStateFileSandbox).tfstate" -backend-config="access_key=$(accessKey)"'
+            allowTelemetryCollection: true
+
+        - task: TerraformCLI@0
+          displayName: 'Terraform Validate'
+          inputs:
+            command: 'validate'
+            allowTelemetryCollection: true
+            workingDirectory: '$(System.DefaultWorkingDirectory)'
+
+        - task: TerraformCLI@0
+          displayName: 'Terraform Plan'
+          inputs:
+            command: 'plan'
+            commandOptions: '-target="module.MG-RA-POL-INI-Assignment" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML)'
+            allowTelemetryCollection: true
+            workingDirectory: '$(System.DefaultWorkingDirectory)'
+        
+        - task: ArchiveFiles@2
+          displayName: 'Create Plan Artifact'
+          inputs:
+            rootFolderOrFile: '$(Build.SourcesDirectory)'
+            includeRootFolder: false
+            archiveType: 'tar'
+            tarCompression: 'gz'
+            archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-$(artifact)-$(artifact-MG).tgz'
+            replaceExistingArchive: true
+        
+        - task: PublishBuildArtifacts@1
+          displayName: 'Publish Plan Artifact'
+          inputs:
+            PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+            ArtifactName: '$(Build.BuildId)-$(artifact)-$(artifact-MG)-tfplan'
+            publishLocation: 'Container'
+        
+        - task: TerraformCLI@0
+          displayName: 'Publish Plan to plan.out'
+          inputs:
+            command: 'plan'
+            commandOptions: '-target="module.MG-RA-POL-INI-Assignment" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML)'
+            allowTelemetryCollection: true
+            publishPlanResults: 'plan.out' 
+        - task: AzurePowerShell@5
+          inputs:
+                azureSubscription: 'prod-devops'
+                ScriptType: 'InlineScript'
+                Inline: |
+                  $ip = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
+                  Write-Host "ip is : $ip"
+                  Connect-AzAccount -Subscription '567-gevernovabuildtestsub'
+                  Remove-AzStorageAccountNetworkRule -ResourceGroupName "$(RG)" -Name "$(Storage)" -IPAddressOrRange "$ip"
+                  Start-Sleep -s 20

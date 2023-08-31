@@ -1,0 +1,53 @@
+{
+  "properties": {
+	"Name": "GEV-Deny-Creation-PrivateDNSZone-Named-Privatelink",
+    "displayName": "GEV-Deny-Creation-PrivateDNSZone-Named-Privatelink",
+    "policyType": "Custom",
+    "mode": "All",
+    "description": "GEV-This policy restricts the creation of your own Private Link DNS Zones that are centrally deployed and managed by the Cloud Hosting Team.  Please see Supported Services section of the gehosting doc.",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "General"
+    },
+    "parameters": {
+		"listOfPrivateDnsZonesNotAllowedInYourSubscription": {
+		  "type": "Array",
+		  "metadata": {},
+		  "defaultValue": [
+			"privatelink.database.windows.net",
+			"privatelink.blob.core.windows.net",
+			"privatelink.file.core.windows.net",
+			"privatelink.vaultcore.azure.net",
+			"privatelink.dfs.core.windows.net",
+			"privatelink.cognitiveservices.azure.com",
+			"privatelink.azurewebsites.net",
+			"privatelink.postgres.database.azure.com",
+			"privatelink.web.core.windows.net",
+			"privatelink.servicebus.windows.net",
+			"privatelink.table.core.windows.net",
+			"privatelink.queue.core.windows.net",
+			"privatelink.eastus.kusto.windows.net",
+			"privatelink.token.botframework.com",
+			"privatelink.directline.botframework.com"
+		  ]
+		}
+	  },
+    "policyRule": {
+		"if": {
+		  "allOf": [
+			{
+			  "field": "type",
+			  "equals": "Microsoft.Network/privateDnsZones"
+			},
+			{
+			  "field": "name",
+			  "in": "[parameters('listOfPrivateDnsZonesNotAllowedInYourSubscription')]"
+			}
+		  ]
+		},
+      "then": {
+        "effect": "deny"
+      }
+    }
+  }
+}

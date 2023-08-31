@@ -1,0 +1,33 @@
+{
+  "properties": {
+    "Name": "GEV-Deny if Public IP on a NIC",
+    "displayName": "GEV-Deny if Public IP on a NIC",
+    "policyType": "Custom",
+    "mode": "All",
+    "description": "GEV-This policy denies a user from having a public IP address on a NIC on creation",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "General"
+    },
+    "parameters": {},
+    "policyRule": {
+		"if": {
+		  "allOf": [
+			{
+			  "field": "type",
+			  "equals": "Microsoft.Network/networkInterfaces"
+			},
+			{
+			  "not": {
+				"field": "Microsoft.Network/networkInterfaces/ipconfigurations[*].publicIpAddress.id",
+				"exists": false
+			  }
+			}
+		  ]
+		},
+      "then": {
+        "effect": "deny"
+      }
+    }
+  }
+}
