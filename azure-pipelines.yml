@@ -107,11 +107,11 @@ variables:
     
 
 stages:
-  - stage: Build_Process
-    displayName: Build Process
+  - stage: Build_Approval
+    displayName: Build Approval
     jobs:
     - deployment: Fetching_Agent_IP
-      displayName: Fetching_Agent_IP
+      displayName: Build Process
       environment: 'sandbox'
       strategy:
         runOnce:
