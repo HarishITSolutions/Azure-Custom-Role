@@ -23,11 +23,11 @@ parameters:
 - name: policyInitiativeDeployment
   displayName: "Policy Initiative Deployment"
   type: boolean
-  default: false
+  default: true
 - name: Assignments
   displayName: "MG RA Policy's Assignment"
   type: boolean
-  default: false
+  default: true
 
 variables:
   - group: 'Constants for Azure Build Sandbox'
@@ -125,7 +125,7 @@ stages:
                   $ip = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
                   Write-Host "ip is : $ip"
   
-  - stage: Terraform_Policy_Initiative_Deployement
+  - stage: Policy_Initiative_Deployement
     condition: eq('${{ parameters.policyInitiativeDeployment }}', 'true')
     displayName: Deployement of Policy and Initiative 
     jobs:
@@ -143,7 +143,8 @@ stages:
                   Add-AzStorageAccountNetworkRule -ResourceGroupName "$(RG)" -Name "$(Storage)" -IPAddressOrRange "$ip"
                   Start-Sleep -s 20
                 azurePowerShellVersion: 'LatestVersion'
-          displayName: 'Added agent IP in storage account'      
+          displayName: 'Adding agent IP in storage account'
+
         - task: TerraformCLI@0
           displayName: 'Terraform Init'
           inputs:
@@ -174,14 +175,14 @@ stages:
             includeRootFolder: false
             archiveType: 'tar'
             tarCompression: 'gz'
-            archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-$(artifact)-$(artifact-policy).tgz'
+            archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-$(artifact-policy)-$(artifact).tgz'
             replaceExistingArchive: true
         
         - task: PublishBuildArtifacts@1
           displayName: 'Publish Plan Artifact'
           inputs:
             PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-            ArtifactName: '$(Build.BuildId)-$(artifact)-$(artifact-policy)-tfplan'
+            ArtifactName: '$(Build.BuildId)-$(artifact-policy)-$(artifact)-tfplan'
             publishLocation: 'Container'
         
         - task: TerraformCLI@0
@@ -191,6 +192,7 @@ stages:
             commandOptions: '-target="module.PolicyandInitiativeCreation" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML)'
             allowTelemetryCollection: true
             publishPlanResults: 'plan.out' 
+
         - task: AzurePowerShell@5
           inputs:
                 azureSubscription: 'prod-devops'
@@ -201,10 +203,11 @@ stages:
                   Connect-AzAccount -Subscription '567-gevernovabuildtestsub'
                   Remove-AzStorageAccountNetworkRule -ResourceGroupName "$(RG)" -Name "$(Storage)" -IPAddressOrRange "$ip"
                   Start-Sleep -s 20
-          displayName: "Removal of Hosted IP"
-  - stage: Terraform_MG_Policy_INI_Assignments
+          displayName: "Removal of Agent IP in Storage Account"
+
+  - stage: MG_RA_Policy_INI_Assignments
     condition: eq('${{ parameters.Assignments }}', 'true')
-    displayName: Assignment of Policy and Initiative
+    displayName: MG RA Policy and Initiative Assignment
     jobs:
     - job: ContinuousIntegrationJob
       displayName: ContinuousIntegrationJob
@@ -220,7 +223,8 @@ stages:
                   Add-AzStorageAccountNetworkRule -ResourceGroupName "$(RG)" -Name "$(Storage)" -IPAddressOrRange "$ip"
                   Start-Sleep -s 20
                 azurePowerShellVersion: 'LatestVersion'
-          displayName: 'Added agent IP in storage account'      
+          displayName: 'Adding agent IP in storage account'
+
         - task: TerraformCLI@0
           displayName: 'Terraform Init'
           inputs:
@@ -251,14 +255,14 @@ stages:
             includeRootFolder: false
             archiveType: 'tar'
             tarCompression: 'gz'
-            archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-$(artifact)-$(artifact-MG).tgz'
+            archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-$(artifact-MG)-$(artifact).tgz'
             replaceExistingArchive: true
         
         - task: PublishBuildArtifacts@1
           displayName: 'Publish Plan Artifact'
           inputs:
             PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-            ArtifactName: '$(Build.BuildId)-$(artifact)-$(artifact-MG)-tfplan'
+            ArtifactName: '$(Build.BuildId)-$(artifact-MG)-$(artifact)-tfplan'
             publishLocation: 'Container'
         
         - task: TerraformCLI@0
@@ -268,6 +272,7 @@ stages:
             commandOptions: '-target="module.MG-RA-POL-INI-Assignment" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML)'
             allowTelemetryCollection: true
             publishPlanResults: 'plan.out' 
+
         - task: AzurePowerShell@5
           inputs:
                 azureSubscription: 'prod-devops'
@@ -278,4 +283,4 @@ stages:
                   Connect-AzAccount -Subscription '567-gevernovabuildtestsub'
                   Remove-AzStorageAccountNetworkRule -ResourceGroupName "$(RG)" -Name "$(Storage)" -IPAddressOrRange "$ip"
                   Start-Sleep -s 20
-          displayName: "Removal of Hosted IP"
+          displayName: "Removal of Agent IP in Storage Account"
