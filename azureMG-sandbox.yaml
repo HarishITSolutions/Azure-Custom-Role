@@ -90,8 +90,8 @@ managementGroups:
       - policyName: 
         assignmentName: 
 
-  - Name: Vernova--Azure-Standard
-    DisplayName: Vernova--Azure-Standard
+  - Name: Vernova-Azure-Standard
+    DisplayName: Vernova-Azure-Standard
     ParentManagementGroup: Guardrails
     GroupLevel: 2
     roleAssignmentsEnabled: false
