@@ -2,7 +2,7 @@
   "properties":{
 	  "policyType": "Custom",
 	  "mode": "Indexed",
-	  "Name": "GEV-DeployIfNotExists-Automatically-Configure-NSG-To-Enable-Flowlogs",
+	  "Name": "GEV-DINE-Auto-Config-NSG-To-Enable-Flowlogs",
 	  "displayName": "GEV-DeployIfNotExists-Automatically-Configure-NSG-To-Enable-Flowlogs",
 	  "description": "GEV-Implements the Azure Flow Logs on NSGs. The logs are collected to the centrally managed storage account. There are no changes if NSG Flow Logs are already enabled at the time of this policy deployment, irrespective of storage account location",
 	  "policyRule": {
