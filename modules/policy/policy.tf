@@ -3,13 +3,11 @@ locals {
   policySource = yamldecode(file("${path.root}/${var.sourceYAML}"))
 }
 
-# Policy Definition locals
+# Azure Policy Definition locals
 locals {
   flattened_policies = flatten([
-    for mg in local.policySource.policyrootctrl :
-    [
-      for policy in mg.policies :
-      {
+    for mg in local.policySource.policyrootctrl : [
+      for policy in mg.policies : {
         mgName = mg.scope
         policyValue = jsondecode(
           file("${path.root}/policies/${mg.scope}/${policy}.json")
@@ -47,13 +45,11 @@ resource "azurerm_policy_definition" "policies" {
   }
 }
 
-# Set Definition locals
+# Azure Set Definition locals
 locals {
   initiatives_mapping = flatten([
-    for mg in local.policySource.policyrootctrl :
-    [
-      for init in mg.initiatives :
-      {
+    for mg in local.policySource.policyrootctrl : [
+      for init in mg.initiatives : {
         mgName                = mg.scope
         initiativeName        = init.name
         initiativeDisplayName = init.displayName
@@ -63,7 +59,6 @@ locals {
     ]
   ])
 }
-
 
 # Azure Policy Initiative
 resource "azurerm_policy_set_definition" "initiatives" {
