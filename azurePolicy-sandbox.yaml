@@ -1,42 +1,31 @@
 policyrootctrl:
   - scope: GEVernovaSandbox
     policies:
-      - GEV-Audit-App-Gateway-Insecure-Listeners
+      - GEV-Append-nsg-Private-if-no-NSG-on-subnet
+      - GEV-Append-rt-Private-if-no-RT-on-subnet
       - GEV-Audit-blob-encryption-for-storage-accounts
-      - GEV-Audit-Customer-Tag-Enforcement
-      - GEV-Audit-File-Encryption-in-Storage-account
-      - GEV-Audit-Storage-Account-Encryption-in-Transit
-      - GEV-Audit-Storage-account-with-public-access-policy
-      - GEV-Audit-Subnet-without-NSG
-      - GEV-Audit-VNET-Creation
-      - GEV-Audit-VNet-Peering
-      - GEV-Audit-VPN-Gateway
-      - GEV-Deny-Azure-ActiveDirectory-B2C
-      - GEV-Deny-Enabling-the-MDE-integration-in-ASC
-      - GEV-Deny-Express-Route-Circuit
-      - GEV-DeployIfNotExists-Automatically-Configure-NSG-To-Enable-Flowlogs
-      - GEV-Modify-Inherit-a-tag-from-the-resource-group-if-missing
+      - GEV-Audit-Disk-Snapshot
     initiatives:
-      - name: "GEV-GR-Limited-Inititative"
-        displayName: "GEV-GR-Limited-Inititative"
-        description: "GEV-GR-Limited-Inititative"
+      - name: "GEV-GR-Standard-Inititative1"
+        displayName: "GEV-GR-Standard-Inititative1"
+        description: "GEV-GR-Standard-Inititative1"
         Policies:
-          - GEV-Audit-App-Gateway-Insecure-Listeners
+          - GEV-Append-nsg-Private-if-no-NSG-on-subnet
+      - name: "GEV-GR-Standard-Inititative2"
+        displayName: "GEV-GR-Standard-Inititative2"
+        description: "GEV-GR-Standard-Inititative2"
+        Policies:
+          - GEV-Append-rt-Private-if-no-RT-on-subnet
+      - name: "GEV-GR-Standard-Inititative3"
+        displayName: "GEV-GR-Standard-Inititative3"
+        description: "GEV-GR-Standard-Inititative3"
+        Policies:
           - GEV-Audit-blob-encryption-for-storage-accounts
-          - GEV-Audit-Customer-Tag-Enforcement
-          - GEV-Audit-File-Encryption-in-Storage-account
-          - GEV-Audit-Storage-Account-Encryption-in-Transit
-          - GEV-Audit-Storage-account-with-public-access-policy
-          - GEV-Audit-Subnet-without-NSG
-          - GEV-Audit-VNET-Creation
-          - GEV-Audit-VNet-Peering
-          - GEV-Audit-VPN-Gateway
-          - GEV-Deny-Azure-ActiveDirectory-B2C
-          - GEV-Deny-Enabling-the-MDE-integration-in-ASC
-          - GEV-Deny-Express-Route-Circuit
-          - GEV-DeployIfNotExists-Automatically-Configure-NSG-To-Enable-Flowlogs
-          - GEV-Modify-Inherit-a-tag-from-the-resource-group-if-missing
-          
+      - name: "GEV-GR-Standard-Inititative4"
+        displayName: "GEV-GR-Standard-Inititative4"
+        description: "GEV-GR-Standard-Inititative4"
+        Policies:
+          - GEV-Audit-Disk-Snapshot
 
 
           
