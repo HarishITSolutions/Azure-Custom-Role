@@ -79,14 +79,14 @@ variables:
       value: "$(RGProd)"
   - name: "policyStateFile"
     ${{ if eq(parameters.environmentType, 'Sandbox') }}:
-      value: "$(StateFileSandbox)"
+      value: "$(PolicyStateFileSandbox)"
     ${{ else }}:
-      value: "$(StateFileProd)"
-  - name: "assignmentsStateFile"
+      value: "$(PolicyStateFileProd)"
+  - name: "MGRAStateFile"
     ${{ if eq(parameters.environmentType, 'Sandbox') }}:
-      value: "$(AssignmnetStateFileSandbox)"
+      value: "$(MGRAStateFileSandbox)"
     ${{ else }}:
-      value: "$(AssignmnetStateFileProd)"
+      value: "$(MGRAStateFileProd)"
   - name: "accessKey"
     ${{ if eq(parameters.environmentType, 'Sandbox') }}:
       value: "$(accessKeySandbox)"
@@ -230,7 +230,7 @@ stages:
           inputs:
             command: 'init'
             workingDirectory: '$(System.DefaultWorkingDirectory)'
-            commandOptions: '-reconfigure -backend-config="storage_account_name=$(Storage)" -backend-config="container_name=$(Container)" -backend-config="key=$(AssignmnetStateFileSandbox).tfstate" -backend-config="access_key=$(accessKey)"'
+            commandOptions: '-reconfigure -backend-config="storage_account_name=$(Storage)" -backend-config="container_name=$(Container)" -backend-config="key=$(MGRAStateFile).tfstate" -backend-config="access_key=$(accessKey)"'
             allowTelemetryCollection: true
 
         - task: TerraformCLI@0
