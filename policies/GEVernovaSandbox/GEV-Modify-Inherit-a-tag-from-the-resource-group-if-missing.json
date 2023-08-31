@@ -1,6 +1,6 @@
 {
   "properties": {
-	"Name": "GEV-Modify-Inherit-a-tag-from-the-resource-group-if-missing",
+	"Name": "GEV-Mod-Inherit-tag-from-RG-if-missing",
     "displayName": "GEV-Inherit a tag from the resource group if missing",
     "policyType": "Custom",
     "mode": "All",
