@@ -118,7 +118,7 @@ managementGroups:
     GroupLevel: 2
     roleAssignmentsEnabled: true
     roleassignments:
-      - principal: "GE Genpact Vernova Azure Build"
+      - principal: "Test-group-for-policy-assignment"
         type: group
         role: Reader
     initiativeAssignmentEnabled: true
