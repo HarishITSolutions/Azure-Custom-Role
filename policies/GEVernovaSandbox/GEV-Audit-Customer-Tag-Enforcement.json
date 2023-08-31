@@ -1,6 +1,6 @@
 {
   "properties": {
-	"Name": "GEV-Customer Tag Enforcement",
+	"Name": "GEV-Audit-Customer-Tag-Enforcement",
     "displayName": "GEV-Customer Tag Enforcement",
     "policyType": "Custom",
     "mode": "All",
