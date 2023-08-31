@@ -4,6 +4,7 @@ variable "scope" {
     Name                  = string
     DisplayName           = string
     ParentManagementGroup = string
+    GroupLevel            = number
   }))
 }
 
