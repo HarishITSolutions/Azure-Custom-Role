@@ -8,6 +8,8 @@ trigger:
  branches:
    include:
    - "*"
+   exclude:
+   - dev
 pool:
   vmImage: ubuntu-latest
 
@@ -105,11 +107,11 @@ variables:
     
 
 stages:
-  - stage: Build_Approval
-    displayName: Build Approval
+  - stage: Fetching-Agent-IP
+    displayName: Fetching-Agent-IP
     jobs:
-    - deployment: ContinuousIntegrationJob
-      displayName: ContinuousIntegrationJob
+    - deployment: Fetching-Agent-IP
+      displayName: Fetching-Agent-IP
       environment: 'sandbox'
       strategy:
         runOnce:
