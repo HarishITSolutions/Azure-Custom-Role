@@ -9,14 +9,14 @@ managementGroups:
       - principal: "Test-group-for-policy-assignment"
         type: group
         role: Reader
-    policyAssignmentEnabled: true
+    policyAssignmentEnabled: false
     policyAssignment:
-      - policyName: GEV-Append-nsg-Private-if-no-NSG-on-subnet
+      - policyName:
         assignmentName: GEV-Append-nsg
     initiativeAssignmentEnabled: true
     initiativeAssignment:
-      - initiativeName: GEV-GR-Standard-Inititative
-        assignmentName: GEV-GR-Standard
+      - initiativeName: GEV-GR-Limited-Inititative
+        assignmentName: GEV-GR-Limited-Inititative
 
   - Name: Decommisioned
     DisplayName: Decommisioned
