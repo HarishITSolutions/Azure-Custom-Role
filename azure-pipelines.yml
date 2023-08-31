@@ -190,7 +190,17 @@ stages:
             commandOptions: '-target="module.PolicyandInitiativeCreation" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML)'
             allowTelemetryCollection: true
             publishPlanResults: 'plan.out' 
-
+        - task: AzurePowerShell@5
+          inputs:
+                azureSubscription: 'prod-devops'
+                ScriptType: 'InlineScript'
+                Inline: |
+                  $ip = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
+                  Write-Host "ip is : $ip"
+                  Connect-AzAccount -Subscription '567-gevernovabuildtestsub'
+                  Remove-AzStorageAccountNetworkRule -ResourceGroupName "$(RG)" -Name "$(Storage)" -IPAddressOrRange "$ip"
+                  Start-Sleep -s 20
+            displayName: "Removal of Hosted IP"
   - stage: Terraform_MG_Policy_INI_Assignments
     condition: eq('${{ parameters.Assignments }}', 'true')
     displayName: Assignment of Policy and Initiative
