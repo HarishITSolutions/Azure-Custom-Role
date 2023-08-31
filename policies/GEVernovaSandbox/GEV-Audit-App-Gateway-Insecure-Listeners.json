@@ -1,6 +1,6 @@
 {
   "properties": {
-    "Name": "GEV-Audit App Gateway Insecure Listeners",
+    "Name": "GEV-Audit-App-Gateway-Insecure-Listeners",
     "displayName": "GEV-Audit App Gateway Insecure Listeners",
     "policyType": "Custom",
     "mode": "All",
