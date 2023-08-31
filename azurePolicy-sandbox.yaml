@@ -15,7 +15,7 @@ policyrootctrl:
       - GEV-Deny-Enabling-the-MDE-integration-in-ASC
       - GEV-Deny-Express-Route-Circuit
       - GEV-DINE-Auto-Config-NSG-To-Enable-Flowlogs
-      - GEV-Mod-Inherit-tag-from-RG-if-missing
+      # - GEV-Mod-Inherit-tag-from-RG-if-missing
     initiatives:
       - name: "GEV-GR-Limited-Inititative"
         displayName: "GEV-GR-Limited-Inititative"
@@ -35,7 +35,7 @@ policyrootctrl:
           - GEV-Deny-Enabling-the-MDE-integration-in-ASC
           - GEV-Deny-Express-Route-Circuit
           - GEV-DINE-Auto-Config-NSG-To-Enable-Flowlogs
-          - GEV-Mod-Inherit-tag-from-RG-if-missing 
+          # - GEV-Mod-Inherit-tag-from-RG-if-missing 
 
 
           
