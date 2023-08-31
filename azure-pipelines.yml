@@ -202,13 +202,13 @@ stages:
   #                 Remove-AzStorageAccountNetworkRule -ResourceGroupName "$(RG)" -Name "$(Storage)" -IPAddressOrRange "$ip"
   #                 Start-Sleep -s 20
   #         displayName: "Removal of Hosted IP"
-  # - stage: Terraform_MG_Policy_INI_Assignments
-  #   condition: eq('${{ parameters.Assignments }}', 'true')
-  #   displayName: Assignment of Policy and Initiative
-  #   jobs:
-  #   - job: ContinuousIntegrationJob
-  #     displayName: ContinuousIntegrationJob
-  #     steps:
+  - stage: Terraform_MG_Policy_INI_Assignments
+    # condition: eq('${{ parameters.Assignments }}', 'true')
+    displayName: Assignment of Policy and Initiative
+    jobs:
+    - job: ContinuousIntegrationJob
+      displayName: ContinuousIntegrationJob
+      steps:
   #       - task: AzurePowerShell@5
   #         inputs:
   #               azureSubscription: 'prod-devops'
@@ -244,22 +244,22 @@ stages:
   #           allowTelemetryCollection: true
   #           workingDirectory: '$(System.DefaultWorkingDirectory)'
         
-  #       - task: ArchiveFiles@2
-  #         displayName: 'Create Plan Artifact'
-  #         inputs:
-  #           rootFolderOrFile: '$(Build.SourcesDirectory)'
-  #           includeRootFolder: false
-  #           archiveType: 'tar'
-  #           tarCompression: 'gz'
-  #           archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-$(artifact)-$(artifact-MG).tgz'
-  #           replaceExistingArchive: true
+        - task: ArchiveFiles@2
+          displayName: 'Create Plan Artifact'
+          inputs:
+            rootFolderOrFile: '$(Build.SourcesDirectory)'
+            includeRootFolder: false
+            archiveType: 'tar'
+            tarCompression: 'gz'
+            archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-$(artifact)-$(artifact-MG).tgz'
+            replaceExistingArchive: true
         
-  #       - task: PublishBuildArtifacts@1
-  #         displayName: 'Publish Plan Artifact'
-  #         inputs:
-  #           PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-  #           ArtifactName: '$(Build.BuildId)-$(artifact)-$(artifact-MG)-tfplan'
-  #           publishLocation: 'Container'
+        - task: PublishBuildArtifacts@1
+          displayName: 'Publish Plan Artifact'
+          inputs:
+            PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+            ArtifactName: '$(Build.BuildId)-$(artifact)-$(artifact-MG)-tfplan'
+            publishLocation: 'Container'
         
   #       - task: TerraformCLI@0
   #         displayName: 'Publish Plan to plan.out'
