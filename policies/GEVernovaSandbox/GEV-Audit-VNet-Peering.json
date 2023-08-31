@@ -1,6 +1,6 @@
 {
   "properties": {
-    "Name": "GEV-Audit VNet Peering",
+    "Name": "GEV-Audit-VNet-Peering",
     "displayName": "GEV-Audit VNet Peering",
     "policyType": "Custom",
     "mode": "All",

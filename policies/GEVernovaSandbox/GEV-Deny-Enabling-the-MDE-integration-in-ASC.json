@@ -1,6 +1,6 @@
 {
   "properties": {
-    "Name": "GEV-Deny Enabling the MDE integration in ASC",
+    "Name": "GEV-Deny-Enabling-the-MDE-integration-in-ASC",
     "displayName": "GEV-Deny Enabling the MDE integration in ASC",
     "policyType": "Custom",
     "mode": "All",

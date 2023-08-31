@@ -1,6 +1,6 @@
 {
   "properties": {
-    "Name": "GEV-Audit Storage account with public access policy",
+    "Name": "GEV-Audit-Storage-account-with-public-access-policy",
     "displayName": "GEV-Audit Storage account with public access policy",
     "policyType": "Custom",
     "mode": "All",
