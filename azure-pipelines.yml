@@ -131,7 +131,7 @@ stages:
     displayName: Deployement of Policy and Initiative 
     jobs:
     - job: ContinuousIntegrationJob
-      displayName: ContinuousIntegrationJob
+      displayName: Policy and Initiative Job
       steps:
         - task: AzurePowerShell@5
           inputs:
@@ -220,7 +220,7 @@ stages:
     displayName: MG RA Policy and Initiative Assignment
     jobs:
     - job: ContinuousIntegrationJob
-      displayName: ContinuousIntegrationJob
+      displayName: MG RA Policy INI Assignmnet Job
       steps:
         - task: AzurePowerShell@5
           inputs:
