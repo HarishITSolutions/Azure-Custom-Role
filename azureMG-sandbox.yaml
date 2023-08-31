@@ -1,51 +1,88 @@
 managementGroups:
-  - Name: Guardrails
-    DisplayName: Guardrails
+  - Name: Guardrails-test3
+    DisplayName: Guardrails-test3
     ParentManagementGroup: GEVernovaSandbox
+    GroupLevel: 1
+    roleAssignmentsEnabled: true
     roleassignments:
       - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
         type: user
         role: Reader
-      - principal: "Test-group-for-policy-assignment"
-        type: group
-        role: Reader
-    policyAssignmentEnabled: false
-    policyAssignment:
-      - policyName:
-        assignmentName: GEV-Append-nsg
     initiativeAssignmentEnabled: true
     initiativeAssignment:
-      - initiativeName: GEV-GR-Limited-Inititative
-        assignmentName: GEV-GR-Limited-Inititative
+      - initiativeName: GEV-GR-Standard-Inititative1
+        assignmentName: GEV-GR-Standard1
+    customPolicyAssignmentEnabled: true
+    customPolicyAssignment:
+      - policyName: GEV-Audit-Disk-Snapshot
+        assignmentName: GEV-Audit-Disk
+    builtinPolicyAssignmentEnabled: true
+    builtinPolicyAssignment:
+      - policyName: e2dd799a-a932-4e9d-ac17-d473bc3c6c10
+        assignmentName: policyassignment1
 
-  - Name: Decommisioned
-    DisplayName: Decommisioned
-    ParentManagementGroup: GEVernovaSandbox
+  - Name: Decommisioned-test23
+    DisplayName: Decommisioned-test23
+    ParentManagementGroup: Guardrails-test3
+    GroupLevel: 2
+    roleAssignmentsEnabled: true
     roleassignments:
-      - principal: "Harish.Nerella_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
         type: user
         role: Reader
-    policyAssignmentEnabled: false
-    policyAssignment:
-      - policyName: 
-        assignmentName: 
-    initiativeAssignmentEnabled: false
+    initiativeAssignmentEnabled: true
     initiativeAssignment:
-      - initiativeName: 
-        assignmentName: 
+      - initiativeName: GEV-GR-Standard-Inititative2
+        assignmentName: GEV-GR-Standard2
+    customPolicyAssignmentEnabled: true
+    customPolicyAssignment:
+      - policyName: GEV-Audit-blob-encryption-for-storage-accounts
+        assignmentName: GEV-Audit-blob
+    builtinPolicyAssignmentEnabled: true
+    builtinPolicyAssignment:
+      - policyName: e2dd799a-a932-4e9d-ac17-d473bc3c6c10
+        assignmentName: policyassignment2
 
-  - Name: UnderConstruction
-    DisplayName: UnderConstruction
-    ParentManagementGroup: GEVernovaSandbox
+  - Name: Decommisioned-test33
+    DisplayName: Decommisioned-test33
+    ParentManagementGroup: Decommisioned-test23
+    GroupLevel: 3
+    roleAssignmentsEnabled: true
     roleassignments:
-      - principal: "Veerabhadra.Rao_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
         type: user
         role: Reader
-    policyAssignmentEnabled: false
-    policyAssignment:
-      - policyName: 
-        assignmentName: 
-    initiativeAssignmentEnabled: false
+    initiativeAssignmentEnabled: true
     initiativeAssignment:
-      - initiativeName: 
-        assignmentName: 
+      - initiativeName: GEV-GR-Standard-Inititative3
+        assignmentName: GEV-GR-Standard3
+    customPolicyAssignmentEnabled: true
+    customPolicyAssignment:
+      - policyName: GEV-Append-rt-Private-if-no-RT-on-subnet
+        assignmentName: GEV-Append-r
+    builtinPolicyAssignmentEnabled: true
+    builtinPolicyAssignment:
+      - policyName: e2dd799a-a932-4e9d-ac17-d473bc3c6c10
+        assignmentName: policyassignment3
+
+  - Name: UnderConstruction24
+    DisplayName: UnderConstruction24
+    ParentManagementGroup: Decommisioned-test33
+    GroupLevel: 4
+    roleAssignmentsEnabled: true
+    roleassignments:
+      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Reader
+    initiativeAssignmentEnabled: true
+    initiativeAssignment:
+      - initiativeName: GEV-GR-Standard-Inititative4
+        assignmentName: GEV-GR-Standard4
+    customPolicyAssignmentEnabled: true
+    customPolicyAssignment:
+      - policyName: GEV-Append-nsg-Private-if-no-NSG-on-subnet
+        assignmentName: GEV-Append
+    builtinPolicyAssignmentEnabled: true
+    builtinPolicyAssignment:
+      - policyName: e2dd799a-a932-4e9d-ac17-d473bc3c6c10
+        assignmentName: policyassignment4
