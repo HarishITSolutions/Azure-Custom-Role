@@ -1,6 +1,6 @@
 {
   "properties": {
-    "Name": "GEV-Audit blob encryption for storage accounts",
+    "Name": "GEV-Audit-blob-encryption-for-storage-accounts",
     "displayName": "GEV-Audit blob encryption for storage accounts",
     "policyType": "Custom",
     "mode": "All",
