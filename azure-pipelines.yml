@@ -107,11 +107,11 @@ variables:
     
 
 stages:
-  - stage: Fetching-Agent-IP
-    displayName: Fetching-Agent-IP
+  - stage: Fetching_Agent_IP
+    displayName: Fetching_Agent_IP
     jobs:
-    - deployment: Fetching-Agent-IP
-      displayName: Fetching-Agent-IP
+    - deployment: Fetching_Agent_IP
+      displayName: Fetching_Agent_IP
       environment: 'sandbox'
       strategy:
         runOnce:
