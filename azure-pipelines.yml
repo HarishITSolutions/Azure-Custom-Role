@@ -142,7 +142,7 @@ stages:
                   Write-Host "ip is : $ip"
                   Connect-AzAccount -Subscription '567-gevernovabuildtestsub'
                   Add-AzStorageAccountNetworkRule -ResourceGroupName "$(RG)" -Name "$(Storage)" -IPAddressOrRange "$ip"
-                  Start-Sleep -s 20
+                  Start-Sleep -s 30
                 azurePowerShellVersion: 'LatestVersion'
           displayName: 'Adding agent IP in storage account'
           continueOnError: false
@@ -210,7 +210,6 @@ stages:
                   Write-Host "ip is : $ip"
                   Connect-AzAccount -Subscription '567-gevernovabuildtestsub'
                   Remove-AzStorageAccountNetworkRule -ResourceGroupName "$(RG)" -Name "$(Storage)" -IPAddressOrRange "$ip"
-                  Start-Sleep -s 20
                 azurePowerShellVersion: 'LatestVersion'
           displayName: "Removal of Agent IP in Storage Account"
           continueOnError: false
@@ -231,7 +230,7 @@ stages:
                   Write-Host "ip is : $ip"
                   Connect-AzAccount -Subscription '567-gevernovabuildtestsub'
                   Add-AzStorageAccountNetworkRule -ResourceGroupName "$(RG)" -Name "$(Storage)" -IPAddressOrRange "$ip"
-                  Start-Sleep -s 20
+                  Start-Sleep -s 30
                 azurePowerShellVersion: 'LatestVersion'
           displayName: 'Adding agent IP in storage account'
           continueOnError: false
@@ -300,7 +299,6 @@ stages:
                   Write-Host "ip is : $ip"
                   Connect-AzAccount -Subscription '567-gevernovabuildtestsub'
                   Remove-AzStorageAccountNetworkRule -ResourceGroupName "$(RG)" -Name "$(Storage)" -IPAddressOrRange "$ip"
-                  Start-Sleep -s 20
                 azurePowerShellVersion: 'LatestVersion'
           displayName: "Removal of Agent IP in Storage Account"
           continueOnError: false

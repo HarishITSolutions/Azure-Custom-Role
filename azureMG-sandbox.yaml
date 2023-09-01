@@ -178,24 +178,24 @@ managementGroups:
       - policyName: 
         assignmentName:
 
-  - Name: Vernova-Renewable-Energy-GR-Standard
-    DisplayName: Vernova-Renewable-Energy-GR-Standard
-    ParentManagementGroup: Vernova-Azure-Standard
-    GroupLevel: 3
-    roleAssignmentsEnabled: false
-    roleassignments:
-      - principal: 
-        type: 
-        role: 
-    initiativeAssignmentEnabled: false
-    initiativeAssignment:
-      - initiativeName: 
-        assignmentName: 
-    customPolicyAssignmentEnabled: false
-    customPolicyAssignment:
-      - policyName: 
-        assignmentName: 
-    builtinPolicyAssignmentEnabled: false
-    builtinPolicyAssignment:
-      - policyName: 
-        assignmentName:
+  # - Name: Vernova-Renewable-Energy-GR-Standard
+  #   DisplayName: Vernova-Renewable-Energy-GR-Standard
+  #   ParentManagementGroup: Vernova-Azure-Standard
+  #   GroupLevel: 3
+  #   roleAssignmentsEnabled: false
+  #   roleassignments:
+  #     - principal: 
+  #       type: 
+  #       role: 
+  #   initiativeAssignmentEnabled: false
+  #   initiativeAssignment:
+  #     - initiativeName: 
+  #       assignmentName: 
+  #   customPolicyAssignmentEnabled: false
+  #   customPolicyAssignment:
+  #     - policyName: 
+  #       assignmentName: 
+  #   builtinPolicyAssignmentEnabled: false
+  #   builtinPolicyAssignment:
+  #     - policyName: 
+  #       assignmentName:
