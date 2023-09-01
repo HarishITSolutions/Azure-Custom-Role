@@ -1,6 +1,6 @@
 managementGroups:
-  - Name: Guardrails
-    DisplayName: Guardrails
+  - Name: Guardrails-test
+    DisplayName: Guardrails-test
     ParentManagementGroup: GEVernovaSandbox
     GroupLevel: 1
     roleAssignmentsEnabled: true
@@ -24,178 +24,178 @@ managementGroups:
       - policyName: 
         assignmentName: 
 
-  - Name: Decommisioned
-    DisplayName: Decommisioned
-    ParentManagementGroup: GEVernovaSandbox
-    GroupLevel: 1
-    roleAssignmentsEnabled: false
-    roleassignments:
-      - principal: 
-        type: 
-        role: 
-    initiativeAssignmentEnabled: false
-    initiativeAssignment:
-      - initiativeName: 
-        assignmentName: 
-    customPolicyAssignmentEnabled: false
-    customPolicyAssignment:
-      - policyName: 
-        assignmentName: 
-    builtinPolicyAssignmentEnabled: false
-    builtinPolicyAssignment:
-      - policyName: 
-        assignmentName: 
+  # - Name: Decommisioned
+  #   DisplayName: Decommisioned
+  #   ParentManagementGroup: GEVernovaSandbox
+  #   GroupLevel: 1
+  #   roleAssignmentsEnabled: false
+  #   roleassignments:
+  #     - principal: 
+  #       type: 
+  #       role: 
+  #   initiativeAssignmentEnabled: false
+  #   initiativeAssignment:
+  #     - initiativeName: 
+  #       assignmentName: 
+  #   customPolicyAssignmentEnabled: false
+  #   customPolicyAssignment:
+  #     - policyName: 
+  #       assignmentName: 
+  #   builtinPolicyAssignmentEnabled: false
+  #   builtinPolicyAssignment:
+  #     - policyName: 
+  #       assignmentName: 
 
-  - Name: UnderConstruction
-    DisplayName: UnderConstruction
-    ParentManagementGroup: GEVernovaSandbox
-    GroupLevel: 1
-    roleAssignmentsEnabled: false
-    roleassignments:
-      - principal: 
-        type: 
-        role: 
-    initiativeAssignmentEnabled: false
-    initiativeAssignment:
-      - initiativeName: 
-        assignmentName: 
-    customPolicyAssignmentEnabled: false
-    customPolicyAssignment:
-      - policyName: 
-        assignmentName: 
-    builtinPolicyAssignmentEnabled: false
-    builtinPolicyAssignment:
-      - policyName: 
-        assignmentName: 
+  # - Name: UnderConstruction
+  #   DisplayName: UnderConstruction
+  #   ParentManagementGroup: GEVernovaSandbox
+  #   GroupLevel: 1
+  #   roleAssignmentsEnabled: false
+  #   roleassignments:
+  #     - principal: 
+  #       type: 
+  #       role: 
+  #   initiativeAssignmentEnabled: false
+  #   initiativeAssignment:
+  #     - initiativeName: 
+  #       assignmentName: 
+  #   customPolicyAssignmentEnabled: false
+  #   customPolicyAssignment:
+  #     - policyName: 
+  #       assignmentName: 
+  #   builtinPolicyAssignmentEnabled: false
+  #   builtinPolicyAssignment:
+  #     - policyName: 
+  #       assignmentName: 
 
-  - Name: SpecialSubs
-    DisplayName: SpecialSubs
-    ParentManagementGroup: GEVernovaSandbox
-    GroupLevel: 1
-    roleAssignmentsEnabled: false
-    roleassignments:
-      - principal: 
-        type: 
-        role: 
-    initiativeAssignmentEnabled: false
-    initiativeAssignment:
-      - initiativeName: 
-        assignmentName: 
-    customPolicyAssignmentEnabled: false
-    customPolicyAssignment:
-      - policyName: 
-        assignmentName: 
-    builtinPolicyAssignmentEnabled: false
-    builtinPolicyAssignment:
-      - policyName: 
-        assignmentName: 
+  # - Name: SpecialSubs
+  #   DisplayName: SpecialSubs
+  #   ParentManagementGroup: GEVernovaSandbox
+  #   GroupLevel: 1
+  #   roleAssignmentsEnabled: false
+  #   roleassignments:
+  #     - principal: 
+  #       type: 
+  #       role: 
+  #   initiativeAssignmentEnabled: false
+  #   initiativeAssignment:
+  #     - initiativeName: 
+  #       assignmentName: 
+  #   customPolicyAssignmentEnabled: false
+  #   customPolicyAssignment:
+  #     - policyName: 
+  #       assignmentName: 
+  #   builtinPolicyAssignmentEnabled: false
+  #   builtinPolicyAssignment:
+  #     - policyName: 
+  #       assignmentName: 
 
-  - Name: Vernova-Azure-Standard
-    DisplayName: Vernova-Azure-Standard
-    ParentManagementGroup: Guardrails
-    GroupLevel: 2
-    roleAssignmentsEnabled: false
-    roleassignments:
-      - principal: 
-        type: 
-        role: 
-    initiativeAssignmentEnabled: false
-    initiativeAssignment:
-      - initiativeName: 
-        assignmentName: 
-    customPolicyAssignmentEnabled: false
-    customPolicyAssignment:
-      - policyName: 
-        assignmentName: 
-    builtinPolicyAssignmentEnabled: false
-    builtinPolicyAssignment:
-      - policyName: 
-        assignmentName: 
+  # - Name: Vernova-Azure-Standard
+  #   DisplayName: Vernova-Azure-Standard
+  #   ParentManagementGroup: Guardrails
+  #   GroupLevel: 2
+  #   roleAssignmentsEnabled: false
+  #   roleassignments:
+  #     - principal: 
+  #       type: 
+  #       role: 
+  #   initiativeAssignmentEnabled: false
+  #   initiativeAssignment:
+  #     - initiativeName: 
+  #       assignmentName: 
+  #   customPolicyAssignmentEnabled: false
+  #   customPolicyAssignment:
+  #     - policyName: 
+  #       assignmentName: 
+  #   builtinPolicyAssignmentEnabled: false
+  #   builtinPolicyAssignment:
+  #     - policyName: 
+  #       assignmentName: 
 
-  - Name: Vernova-Azure-Limited
-    DisplayName: Vernova-Azure-Limited
-    ParentManagementGroup: Guardrails
-    GroupLevel: 2
-    roleAssignmentsEnabled: true
-    roleassignments:
-      - principal: "Test-group-for-policy-assignment"
-        type: group
-        role: Reader
-    initiativeAssignmentEnabled: true
-    initiativeAssignment:
-      - initiativeName: GEV-GR-Limited-Inititative
-        assignmentName: Vernova-LTD-INI
-    customPolicyAssignmentEnabled: false
-    customPolicyAssignment:
-      - policyName: 
-        assignmentName: 
-    builtinPolicyAssignmentEnabled: false
-    builtinPolicyAssignment:
-      - policyName: 
-        assignmentName: 
+  # - Name: Vernova-Azure-Limited
+  #   DisplayName: Vernova-Azure-Limited
+  #   ParentManagementGroup: Guardrails
+  #   GroupLevel: 2
+  #   roleAssignmentsEnabled: true
+  #   roleassignments:
+  #     - principal: "Test-group-for-policy-assignment"
+  #       type: group
+  #       role: Reader
+  #   initiativeAssignmentEnabled: true
+  #   initiativeAssignment:
+  #     - initiativeName: GEV-GR-Limited-Inititative
+  #       assignmentName: Vernova-LTD-INI
+  #   customPolicyAssignmentEnabled: false
+  #   customPolicyAssignment:
+  #     - policyName: 
+  #       assignmentName: 
+  #   builtinPolicyAssignmentEnabled: false
+  #   builtinPolicyAssignment:
+  #     - policyName: 
+  #       assignmentName: 
 
-  - Name: Vernova-Power-GR-Standard
-    DisplayName: Vernova-Power-GR-Standard
-    ParentManagementGroup: Vernova-Azure-Standard
-    GroupLevel: 3
-    roleAssignmentsEnabled: false
-    roleassignments:
-      - principal: 
-        type: 
-        role: 
-    initiativeAssignmentEnabled: false
-    initiativeAssignment:
-      - initiativeName: 
-        assignmentName: 
-    customPolicyAssignmentEnabled: false
-    customPolicyAssignment:
-      - policyName: 
-        assignmentName: 
-    builtinPolicyAssignmentEnabled: false
-    builtinPolicyAssignment:
-      - policyName: 
-        assignmentName: 
+  # - Name: Vernova-Power-GR-Standard
+  #   DisplayName: Vernova-Power-GR-Standard
+  #   ParentManagementGroup: Vernova-Azure-Standard
+  #   GroupLevel: 3
+  #   roleAssignmentsEnabled: false
+  #   roleassignments:
+  #     - principal: 
+  #       type: 
+  #       role: 
+  #   initiativeAssignmentEnabled: false
+  #   initiativeAssignment:
+  #     - initiativeName: 
+  #       assignmentName: 
+  #   customPolicyAssignmentEnabled: false
+  #   customPolicyAssignment:
+  #     - policyName: 
+  #       assignmentName: 
+  #   builtinPolicyAssignmentEnabled: false
+  #   builtinPolicyAssignment:
+  #     - policyName: 
+  #       assignmentName: 
 
-  - Name: Vernova-Power-Portfolio-GR-Standard
-    DisplayName: Vernova-Power-Portfolio-GR-Standard
-    ParentManagementGroup: Vernova-Azure-Standard
-    GroupLevel: 3
-    roleAssignmentsEnabled: false
-    roleassignments:
-      - principal: 
-        type: 
-        role: 
-    initiativeAssignmentEnabled: false
-    initiativeAssignment:
-      - initiativeName: 
-        assignmentName: 
-    customPolicyAssignmentEnabled: false
-    customPolicyAssignment:
-      - policyName: 
-        assignmentName: 
-    builtinPolicyAssignmentEnabled: false
-    builtinPolicyAssignment:
-      - policyName: 
-        assignmentName:
+  # - Name: Vernova-Power-Portfolio-GR-Standard
+  #   DisplayName: Vernova-Power-Portfolio-GR-Standard
+  #   ParentManagementGroup: Vernova-Azure-Standard
+  #   GroupLevel: 3
+  #   roleAssignmentsEnabled: false
+  #   roleassignments:
+  #     - principal: 
+  #       type: 
+  #       role: 
+  #   initiativeAssignmentEnabled: false
+  #   initiativeAssignment:
+  #     - initiativeName: 
+  #       assignmentName: 
+  #   customPolicyAssignmentEnabled: false
+  #   customPolicyAssignment:
+  #     - policyName: 
+  #       assignmentName: 
+  #   builtinPolicyAssignmentEnabled: false
+  #   builtinPolicyAssignment:
+  #     - policyName: 
+  #       assignmentName:
 
-  - Name: Vernova-Renewable-Energy-GR-Standard
-    DisplayName: Vernova-Renewable-Energy-GR-Standard
-    ParentManagementGroup: Vernova-Azure-Standard
-    GroupLevel: 3
-    roleAssignmentsEnabled: false
-    roleassignments:
-      - principal: 
-        type: 
-        role: 
-    initiativeAssignmentEnabled: false
-    initiativeAssignment:
-      - initiativeName: 
-        assignmentName: 
-    customPolicyAssignmentEnabled: false
-    customPolicyAssignment:
-      - policyName: 
-        assignmentName: 
-    builtinPolicyAssignmentEnabled: false
-    builtinPolicyAssignment:
-      - policyName: 
-        assignmentName:
+  # - Name: Vernova-Renewable-Energy-GR-Standard
+  #   DisplayName: Vernova-Renewable-Energy-GR-Standard
+  #   ParentManagementGroup: Vernova-Azure-Standard
+  #   GroupLevel: 3
+  #   roleAssignmentsEnabled: false
+  #   roleassignments:
+  #     - principal: 
+  #       type: 
+  #       role: 
+  #   initiativeAssignmentEnabled: false
+  #   initiativeAssignment:
+  #     - initiativeName: 
+  #       assignmentName: 
+  #   customPolicyAssignmentEnabled: false
+  #   customPolicyAssignment:
+  #     - policyName: 
+  #       assignmentName: 
+  #   builtinPolicyAssignmentEnabled: false
+  #   builtinPolicyAssignment:
+  #     - policyName: 
+  #       assignmentName:
