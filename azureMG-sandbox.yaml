@@ -8,9 +8,6 @@ managementGroups:
       - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
         type: user
         role: Owner
-      - principal: 
-        type: 
-        role: 
     initiativeAssignmentEnabled: false
     initiativeAssignment:
       - initiativeName: 
