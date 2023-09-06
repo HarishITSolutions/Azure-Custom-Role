@@ -8,9 +8,9 @@ managementGroups:
       - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
         type: user
         role: Owner
-      - principal: "Test-group-for-policy-assignment"
-        type: group
-        role: Owner
+      - principal: 
+        type: 
+        role: 
     initiativeAssignmentEnabled: false
     initiativeAssignment:
       - initiativeName: 
