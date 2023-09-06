@@ -71,9 +71,9 @@ managementGroups:
     GroupLevel: 2
     roleAssignmentsEnabled: false
     roleassignments:
-      - principal: "Test-group-for-policy-assignment"
-        type: group
-        role: Reader
+      - principal: 
+        type: 
+        role: 
     initiativeAssignmentEnabled: true
     initiativeAssignment:
       - initiativeName: GEV-GR-Limited-Inititative
