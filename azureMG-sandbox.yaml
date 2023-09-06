@@ -3,7 +3,7 @@ managementGroups:
     DisplayName: Guardrails
     ParentManagementGroup: GEVernovaSandbox
     GroupLevel: 1
-    roleAssignmentsEnabled: false
+    roleAssignmentsEnabled: true
     roleassignments:
       - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
         type: user
