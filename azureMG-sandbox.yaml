@@ -21,8 +21,8 @@ managementGroups:
       - policyName: 
         assignmentName: 
 
-  - Name: Decommisioned
-    DisplayName: Decommisioned
+  - Name: DecommissionedSubs
+    DisplayName: DecommissionedSubs
     ParentManagementGroup: GEVernovaSandbox
     GroupLevel: 1
     roleAssignmentsEnabled: false
@@ -42,29 +42,6 @@ managementGroups:
     builtinPolicyAssignment:
       - policyName: 
         assignmentName: 
-
-  - Name: UnderConstruction
-    DisplayName: UnderConstruction
-    ParentManagementGroup: GEVernovaSandbox
-    GroupLevel: 1
-    roleAssignmentsEnabled: false
-    roleassignments:
-      - principal: 
-        type: 
-        role: 
-    initiativeAssignmentEnabled: false
-    initiativeAssignment:
-      - initiativeName: 
-        assignmentName: 
-    customPolicyAssignmentEnabled: false
-    customPolicyAssignment:
-      - policyName: 
-        assignmentName: 
-    builtinPolicyAssignmentEnabled: false
-    builtinPolicyAssignment:
-      - policyName: 
-        assignmentName: 
-
   - Name: SpecialSubs
     DisplayName: SpecialSubs
     ParentManagementGroup: GEVernovaSandbox
@@ -87,33 +64,12 @@ managementGroups:
       - policyName: 
         assignmentName: 
 
-  - Name: Vernova-Azure-Standard
-    DisplayName: Vernova-Azure-Standard
+
+  - Name: GR-AZURE-Limited
+    DisplayName: GR-AZURE-Limited
     ParentManagementGroup: Guardrails
     GroupLevel: 2
     roleAssignmentsEnabled: false
-    roleassignments:
-      - principal: 
-        type: 
-        role: 
-    initiativeAssignmentEnabled: false
-    initiativeAssignment:
-      - initiativeName: 
-        assignmentName: 
-    customPolicyAssignmentEnabled: false
-    customPolicyAssignment:
-      - policyName: 
-        assignmentName: 
-    builtinPolicyAssignmentEnabled: false
-    builtinPolicyAssignment:
-      - policyName: 
-        assignmentName: 
-
-  - Name: Vernova-Azure-Limited
-    DisplayName: Vernova-Azure-Limited
-    ParentManagementGroup: Guardrails
-    GroupLevel: 2
-    roleAssignmentsEnabled: true
     roleassignments:
       - principal: "Test-group-for-policy-assignment"
         type: group
@@ -121,7 +77,7 @@ managementGroups:
     initiativeAssignmentEnabled: true
     initiativeAssignment:
       - initiativeName: GEV-GR-Limited-Inititative
-        assignmentName: Vernova-LTD-INI
+        assignmentName: GEV-GR-Limited-Inititative
     customPolicyAssignmentEnabled: false
     customPolicyAssignment:
       - policyName: 
@@ -131,9 +87,9 @@ managementGroups:
       - policyName: 
         assignmentName: 
 
-  - Name: Vernova-Power-GR-Standard
-    DisplayName: Vernova-Power-GR-Standard
-    ParentManagementGroup: Vernova-Azure-Standard
+  - Name: GE-Digital-Core-Predix-GR-Limited
+    DisplayName: GE-Digital-Core-Predix-GR-Limited
+    ParentManagementGroup: GR-AZURE-Limited
     GroupLevel: 3
     roleAssignmentsEnabled: false
     roleassignments:
@@ -153,31 +109,9 @@ managementGroups:
       - policyName: 
         assignmentName: 
 
-  - Name: Vernova-Power-Portfolio-GR-Standard
-    DisplayName: Vernova-Power-Portfolio-GR-Standard
-    ParentManagementGroup: Vernova-Azure-Standard
-    GroupLevel: 3
-    roleAssignmentsEnabled: false
-    roleassignments:
-      - principal: 
-        type: 
-        role: 
-    initiativeAssignmentEnabled: false
-    initiativeAssignment:
-      - initiativeName: 
-        assignmentName: 
-    customPolicyAssignmentEnabled: false
-    customPolicyAssignment:
-      - policyName: 
-        assignmentName: 
-    builtinPolicyAssignmentEnabled: false
-    builtinPolicyAssignment:
-      - policyName: 
-        assignmentName:
-
-  - Name: Vernova-Renewable-Energy-GR-Standard
-    DisplayName: Vernova-Renewable-Energy-GR-Standard
-    ParentManagementGroup: Vernova-Azure-Standard
+  - Name: GE-Power-GR-Limited
+    DisplayName: GE-Power-GR-Limited
+    ParentManagementGroup: GR-AZURE-Limited
     GroupLevel: 3
     roleAssignmentsEnabled: false
     roleassignments:
@@ -196,3 +130,235 @@ managementGroups:
     builtinPolicyAssignment:
       - policyName: 
         assignmentName:
+
+  - Name: Limited-Standard
+    DisplayName: GE-Power-GR-Limited-Non-EC
+    ParentManagementGroup: GE-Power-GR-Limited
+    GroupLevel: 4
+    roleAssignmentsEnabled: false
+    roleassignments:
+      - principal: 
+        type: 
+        role: 
+    initiativeAssignmentEnabled: false
+    initiativeAssignment:
+      - initiativeName: 
+        assignmentName: 
+    customPolicyAssignmentEnabled: false
+    customPolicyAssignment:
+      - policyName: 
+        assignmentName: 
+    builtinPolicyAssignmentEnabled: false
+    builtinPolicyAssignment:
+      - policyName: 
+        assignmentName:
+  - Name: Non-Prod
+    DisplayName: GR-AZURE-Limited-NonProd
+    ParentManagementGroup: Limited-Standard
+    GroupLevel: 5
+    roleAssignmentsEnabled: false
+    roleassignments:
+      - principal: 
+        type: 
+        role: 
+    initiativeAssignmentEnabled: false
+    initiativeAssignment:
+      - initiativeName: 
+        assignmentName: 
+    customPolicyAssignmentEnabled: false
+    customPolicyAssignment:
+      - policyName: 
+        assignmentName: 
+    builtinPolicyAssignmentEnabled: false
+    builtinPolicyAssignment:
+      - policyName: 
+        assignmentName:
+  - Name: Prod
+    DisplayName: GR-AZURE-Limited-Prod
+    ParentManagementGroup: Limited-Standard
+    GroupLevel: 5
+    roleAssignmentsEnabled: false
+    roleassignments:
+      - principal: 
+        type: 
+        role: 
+    initiativeAssignmentEnabled: false
+    initiativeAssignment:
+      - initiativeName: 
+        assignmentName: 
+    customPolicyAssignmentEnabled: false
+    customPolicyAssignment:
+      - policyName: 
+        assignmentName: 
+    builtinPolicyAssignmentEnabled: false
+    builtinPolicyAssignment:
+      - policyName: 
+        assignmentName:
+  - Name: Specialized
+    DisplayName: GE-Power-GR-Limited-EC
+    ParentManagementGroup: GE-Power-GR-Limited
+    GroupLevel: 4
+    roleAssignmentsEnabled: false
+    roleassignments:
+      - principal: 
+        type: 
+        role: 
+    initiativeAssignmentEnabled: false
+    initiativeAssignment:
+      - initiativeName: 
+        assignmentName: 
+    customPolicyAssignmentEnabled: false
+    customPolicyAssignment:
+      - policyName: 
+        assignmentName: 
+    builtinPolicyAssignmentEnabled: false
+    builtinPolicyAssignment:
+      - policyName: 
+        assignmentName:
+  - Name: GE-Power-Portfolio-GR-Limited
+    DisplayName: GE-Power-Portfolio-GR-Limited
+    ParentManagementGroup: GR-AZURE-Limited
+    GroupLevel: 3
+    roleAssignmentsEnabled: false
+    roleassignments:
+      - principal: 
+        type: 
+        role: 
+    initiativeAssignmentEnabled: false
+    initiativeAssignment:
+      - initiativeName: 
+        assignmentName: 
+    customPolicyAssignmentEnabled: false
+    customPolicyAssignment:
+      - policyName: 
+        assignmentName: 
+    builtinPolicyAssignmentEnabled: false
+    builtinPolicyAssignment:
+      - policyName: 
+        assignmentName:        
+  - Name: GE-Nuclear-GR-Limited
+    DisplayName: GE-Nuclear-GR-Limited
+    ParentManagementGroup: GE-Power-Portfolio-GR-Limited
+    GroupLevel: 4
+    roleAssignmentsEnabled: false
+    roleassignments:
+      - principal: 
+        type: 
+        role: 
+    initiativeAssignmentEnabled: false
+    initiativeAssignment:
+      - initiativeName: 
+        assignmentName: 
+    customPolicyAssignmentEnabled: false
+    customPolicyAssignment:
+      - policyName: 
+        assignmentName: 
+    builtinPolicyAssignmentEnabled: false
+    builtinPolicyAssignment:
+      - policyName: 
+        assignmentName:        
+  - Name: GE-Power-Conversion-GR-Limited
+    DisplayName: GE-Power-Conversion-GR-Limited
+    ParentManagementGroup: GE-Power-Portfolio-GR-Limited
+    GroupLevel: 4
+    roleAssignmentsEnabled: false
+    roleassignments:
+      - principal: 
+        type: 
+        role: 
+    initiativeAssignmentEnabled: false
+    initiativeAssignment:
+      - initiativeName: 
+        assignmentName: 
+    customPolicyAssignmentEnabled: false
+    customPolicyAssignment:
+      - policyName: 
+        assignmentName: 
+    builtinPolicyAssignmentEnabled: false
+    builtinPolicyAssignment:
+      - policyName: 
+        assignmentName:               
+  - Name: GE-Steam-Power-GR-Limited
+    DisplayName: GE-Steam-Power-GR-Limited
+    ParentManagementGroup: GE-Power-Portfolio-GR-Limited
+    GroupLevel: 4
+    roleAssignmentsEnabled: false
+    roleassignments:
+      - principal: 
+        type: 
+        role: 
+    initiativeAssignmentEnabled: false
+    initiativeAssignment:
+      - initiativeName: 
+        assignmentName: 
+    customPolicyAssignmentEnabled: false
+    customPolicyAssignment:
+      - policyName: 
+        assignmentName: 
+    builtinPolicyAssignmentEnabled: false
+    builtinPolicyAssignment:
+      - policyName: 
+        assignmentName:               
+  - Name: GE-Renewable-Energy-GR-Limited
+    DisplayName: GE-Renewable-Energy-GR-Limited
+    ParentManagementGroup: GR-AZURE-Limited
+    GroupLevel: 3
+    roleAssignmentsEnabled: false
+    roleassignments:
+      - principal: 
+        type: 
+        role: 
+    initiativeAssignmentEnabled: false
+    initiativeAssignment:
+      - initiativeName: 
+        assignmentName: 
+    customPolicyAssignmentEnabled: false
+    customPolicyAssignment:
+      - policyName: 
+        assignmentName: 
+    builtinPolicyAssignmentEnabled: false
+    builtinPolicyAssignment:
+      - policyName: 
+        assignmentName:               
+  - Name: GE-Vernova-GR-Limited
+    DisplayName: GE-Vernova-GR-Limited
+    ParentManagementGroup: GR-AZURE-Limited
+    GroupLevel: 3
+    roleAssignmentsEnabled: false
+    roleassignments:
+      - principal: 
+        type: 
+        role: 
+    initiativeAssignmentEnabled: false
+    initiativeAssignment:
+      - initiativeName: 
+        assignmentName: 
+    customPolicyAssignmentEnabled: false
+    customPolicyAssignment:
+      - policyName: 
+        assignmentName: 
+    builtinPolicyAssignmentEnabled: false
+    builtinPolicyAssignment:
+      - policyName: 
+        assignmentName:               
+  - Name: SMO-Separation-Vernova-GR-Limited
+    DisplayName: SMO-Separation-Vernova-GR-Limited
+    ParentManagementGroup: GR-AZURE-Limited
+    GroupLevel: 3
+    roleAssignmentsEnabled: false
+    roleassignments:
+      - principal: 
+        type: 
+        role: 
+    initiativeAssignmentEnabled: false
+    initiativeAssignment:
+      - initiativeName: 
+        assignmentName: 
+    customPolicyAssignmentEnabled: false
+    customPolicyAssignment:
+      - policyName: 
+        assignmentName: 
+    builtinPolicyAssignmentEnabled: false
+    builtinPolicyAssignment:
+      - policyName: 
+        assignmentName:               
