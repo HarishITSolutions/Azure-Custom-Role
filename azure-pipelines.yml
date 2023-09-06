@@ -7,9 +7,13 @@
 trigger:
  branches:
    include:
-   - "*"
+   - stage
+   - Prod
    exclude:
    - dev
+   - PreProd
+   - Sandbox
+   - main
 pool:
   vmImage: ubuntu-latest
 
