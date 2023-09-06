@@ -77,7 +77,7 @@ managementGroups:
     initiativeAssignmentEnabled: true
     initiativeAssignment:
       - initiativeName: GEV-GR-Limited-Inititative
-        assignmentName: GEV-GR-Limited-Inititative
+        assignmentName: GEV-GR-Limited-INI
     customPolicyAssignmentEnabled: false
     customPolicyAssignment:
       - policyName: 
