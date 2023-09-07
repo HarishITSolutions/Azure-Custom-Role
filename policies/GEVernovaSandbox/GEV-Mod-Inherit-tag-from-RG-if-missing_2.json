@@ -1,6 +1,6 @@
 {
     "properties": {
-        "Name": "GEV-Mod-Inherit-tag-from-RG-if-missing_1",
+        "Name": "GEV-Mod-Inherit-tag-from-RG-if-missing_2",
         "displayName": "GEV-Inherit a tag from the resource group if missing",
         "policyType": "Custom",
         "mode": "All",
@@ -16,7 +16,7 @@
                     "displayName": "Tag Name",
                     "description": "Name of the tag, such as 'environment'"
                 },
-                "defaultValue": "uai"
+                "defaultValue": "env"
             }
         },
         "policyRule": {
