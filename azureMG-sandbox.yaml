@@ -152,8 +152,8 @@ managementGroups:
     builtinPolicyAssignment:
       - policyName: 
         assignmentName:
-  - Name: Non-Prod
-    DisplayName: GR-AZURE-Limited-NonProd
+  - Name: GR-AZURE-Limited-NonProd
+    DisplayName: Non-Prod
     ParentManagementGroup: Limited-Standard
     GroupLevel: 5
     roleAssignmentsEnabled: false
@@ -173,8 +173,8 @@ managementGroups:
     builtinPolicyAssignment:
       - policyName: 
         assignmentName:
-  - Name: Prod
-    DisplayName: GR-AZURE-Limited-Prod
+  - Name: GR-AZURE-Limited-Prod
+    DisplayName: Prod
     ParentManagementGroup: Limited-Standard
     GroupLevel: 5
     roleAssignmentsEnabled: false
@@ -194,8 +194,8 @@ managementGroups:
     builtinPolicyAssignment:
       - policyName: 
         assignmentName:
-  - Name: Specialized
-    DisplayName: GE-Power-GR-Limited-EC
+  - Name: GE-Power-GR-Limited-EC
+    DisplayName: Specialized
     ParentManagementGroup: GE-Power-GR-Limited
     GroupLevel: 4
     roleAssignmentsEnabled: false
