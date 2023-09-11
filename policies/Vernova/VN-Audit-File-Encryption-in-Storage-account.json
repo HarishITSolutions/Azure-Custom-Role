@@ -1,0 +1,31 @@
+{
+  "properties": {
+    "Name": "VN-Audit File Encryption in Storage account",
+    "displayName": "VN-Audit File Encryption in Storage account",
+    "policyType": "Custom",
+    "mode": "All",
+    "description": "VN-This policy ensures file encryption for storage accounts is turned on. It only applies to Microsoft.Storage resource types, not other storage providers.",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "General"
+    },
+    "parameters": {},
+    "policyRule": {
+      "if": {
+		  "allOf": [
+			{
+			  "field": "type",
+			  "equals": "Microsoft.Storage/storageAccounts"
+			},
+			{
+			  "field": "Microsoft.Storage/storageAccounts/enableFileEncryption",
+			  "equals": "false"
+			}
+		  ]
+		},
+      "then": {
+        "effect": "audit"
+      }
+    }
+  }
+}

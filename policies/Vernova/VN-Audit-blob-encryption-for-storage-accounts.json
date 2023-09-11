@@ -1,0 +1,31 @@
+{
+  "properties": {
+    "Name": "VN-Audit blob encryption for storage accounts",
+    "displayName": "VN-Audit blob encryption for storage accounts",
+    "policyType": "Custom",
+    "mode": "All",
+    "description": "VN-This policy ensures blob encryption for storage accounts is turned on. It only applies to Microsoft.Storage resource types, not other storage providers.",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "General"
+    },
+    "parameters": {},
+    "policyRule": {
+      "if": {
+		  "allOf": [
+			{
+			  "field": "type",
+			  "equals": "Microsoft.Storage/storageAccounts"
+			},
+			{
+			  "field": "Microsoft.Storage/storageAccounts/enableBlobEncryption",
+			  "equals": "false"
+			}
+		  ]
+		},
+      "then": {
+        "effect": "audit"
+      }
+    }
+  }
+}

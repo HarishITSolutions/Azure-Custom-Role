@@ -1,0 +1,86 @@
+{
+  "properties": {
+	"Name": "VN-Customer Tag Enforcement",
+    "displayName": "VN-Customer Tag Enforcement",
+    "policyType": "Custom",
+    "mode": "All",
+    "description": "VN-This template enforces tags on resources created by customers to adhere to Guardrails Tagging Standard of having an env and uai tag.",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "General"
+    },
+    "parameters": {
+		"effect": {
+		  "type": "String",
+		  "metadata": {
+			"displayName": "Effect",
+			"description": "Enable or disable the execution of the policy"
+		  },
+		  "allowedValues": [
+			"Audit",
+			"Deny"
+		  ],
+		  "defaultValue": "Audit"
+		}
+	  },
+    "policyRule": {
+      "if": {
+		  "allOf": [
+			{
+			  "field": "type",
+			  "notIn": [
+				"microsoft.insights/alertRules",
+				"microsoft.operationalinsights/*",
+				"Microsoft.Network/virtualNetworks/subnets[*]",
+				"Microsoft.Network/networkWatchers",
+				"Microsoft.AlertsManagement/actionRules",
+				"Microsoft.Insights/activityLogAlerts",
+				"Microsoft.Insights/alertrules",
+				"Microsoft.Insights/metricAlerts",
+				"microsoft.insights/actionGroups",
+				"Microsoft.Automation/automationAccounts/runbooks",
+				"Microsoft.Automation/automationAccounts",
+				"Microsoft.Automation/automationAccounts/configurations",
+				"Microsoft.Security/automations",
+				"Microsoft.Logic/workflows",
+				"Microsoft.Compute/restorePointCollections",
+				"Microsoft.RedHatOpenShift/OpenShiftClusters",
+				"Microsoft.Databricks/workspaces",
+				"microsoft.alertsmanagement/smartdetectoralertrules",
+				"Microsoft.Compute/virtualMachines/extensions",
+				"microsoft.insights/autoscalesettings",
+				"microsoft.insights/components",
+				"Microsoft.Network/networkWatchers/connectionMonitors",
+				"Microsoft.Network/networkWatchers/FlowLogs"
+			  ]
+			},
+			{
+			  "anyOf": [
+				{
+				  "not": {
+					"field": "tags",
+					"containsKey": "env"
+				  }
+				},
+				{
+				  "not": {
+					"field": "tags",
+					"containsKey": "uai"
+				  }
+				},
+				{
+				  "not": {
+					"field": "tags.uai",
+					"matchInsensitively": "uai#######"
+				  }
+				}
+			  ]
+			}
+		  ]
+		},
+      "then": {
+        "effect": "audit"
+      }
+    }
+  }
+}
