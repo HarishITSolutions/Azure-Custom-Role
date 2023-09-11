@@ -1,0 +1,23 @@
+{
+  "properties": {
+    "Name": "GEV-Audit VNet Peering",
+    "displayName": "GEV-Audit VNet Peering",
+    "policyType": "Custom",
+    "mode": "All",
+    "description": "GEV-Audits when a VNet is peered, and is connected to an Alert (???) for an engineer to assure that the VNet peered was not in a different subscription",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "General"
+    },
+    "parameters": {},
+    "policyRule": {
+      "if": {
+            "field": "type",
+            "equals": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings"
+      },
+      "then": {
+        "effect": "audit"
+      }
+    }
+  }
+}
