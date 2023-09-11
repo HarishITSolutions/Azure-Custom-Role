@@ -1,40 +1,40 @@
 policyrootctrl:
   - scope: Vernova
     policies:
-      - GEV-Audit-App-Gateway-Insecure-Listeners
-      - GEV-Audit-blob-encryption-for-storage-accounts
-      - GEV-Audit-Customer-Tag-Enforcement
-      - GEV-Audit-File-Encryption-in-Storage-account
-      - GEV-Audit-Storage-Account-Encryption-in-Transit
-      - GEV-Audit-Storage-account-with-public-access-policy
-      - GEV-Audit-Subnet-without-NSG
-      - GEV-Audit-VNET-Creation
-      - GEV-Audit-VNet-Peering
-      - GEV-Audit-VPN-Gateway
-      - GEV-Deny-Azure-ActiveDirectory-B2C
-      - GEV-Deny-Enabling-the-MDE-integration-in-ASC
-      - GEV-Deny-Express-Route-Circuit
-      - GEV-DINE-Auto-Config-NSG-To-Enable-Flowlogs
-      - GEV-Mod-Inherit-tag-from-RG-if-missing_1
-      - GEV-Mod-Inherit-tag-from-RG-if-missing_2
+      - VN-Audit-App-Gateway-Insecure-Listeners
+      - VN-Audit-blob-encryption-for-storage-accounts
+      - VN-Audit-Customer-Tag-Enforcement
+      - VN-Audit-File-Encryption-in-Storage-account
+      - VN-Audit-Storage-Account-Encryption-in-Transit
+      - VN-Audit-Storage-account-with-public-access-policy
+      - VN-Audit-Subnet-without-NSG
+      - VN-Audit-VNET-Creation
+      - VN-Audit-VNet-Peering
+      - VN-Audit-VPN-Gateway
+      - VN-Deny-Azure-ActiveDirectory-B2C
+      - VN-Deny-Enabling-the-MDE-integration-in-ASC
+      - VN-Deny-Express-Route-Circuit
+      - VN-DINE-Auto-Config-NSG-To-Enable-Flowlogs
+      - VN-Mod-Inherit-tag-from-RG-if-missing_1
+      - VN-Mod-Inherit-tag-from-RG-if-missing_2
     initiatives:
-      - name: "GEV-GR-Limited-Inititative"
-        displayName: "GEV-GR-Limited-Inititative"
-        description: "GEV-GR-Limited-Inititative"
+      - name: "VN-GR-Limited-Inititative"
+        displayName: "VN-GR-Limited-Inititative"
+        description: "VN-GR-Limited-Inititative"
         Policies:
-          - GEV-Audit-App-Gateway-Insecure-Listeners
-          - GEV-Audit-blob-encryption-for-storage-accounts
-          - GEV-Audit-Customer-Tag-Enforcement
-          - GEV-Audit-File-Encryption-in-Storage-account
-          - GEV-Audit-Storage-Account-Encryption-in-Transit
-          - GEV-Audit-Storage-account-with-public-access-policy
-          - GEV-Audit-Subnet-without-NSG
-          - GEV-Audit-VNET-Creation
-          - GEV-Audit-VNet-Peering
-          - GEV-Audit-VPN-Gateway
-          - GEV-Deny-Azure-ActiveDirectory-B2C
-          - GEV-Deny-Enabling-the-MDE-integration-in-ASC
-          - GEV-Deny-Express-Route-Circuit
-          - GEV-DINE-Auto-Config-NSG-To-Enable-Flowlogs
-          - GEV-Mod-Inherit-tag-from-RG-if-missing_1
-          - GEV-Mod-Inherit-tag-from-RG-if-missing_2
+          - VN-Audit-App-Gateway-Insecure-Listeners
+          - VN-Audit-blob-encryption-for-storage-accounts
+          - VN-Audit-Customer-Tag-Enforcement
+          - VN-Audit-File-Encryption-in-Storage-account
+          - VN-Audit-Storage-Account-Encryption-in-Transit
+          - VN-Audit-Storage-account-with-public-access-policy
+          - VN-Audit-Subnet-without-NSG
+          - VN-Audit-VNET-Creation
+          - VN-Audit-VNet-Peering
+          - VN-Audit-VPN-Gateway
+          - VN-Deny-Azure-ActiveDirectory-B2C
+          - VN-Deny-Enabling-the-MDE-integration-in-ASC
+          - VN-Deny-Express-Route-Circuit
+          - VN-DINE-Auto-Config-NSG-To-Enable-Flowlogs
+          - VN-Mod-Inherit-tag-from-RG-if-missing_1
+          - VN-Mod-Inherit-tag-from-RG-if-missing_2
