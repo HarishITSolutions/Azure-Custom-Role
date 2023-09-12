@@ -35,7 +35,7 @@ parameters:
 
 variables:
   - group: 'Constants for Azure Build Sandbox'
-  - group: 'Constants for Azure Build Prod' 
+ # - group: 'Constants for Azure Build Prod' 
   - name: "client_id"
     ${{ if eq(parameters.environmentType, 'Sandbox') }}:
       value: $(clientID_Sandbox)
