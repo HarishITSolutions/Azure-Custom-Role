@@ -151,6 +151,17 @@ stages:
           displayName: 'Adding agent IP in storage account'
           continueOnError: false
 
+        # - task: CmdLine@2
+        #   inputs:
+        #           script: |
+        #              az login --service-principal -u  -p  --tenant 
+        #              echo ##vso[task.setvariable variable=ip;isOutput=true]$(powershell -Command "Invoke-RestMethod http://ipinfo.io/json | Select -exp ip")
+        #              echo "ip is : $(ip)"
+        #              powershell -Command "Connect-AzAccount -Subscription '567-gevernovabuildtestsub'"
+        #              powershell -Command "Add-AzStorageAccountNetworkRule -ResourceGroupName $(RG) -Name $(Storage) -IPAddressOrRange $(ip)"
+        #              powershell -Command "Start-Sleep -Seconds 30"
+        #   displayName: 'Adding agent IP in storage account'
+        #   continueOnError: false
         - task: TerraformCLI@0
           displayName: 'Terraform Init'
           continueOnError: false
