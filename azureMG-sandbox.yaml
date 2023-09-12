@@ -1,4 +1,25 @@
 managementGroups:
+  - Name: GEVernovaSandbox
+    DisplayName: GEVernovaSandbox
+    ParentManagementGroup: Tenant Root Group
+    GroupLevel: 0
+    roleAssignmentsEnabled: true
+    roleassignments:
+      - principal: "expel_analyst_expel.io#EXT#@gevernovasandbox.onmicrosoft.com"
+        type: user
+        role: Log Analytics Reader
+    initiativeAssignmentEnabled: false
+    initiativeAssignment:
+      - initiativeName: 
+        assignmentName: 
+    customPolicyAssignmentEnabled: false
+    customPolicyAssignment:
+      - policyName: 
+        assignmentName: 
+    builtinPolicyAssignmentEnabled: false
+    builtinPolicyAssignment:
+      - policyName: 
+        assignmentName: 
   - Name: Guardrails
     DisplayName: Guardrails
     ParentManagementGroup: GEVernovaSandbox
