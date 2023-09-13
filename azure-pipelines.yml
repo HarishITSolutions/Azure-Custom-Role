@@ -36,6 +36,12 @@ parameters:
 variables:
   - group: 'Constants for Azure Build Sandbox'
  # - group: 'Constants for Azure Build Prod' 
+  - name: "StorageSubscription"
+    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+      value: 567-gevernovabuildtestsub
+    ${{ else }}:
+      value: 583
+  - name: "client_secret"
   - name: "client_id"
     ${{ if eq(parameters.environmentType, 'Sandbox') }}:
       value: $(clientID_Sandbox)
@@ -137,31 +143,32 @@ stages:
     - job: ContinuousIntegrationJob
       displayName: Policy and Initiative Job
       steps:
-        - task: AzurePowerShell@5
+        # - task: AzurePowerShell@5
+        #   inputs:
+        #         azureSubscription: 'prod-devops'
+        #         ScriptType: 'InlineScript'
+        #         Inline: |
+        #           $ip = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
+        #           Write-Host "ip is : $ip"
+        #           Connect-AzAccount -Subscription '567-gevernovabuildtestsub'
+        #           Add-AzStorageAccountNetworkRule -ResourceGroupName "$(RG)" -Name "$(Storage)" -IPAddressOrRange "$ip"
+        #           Start-Sleep -s 30
+        #         azurePowerShellVersion: 'LatestVersion'
+        #   displayName: 'Adding agent IP in storage account'
+        #   continueOnError: false
+
+        - task: CmdLine@2
           inputs:
-                azureSubscription: 'prod-devops'
-                ScriptType: 'InlineScript'
-                Inline: |
-                  $ip = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
-                  Write-Host "ip is : $ip"
-                  Connect-AzAccount -Subscription '567-gevernovabuildtestsub'
-                  Add-AzStorageAccountNetworkRule -ResourceGroupName "$(RG)" -Name "$(Storage)" -IPAddressOrRange "$ip"
-                  Start-Sleep -s 30
-                azurePowerShellVersion: 'LatestVersion'
+            script: |
+              az login --service-principal -u $(client_id) -p $(client_secret) --tenant $(tenant_id)
+              echo ##vso[task.setvariable variable=ip;isOutput=true]$(powershell -Command "Invoke-RestMethod http://ipinfo.io/json | Select -exp ip")
+              echo "ip is : $(ip)"
+              powershell -Command "Connect-AzAccount -Subscription '$(StorageSubscription)'"
+              powershell -Command "Add-AzStorageAccountNetworkRule -ResourceGroupName $(RG) -Name $(Storage) -IPAddressOrRange $(ip)"
+              powershell -Command "Start-Sleep -Seconds 30"
           displayName: 'Adding agent IP in storage account'
           continueOnError: false
 
-        # - task: CmdLine@2
-        #   inputs:
-        #           script: |
-        #              az login --service-principal -u  -p  --tenant 
-        #              echo ##vso[task.setvariable variable=ip;isOutput=true]$(powershell -Command "Invoke-RestMethod http://ipinfo.io/json | Select -exp ip")
-        #              echo "ip is : $(ip)"
-        #              powershell -Command "Connect-AzAccount -Subscription '567-gevernovabuildtestsub'"
-        #              powershell -Command "Add-AzStorageAccountNetworkRule -ResourceGroupName $(RG) -Name $(Storage) -IPAddressOrRange $(ip)"
-        #              powershell -Command "Start-Sleep -Seconds 30"
-        #   displayName: 'Adding agent IP in storage account'
-        #   continueOnError: false
         - task: TerraformCLI@0
           displayName: 'Terraform Init'
           continueOnError: false
