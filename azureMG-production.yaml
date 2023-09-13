@@ -90,7 +90,7 @@ managementGroups:
 
   - Name: VN-GR-AZURE-Limited
     DisplayName: GR-AZURE-Limited
-    ParentManagementGroup: Guardrails
+    ParentManagementGroup: VN-Guardrails
     GroupLevel: 2
     roleAssignmentsEnabled: false
     roleassignments:
