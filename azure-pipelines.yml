@@ -40,7 +40,7 @@ variables:
     ${{ if eq(parameters.environmentType, 'Sandbox') }}:
       value: 567-gevernovabuildtestsub
     ${{ else }}:
-      value: 583
+      value: 583-vn-cloud-tooling-ltd-az-dev
   - name: "client_secret"
   - name: "client_id"
     ${{ if eq(parameters.environmentType, 'Sandbox') }}:
