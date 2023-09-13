@@ -11,9 +11,9 @@ trigger:
    - Prod
    exclude:
    - dev
-   - PreProd
-   - Sandbox
-   - main
+   - Pre-Prod
+   - Stage-Master
+   - Prod-Master
 pool:
   vmImage: ubuntu-latest
 
