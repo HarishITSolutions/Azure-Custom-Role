@@ -11,110 +11,100 @@ trigger:
    - Prod
    exclude:
    - dev
-   - PreProd
-   - Sandbox
-   - main
+   - Pre-Prod
+   - Stage-Master
+   - Prod-Master
 pool:
   vmImage: ubuntu-latest
 
-parameters:
-- name: environmentType
-  displayName: "Environment Type:"
-  default: 'Sandbox'
-  values:
-  - 'Sandbox'
-  - 'Prod'
-- name: policyInitiativeDeployment
-  displayName: "Policy Initiative Deployment"
-  type: boolean
-  default: true
-- name: Assignments
-  displayName: "MG RA Policy's Assignment"
-  type: boolean
-  default: true
-
 variables:
   - group: 'Constants for Azure Build Sandbox'
- # - group: 'Constants for Azure Build Prod' 
+  - group: 'Constants for Azure Build Prod'
+  - name: "Storage_client_id"
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/stage') }}: 
+      value: '$(Storage_client_id_Sandbox)'
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/Prod') }}: 
+      value: '$(Storage_client_id_Production)'
+  - name: "Storage_client_secret"
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/stage') }}: 
+      value: '$(Storage_client_secret_Sandbox)'
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/Prod') }}: 
+      value: '$(Storage_client_secret_Production)'
+  - name: "environmentType"
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/stage') }}: 
+      value: 'Sandbox'
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/Prod') }}: 
+      value: 'Production'
   - name: "StorageSubscription"
-    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/stage') }}:
       value: 567-gevernovabuildtestsub
-    ${{ else }}:
-      value: 583
-  - name: "client_secret"
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/Prod') }}:
+      value: 583-vn-cloud-tooling-ltd-az-dev
   - name: "client_id"
-    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/stage') }}:
       value: $(clientID_Sandbox)
-    ${{ else }}:
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/Prod') }}:
       value: $(clientID_Production)
   - name: "client_secret"
-    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/stage') }}:
       value: $(clientSecret_Sandbox)
-    ${{ else }}:
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/Prod') }}:
       value: $(clientSecret_Production)
   - name: "tenant_id"
-    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/stage') }}:
       value: $(tenant_id_Sandbox)
-    ${{ else }}:
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/Prod') }}:
       value: $(tenant_id_Production)
   - name: "subscription_id"
-    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/stage') }}:
       value: $(subscription_id_Sandbox)
-    ${{ else }}:
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/Prod') }}:
       value: $(subscription_id_Production)
   - name: "sourcePolicy-YAML"
-    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/stage') }}:
       value: "$(sourcePolicyYAMLSandbox)"
-    ${{ else }}:
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/Prod') }}:
       value: "$(sourcePolicyYAMLProd)"
   - name: "sourceMGYAML"
-    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/stage') }}:
       value: "$(sourceMGYAMLSandbox)"
-    ${{ else }}:
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/Prod') }}:
       value: "$(sourceMGYAMLProd)"
   - name: "Storage"
-    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/stage') }}:
       value: "$(StorageSandbox)"
-    ${{ else }}:
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/Prod') }}:
       value: "$(StorageProd)"
   - name: "Container"
-    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/stage') }}:
       value: "$(ContainerSandbox)"
-    ${{ else }}:
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/Prod') }}:
       value: "$(ContainerProd)"
   - name: "RG"
-    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/stage') }}:
       value: "$(RGSandbox)"
-    ${{ else }}:
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/Prod') }}:
       value: "$(RGProd)"
   - name: "policyStateFile"
-    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/stage') }}:
       value: "$(PolicyStateFileSandbox)"
-    ${{ else }}:
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/Prod') }}:
       value: "$(PolicyStateFileProd)"
   - name: "MGRAStateFile"
-    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/stage') }}:
       value: "$(MGRAStateFileSandbox)"
-    ${{ else }}:
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/Prod') }}:
       value: "$(MGRAStateFileProd)"
   - name: "accessKey"
-    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/stage') }}:
       value: "$(accessKeySandbox)"
-    ${{ else }}:
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/Prod') }}:
       value: "$(accessKeyProd)"
   - name: "artifact"
-    ${{ if eq(parameters.environmentType, 'Sandbox') }}:
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/stage') }}:
       value: "sandbox-artifact"
-    ${{ else }}:
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/Prod') }}:
       value: "prod-artifact"
-  - name: "artifact-policy"
-    ${{ if eq(parameters.policyInitiativeDeployment, 'true') }}:
-      value: "policy"
-  - name: "artifact-MG"
-    ${{ if eq(parameters.Assignments, 'true') }}:
-      value: "MG"
-  
-    
 
 stages:
   - stage: Build_Approval
@@ -122,7 +112,7 @@ stages:
     jobs:
     - deployment: Fetching_Agent_IP
       displayName: Build Process
-      environment: 'sandbox'
+      environment: $(environmentType)
       strategy:
         runOnce:
           deploy:
@@ -137,37 +127,37 @@ stages:
                   Write-Host "ip is : $ip"
   
   - stage: Policy_Initiative_Deployement
-    condition: eq('${{ parameters.policyInitiativeDeployment }}', 'true')
     displayName: Deployement of Policy and Initiative 
     jobs:
     - job: ContinuousIntegrationJob
       displayName: Policy and Initiative Job
       steps:
-        - task: AzurePowerShell@5
-          inputs:
-                azureSubscription: '567-gevernovabuildtestsub(37ed9c9a-0d39-4823-a06c-e8121b935f89)'
-                ScriptType: 'InlineScript'
-                Inline: |
-                  $ip = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
-                  Write-Host "ip is : $ip"
-                  Connect-AzAccount -Subscription '567-gevernovabuildtestsub'
-                  Add-AzStorageAccountNetworkRule -ResourceGroupName "$(RG)" -Name "$(Storage)" -IPAddressOrRange "$ip"
-                  Start-Sleep -s 30
-                azurePowerShellVersion: 'LatestVersion'
-          displayName: 'Adding agent IP in storage account'
-          continueOnError: false
-
-        # - task: CmdLine@2
+        # - task: AzurePowerShell@5
         #   inputs:
-        #     script: |
-        #       az login --service-principal -u $(client_id) -p $(client_secret) --tenant $(tenant_id)
-        #       echo ##vso[task.setvariable variable=ip;isOutput=true]$(powershell -Command "Invoke-RestMethod http://ipinfo.io/json | Select -exp ip")
-        #       echo "ip is : $(ip)"
-        #       powershell -Command "Connect-AzAccount -Subscription '$(StorageSubscription)'"
-        #       powershell -Command "Add-AzStorageAccountNetworkRule -ResourceGroupName $(RG) -Name $(Storage) -IPAddressOrRange $(ip)"
-        #       powershell -Command "Start-Sleep -Seconds 30"
+        #         azureSubscription: '567-gevernovabuildtestsub(37ed9c9a-0d39-4823-a06c-e8121b935f89)'
+        #         ScriptType: 'InlineScript'
+        #         Inline: |
+        #           $ip = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
+        #           Write-Host "ip is : $ip"
+        #           Connect-AzAccount -Subscription '567-gevernovabuildtestsub'
+        #           Add-AzStorageAccountNetworkRule -ResourceGroupName "$(RG)" -Name "$(Storage)" -IPAddressOrRange "$ip"
+        #           Start-Sleep -s 30
+        #         azurePowerShellVersion: 'LatestVersion'
         #   displayName: 'Adding agent IP in storage account'
         #   continueOnError: false
+        
+        - task: PowerShell@2
+          inputs:
+            targetType: 'inline'
+            script: |
+              az login --service-principal -u $(Storage_client_id) -p $(Storage_client_secret) --tenant $(Storage_tenant_id)
+              $ip = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
+              Write-Host "ip is : $ip"
+              Connect-AzAccount -Subscription '567-gevernovabuildtestsub'
+              Add-AzStorageAccountNetworkRule -ResourceGroupName "$(RG)" -Name "$(Storage)" -IPAddressOrRange "$ip"
+              Start-Sleep -s 30
+          displayName: 'Adding agent IP in storage account'
+          continueOnError: false
 
         - task: TerraformCLI@0
           displayName: 'Terraform Init'
@@ -203,7 +193,7 @@ stages:
             includeRootFolder: false
             archiveType: 'tar'
             tarCompression: 'gz'
-            archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-$(artifact-policy)-$(artifact).tgz'
+            archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-policy-$(artifact).tgz'
             replaceExistingArchive: true
         
         - task: PublishBuildArtifacts@1
@@ -211,7 +201,7 @@ stages:
           continueOnError: false
           inputs:
             PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-            ArtifactName: '$(Build.BuildId)-$(artifact-policy)-$(artifact)-tfplan'
+            ArtifactName: '$(Build.BuildId)-policy-$(artifact)-tfplan'
             publishLocation: 'Container'
         
         - task: TerraformCLI@0
@@ -237,7 +227,6 @@ stages:
           continueOnError: false
 
   - stage: MG_RA_Policy_INI_Assignments
-    condition: eq('${{ parameters.Assignments }}', 'true')
     displayName: MG RA Policy and Initiative Assignment
     jobs:
     - job: ContinuousIntegrationJob
@@ -265,7 +254,6 @@ stages:
             workingDirectory: '$(System.DefaultWorkingDirectory)'
             commandOptions: '-reconfigure -backend-config="storage_account_name=$(Storage)" -backend-config="container_name=$(Container)" -backend-config="key=$(MGRAStateFile)" -backend-config="access_key=$(accessKey)"'
             allowTelemetryCollection: true
-          
 
         - task: TerraformCLI@0
           displayName: 'Terraform Validate'
@@ -292,7 +280,7 @@ stages:
             includeRootFolder: false
             archiveType: 'tar'
             tarCompression: 'gz'
-            archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-$(artifact-MG)-$(artifact).tgz'
+            archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-MG-$(artifact).tgz'
             replaceExistingArchive: true
         
         - task: PublishBuildArtifacts@1
@@ -300,7 +288,7 @@ stages:
           continueOnError: false
           inputs:
             PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-            ArtifactName: '$(Build.BuildId)-$(artifact-MG)-$(artifact)-tfplan'
+            ArtifactName: '$(Build.BuildId)-MG-$(artifact)-tfplan'
             publishLocation: 'Container'
         
         - task: TerraformCLI@0
