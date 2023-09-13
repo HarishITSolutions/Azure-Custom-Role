@@ -211,18 +211,17 @@ stages:
             commandOptions: '-target="module.PolicyandInitiativeCreation" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML)'
             allowTelemetryCollection: true
             publishPlanResults: 'plan.out' 
-
-        - task: AzurePowerShell@5
+        
+        - task: PowerShell@2
           inputs:
-                azureSubscription: 'prod-devops'
-                ScriptType: 'InlineScript'
-                Inline: |
-                  $ip = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
-                  Write-Host "ip is : $ip"
-                  Connect-AzAccount -Subscription '567-gevernovabuildtestsub'
-                  Remove-AzStorageAccountNetworkRule -ResourceGroupName "$(RG)" -Name "$(Storage)" -IPAddressOrRange "$ip"
-                azurePowerShellVersion: 'LatestVersion'
-          displayName: "Removal of Agent IP in Storage Account"
+            targetType: 'inline'
+            script: |
+              az login --service-principal -u $(Storage_client_id) -p $(Storage_client_secret) --tenant $(Storage_tenant_id)
+              $ip = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
+              Write-Host "ip is : $ip"
+              az storage account network-rule remove --resource-group "$(RG)" --account-name "$(Storage)" --ip-address "$ip"
+              Start-Sleep -Seconds 30
+          displayName: 'Removal of agent IP in storage account'
           continueOnError: false
 
   - stage: MG_RA_Policy_INI_Assignments
@@ -231,17 +230,15 @@ stages:
     - job: ContinuousIntegrationJob
       displayName: MG RA Policy INI Assignmnet Job
       steps:
-        - task: AzurePowerShell@5
+        - task: PowerShell@2
           inputs:
-                azureSubscription: 'prod-devops'
-                ScriptType: 'InlineScript'
-                Inline: |
-                  $ip = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
-                  Write-Host "ip is : $ip"
-                  Connect-AzAccount -Subscription '567-gevernovabuildtestsub'
-                  Add-AzStorageAccountNetworkRule -ResourceGroupName "$(RG)" -Name "$(Storage)" -IPAddressOrRange "$ip"
-                  Start-Sleep -s 30
-                azurePowerShellVersion: 'LatestVersion'
+            targetType: 'inline'
+            script: |
+              az login --service-principal -u $(Storage_client_id) -p $(Storage_client_secret) --tenant $(Storage_tenant_id)
+              $ip = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
+              Write-Host "ip is : $ip"
+              az storage account network-rule add -g "$(RG)" --account-name "$(Storage)" --ip-address "$ip"
+              Start-Sleep -Seconds 30
           displayName: 'Adding agent IP in storage account'
           continueOnError: false
 
@@ -299,15 +296,14 @@ stages:
             allowTelemetryCollection: true
             publishPlanResults: 'plan.out' 
 
-        - task: AzurePowerShell@5
+        - task: PowerShell@2
           inputs:
-                azureSubscription: 'prod-devops'
-                ScriptType: 'InlineScript'
-                Inline: |
-                  $ip = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
-                  Write-Host "ip is : $ip"
-                  Connect-AzAccount -Subscription '567-gevernovabuildtestsub'
-                  Remove-AzStorageAccountNetworkRule -ResourceGroupName "$(RG)" -Name "$(Storage)" -IPAddressOrRange "$ip"
-                azurePowerShellVersion: 'LatestVersion'
-          displayName: "Removal of Agent IP in Storage Account"
+            targetType: 'inline'
+            script: |
+              az login --service-principal -u $(Storage_client_id) -p $(Storage_client_secret) --tenant $(Storage_tenant_id)
+              $ip = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
+              Write-Host "ip is : $ip"
+              az storage account network-rule remove --resource-group "$(RG)" --account-name "$(Storage)" --ip-address "$ip"
+              Start-Sleep -Seconds 30
+          displayName: 'Removal of agent IP in storage account'
           continueOnError: false
