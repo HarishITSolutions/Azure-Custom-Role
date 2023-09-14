@@ -19,7 +19,8 @@ managementGroups:
     builtinPolicyAssignmentEnabled: false
     builtinPolicyAssignment:
       - policyName: 
-        assignmentName: 
+        assignmentName:
+         
   - Name: Guardrails
     DisplayName: Guardrails
     ParentManagementGroup: GEVernovaSandbox
