@@ -14,7 +14,7 @@ policyrootctrl:
       - VN-Deny-Azure-ActiveDirectory-B2C
       - VN-Deny-Enabling-the-MDE-integration-in-ASC
       - VN-Deny-Express-Route-Circuit
-      - VN-DINE-Auto-Config-NSG-To-Enable-Flowlogs
+     # - VN-DINE-Auto-Config-NSG-To-Enable-Flowlogs
       - VN-Mod-Inherit-tag-from-RG-if-missing_1
       - VN-Mod-Inherit-tag-from-RG-if-missing_2
     initiatives:
@@ -35,6 +35,6 @@ policyrootctrl:
           - VN-Deny-Azure-ActiveDirectory-B2C
           - VN-Deny-Enabling-the-MDE-integration-in-ASC
           - VN-Deny-Express-Route-Circuit
-          - VN-DINE-Auto-Config-NSG-To-Enable-Flowlogs
+        #  - VN-DINE-Auto-Config-NSG-To-Enable-Flowlogs
           - VN-Mod-Inherit-tag-from-RG-if-missing_1
           - VN-Mod-Inherit-tag-from-RG-if-missing_2
