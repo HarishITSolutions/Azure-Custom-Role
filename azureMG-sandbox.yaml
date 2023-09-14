@@ -8,6 +8,9 @@ managementGroups:
       - principal: "1ef56e9b-b8b6-4ad3-9353-20cd18282a4e"
         type: user
         role: Log Analytics Reader
+     - principal: "98a8b944-5748-4078-9efc-5411640ed413"
+        type: user
+        role: Reader
     initiativeAssignmentEnabled: false
     initiativeAssignment:
       - initiativeName: 
@@ -28,6 +31,9 @@ managementGroups:
     roleAssignmentsEnabled: true
     roleassignments:
       - principal: "46d422a3-e09b-492e-baa7-1a386952339f"
+        type: user
+        role: Owner
+      - principal: "109d73a4-229e-4a09-92b8-407ffd46fcd2"
         type: user
         role: Owner
     initiativeAssignmentEnabled: false
