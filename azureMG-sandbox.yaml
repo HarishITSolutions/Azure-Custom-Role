@@ -5,7 +5,7 @@ managementGroups:
     GroupLevel: 0
     roleAssignmentsEnabled: true
     roleassignments:
-      - principal: "expel_analyst_expel.io#EXT#@gevernovasandbox.onmicrosoft.com"
+      - principal: "1ef56e9b-b8b6-4ad3-9353-20cd18282a4e"
         type: user
         role: Log Analytics Reader
     initiativeAssignmentEnabled: false
@@ -19,14 +19,15 @@ managementGroups:
     builtinPolicyAssignmentEnabled: false
     builtinPolicyAssignment:
       - policyName: 
-        assignmentName: 
+        assignmentName:
+         
   - Name: Guardrails
     DisplayName: Guardrails
     ParentManagementGroup: GEVernovaSandbox
     GroupLevel: 1
     roleAssignmentsEnabled: true
     roleassignments:
-      - principal: "vinesh.melath_ge.com#EXT#@gevernovasandbox.onmicrosoft.com"
+      - principal: "46d422a3-e09b-492e-baa7-1a386952339f"
         type: user
         role: Owner
     initiativeAssignmentEnabled: false

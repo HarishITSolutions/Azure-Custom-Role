@@ -77,7 +77,68 @@ resource "azurerm_management_group" "mg_level_5" {
   }
 }
 
-# Azure Role Assignment Locals - 1
+# # Azure Role Assignment Locals - 1
+# locals {
+#   mgSource = yamldecode(file("${path.root}/${var.sourceMGYAML}"))
+#   dynamic_role_assignments = flatten([
+#     for mg in local.mgSource.managementGroups : [
+#       for eachrole in mg.roleassignments : {
+#         roleenabled = mg.roleAssignmentsEnabled
+#         mgName      = mg.Name
+#         pName       = eachrole.principal
+#         type        = eachrole.type
+#         rName       = eachrole.role
+#       }
+#       if mg.roleAssignmentsEnabled
+#     ]
+#   ])
+# }
+
+# # Read UPN of Users
+# data "azuread_user" "users" {
+#   for_each            = { for ra in local.dynamic_role_assignments : "${ra.mgName}-${ra.pName}-${ra.rName}" => ra if ra.roleenabled == true && ra.type == "user" }
+#   user_principal_name = each.value.pName
+# }
+
+# # Read Display Name of Groups
+# data "azuread_group" "groups" {
+#   for_each     = { for ra in local.dynamic_role_assignments : "${ra.mgName}-${ra.pName}-${ra.rName}" => ra if ra.roleenabled == true && ra.type == "group" }
+#   display_name = each.value.pName
+# }
+
+# # Read Display Name of ServicePrincipal
+# data "azuread_service_principal" "servicePrincipal" {
+#   for_each     = { for ra in local.dynamic_role_assignments : "${ra.mgName}-${ra.pName}-${ra.rName}" => ra if ra.roleenabled == true && ra.type == "ServicePrincipal" }
+#   display_name = each.value.pName
+# }
+
+# # Azure Role Assignment Locals - 2
+# locals {
+#   get_principal_id = {
+#     for ra in local.dynamic_role_assignments : "${ra.mgName}-${ra.pName}-${ra.rName}" => {
+#       user             = ra.type == "user" ? try(data.azuread_user.users["${ra.mgName}-${ra.pName}-${ra.rName}"].id, null) : null
+#       group            = ra.type == "group" ? try(data.azuread_group.groups["${ra.mgName}-${ra.pName}-${ra.rName}"].id, null) : null
+#       ServicePrincipal = ra.type == "ServicePrincipal" ? try(data.azuread_service_principal.servicePrincipal["${ra.mgName}-${ra.pName}-${ra.rName}"].object_id, null) : null
+#     }
+#   }
+# }
+
+# # Create Role Assignments
+# resource "azurerm_role_assignment" "roles" {
+#   for_each = { for idx, ra in local.dynamic_role_assignments : idx => ra }
+
+#   principal_id         = lookup(local.get_principal_id["${each.value.mgName}-${each.value.pName}-${each.value.rName}"], each.value.type, null)
+#   role_definition_name = each.value.rName
+#   scope                = "/providers/Microsoft.Management/managementGroups/${each.value.mgName}"
+#   depends_on           = [azurerm_management_group.mg_level_1, azurerm_management_group.mg_level_2, azurerm_management_group.mg_level_3, azurerm_management_group.mg_level_4, azurerm_management_group.mg_level_5]
+
+#   lifecycle {
+#     # Avoid unnecessary updates
+#     ignore_changes = [role_definition_name, principal_id, scope]
+#   }
+# }
+
+# Azure Role Assignment Locals
 locals {
   mgSource = yamldecode(file("${path.root}/${var.sourceMGYAML}"))
   dynamic_role_assignments = flatten([
@@ -94,40 +155,11 @@ locals {
   ])
 }
 
-# Read UPN of Users
-data "azuread_user" "users" {
-  for_each            = { for ra in local.dynamic_role_assignments : "${ra.mgName}-${ra.pName}-${ra.rName}" => ra if ra.roleenabled == true && ra.type == "user" }
-  user_principal_name = each.value.pName
-}
-
-# Read Display Name of Groups
-data "azuread_group" "groups" {
-  for_each     = { for ra in local.dynamic_role_assignments : "${ra.mgName}-${ra.pName}-${ra.rName}" => ra if ra.roleenabled == true && ra.type == "group" }
-  display_name = each.value.pName
-}
-
-# Read Display Name of ServicePrincipal
-data "azuread_service_principal" "servicePrincipal" {
-  for_each     = { for ra in local.dynamic_role_assignments : "${ra.mgName}-${ra.pName}-${ra.rName}" => ra if ra.roleenabled == true && ra.type == "ServicePrincipal" }
-  display_name = each.value.pName
-}
-
-# Azure Role Assignment Locals - 2
-locals {
-  get_principal_id = {
-    for ra in local.dynamic_role_assignments : "${ra.mgName}-${ra.pName}-${ra.rName}" => {
-      user             = ra.type == "user" ? try(data.azuread_user.users["${ra.mgName}-${ra.pName}-${ra.rName}"].id, null) : null
-      group            = ra.type == "group" ? try(data.azuread_group.groups["${ra.mgName}-${ra.pName}-${ra.rName}"].id, null) : null
-      ServicePrincipal = ra.type == "ServicePrincipal" ? try(data.azuread_service_principal.servicePrincipal["${ra.mgName}-${ra.pName}-${ra.rName}"].object_id, null) : null
-    }
-  }
-}
-
 # Create Role Assignments
 resource "azurerm_role_assignment" "roles" {
   for_each = { for idx, ra in local.dynamic_role_assignments : idx => ra }
 
-  principal_id         = lookup(local.get_principal_id["${each.value.mgName}-${each.value.pName}-${each.value.rName}"], each.value.type, null)
+  principal_id         = each.value.pName
   role_definition_name = each.value.rName
   scope                = "/providers/Microsoft.Management/managementGroups/${each.value.mgName}"
   depends_on           = [azurerm_management_group.mg_level_1, azurerm_management_group.mg_level_2, azurerm_management_group.mg_level_3, azurerm_management_group.mg_level_4, azurerm_management_group.mg_level_5]
@@ -160,8 +192,9 @@ resource "azurerm_management_group_policy_assignment" "initiative_assignment" {
   name                 = each.value.assignmentName
   policy_definition_id = "/providers/Microsoft.Management/managementGroups/GEVernovaSandbox/providers/Microsoft.Authorization/policySetDefinitions/${each.value.initiativeID}"
   management_group_id  = "/providers/Microsoft.Management/managementGroups/${each.value.mgName}"
-  depends_on           = [azurerm_role_assignment.roles, data.azuread_user.users, data.azuread_group.groups, data.azuread_service_principal.servicePrincipal]
-  location             = "EastUS"
+  #depends_on           = [azurerm_role_assignment.roles, data.azuread_user.users, data.azuread_group.groups, data.azuread_service_principal.servicePrincipal]
+  depends_on = [azurerm_role_assignment.roles]
+  location   = "EastUS"
 
   identity {
     type = "SystemAssigned"
