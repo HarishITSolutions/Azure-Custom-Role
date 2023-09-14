@@ -8,7 +8,8 @@ locals {
   flattened_policies = flatten([
     for mg in local.policySource.policyrootctrl : [
       for policy in mg.policies : {
-        mgName = mg.scope
+        mgName     = mg.scope
+        policyName = policy
         policyValue = jsondecode(
           file("${path.root}/policies/${mg.scope}/${policy}.json")
         )
@@ -20,7 +21,7 @@ locals {
 # Azure Policy Definition
 resource "azurerm_policy_definition" "policies" {
   for_each = { for idx in local.flattened_policies :
-    "${idx.mgName}-${idx.policy}" => idx
+    "${idx.mgName}-${idx.policyName}" => idx
   }
 
   name                = each.value.policyValue.properties.Name
