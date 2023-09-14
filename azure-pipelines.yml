@@ -208,7 +208,7 @@ stages:
               az storage account network-rule remove --resource-group "$(RG)" --account-name "$(Storage)" --ip-address "$ip"
               Start-Sleep -Seconds 30
           displayName: 'Removal of agent IP in storage account'
-          continueOnError: false
+          continueOnError: true
 
   - stage: MG_RA_Policy_INI_Assignments
     displayName: MG RA Policy and Initiative Assignment
@@ -292,4 +292,4 @@ stages:
               az storage account network-rule remove --resource-group "$(RG)" --account-name "$(Storage)" --ip-address "$ip"
               Start-Sleep -Seconds 30
           displayName: 'Removal of agent IP in storage account'
-          continueOnError: false
+          continueOnError: true
