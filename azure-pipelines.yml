@@ -100,6 +100,11 @@ variables:
       value: "sandbox-artifact"
     ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/Prod') }}:
       value: "prod-artifact"
+  - name: "Storage_tenant_id"
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/stage') }}:
+      value: "$(Storage_tenant_id_Sandbox)"
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/Prod') }}:
+      value: "$(Storage_tenant_id_prod)"
 
 stages:
   - stage: Build_Approval
