@@ -105,7 +105,7 @@ stages:
   - stage: Build_Approval
     displayName: Build Approval
     jobs:
-    - deployment: Policy and MG Build
+    - deployment: Policy_and_MG_Build
       displayName: Build Process
       environment: $(environmentType)
       strategy:
