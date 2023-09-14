@@ -134,7 +134,7 @@ resource "azurerm_role_assignment" "roles" {
 
   lifecycle {
     # Avoid unnecessary updates
-    ignore_changes = [role_definition_name, principal_id]
+    ignore_changes = [role_definition_name, principal_id, scope]
   }
 }
 
