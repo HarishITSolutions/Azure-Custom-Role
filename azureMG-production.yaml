@@ -114,7 +114,7 @@ managementGroups:
     DisplayName: GE-Digital-Core-Predix-GR-Limited
     ParentManagementGroup: VN-GR-AZURE-Limited
     GroupLevel: 3
-    roleAssignmentsEnabled: true
+    roleAssignmentsEnabled: false
     roleassignments:
       - principal: "Digital Azure CIRT Power User"
         type: Group
@@ -158,7 +158,7 @@ managementGroups:
     DisplayName: GE-Power-GR-Limited-Non-EC
     ParentManagementGroup: VN-GE-Power-GR-Limited
     GroupLevel: 4
-    roleAssignmentsEnabled: true
+    roleAssignmentsEnabled: false
     roleassignments:
       - principal: "Gas Power Azure_Root_CTO_Admin"
         type: Group
@@ -326,7 +326,7 @@ managementGroups:
     DisplayName: GE-Renewable-Energy-GR-Limited
     ParentManagementGroup: VN-GR-AZURE-Limited
     GroupLevel: 3
-    roleAssignmentsEnabled: true
+    roleAssignmentsEnabled: false
     roleassignments:
       - principal: "GE RE_GRID_CICD_Azure_Architects"
         type: Group
