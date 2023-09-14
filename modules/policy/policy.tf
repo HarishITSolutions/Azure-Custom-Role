@@ -34,6 +34,8 @@ resource "azurerm_policy_definition" "policies" {
   lifecycle {
     # Use ignore_changes to ignore changes in below attributes
     ignore_changes = [
+      policy_type,
+      mode,
       name,
       display_name,
       description,
