@@ -35,11 +35,6 @@ variables:
       value: 'Sandbox'
     ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/Prod') }}: 
       value: 'Production'
-  - name: "StorageSubscription"
-    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/stage') }}:
-      value: 567-gevernovabuildtestsub
-    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/Prod') }}:
-      value: 583-vn-cloud-tooling-ltd-az-dev
   - name: "client_id"
     ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/stage') }}:
       value: $(clientID_Sandbox)
@@ -110,7 +105,7 @@ stages:
   - stage: Build_Approval
     displayName: Build Approval
     jobs:
-    - deployment: Fetching_Agent_IP
+    - deployment: Policy and MG Build
       displayName: Build Process
       environment: $(environmentType)
       strategy:
