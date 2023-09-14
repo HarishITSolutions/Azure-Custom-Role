@@ -42,6 +42,7 @@ resource "azurerm_policy_definition" "policies" {
       metadata,
       parameters,
       policy_rule,
+      role_definition_ids,
       management_group_id
     ]
   }
