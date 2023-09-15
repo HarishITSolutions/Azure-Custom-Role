@@ -7,7 +7,7 @@ managementGroups:
     roleassignments:
       - principal: "7062c88c-d19d-450e-8ae4-573d59d21793"
         type: group
-        role: Owner
+        role: Reader
       - principal: "119bc207-b57b-4976-b353-4944fa2e0cb6"
         type: ServicePrincipal
         role: Reader
