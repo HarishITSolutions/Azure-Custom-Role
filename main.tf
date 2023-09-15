@@ -12,5 +12,6 @@ module "MG-RA-POL-INI-Assignment" {
   source       = "./modules/mg/"
   scope        = local.mg
   sourceMGYAML = var.sourceMG-YAML
+  rootMG       = var.tenantrootMG
   #depends_on   = [module.PolicyandInitiativeCreation]
 }
