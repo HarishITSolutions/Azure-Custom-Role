@@ -22,7 +22,7 @@ variable "sourceMG-YAML" {
   type = string
 }
 
-varaible "tenantrootMG" {
+variable "tenantrootMG" {
   type = string
 }
 
