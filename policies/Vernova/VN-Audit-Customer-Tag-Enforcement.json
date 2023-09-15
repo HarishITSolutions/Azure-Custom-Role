@@ -1,6 +1,6 @@
 {
   "properties": {
-	"Name": "VN-Customer Tag Enforcement",
+	"Name": "VN-Audit-Customer-Tag-Enforcement",
     "displayName": "VN-Customer Tag Enforcement",
     "policyType": "Custom",
     "mode": "All",
