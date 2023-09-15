@@ -5,12 +5,18 @@ managementGroups:
     GroupLevel: 0
     roleAssignmentsEnabled: true
     roleassignments:
-      - principal: "GE Genpact Vernova Azure Build"
-        type: Group
+      - principal: "7062c88c-d19d-450e-8ae4-573d59d21793"
+        type: group
         role: Owner
-      - principal: "Expel Cloud Service - GEVernova"
-        type: Service Principle
+      - principal: "119bc207-b57b-4976-b353-4944fa2e0cb6"
+        type: ServicePrincipal
         role: Reader
+      - principal: "d49854e4-0a95-4f48-bdac-2257aa51f1cf"
+        type: group
+        role: Reader
+      - principal: "d49854e4-0a95-4f48-bdac-2257aa51f1cf"
+        type: group
+        role: Security Reader
     initiativeAssignmentEnabled: false
     initiativeAssignment:
       - initiativeName: 
@@ -179,7 +185,7 @@ managementGroups:
     DisplayName: Non-Prod
     ParentManagementGroup: VN-Limited-Standard
     GroupLevel: 5
-    roleAssignmentsEnabled: true
+    roleAssignmentsEnabled: false
     roleassignments:
       - principal: "Gas Power Azure_ResourcePolicyAdmin"
         type: Group
