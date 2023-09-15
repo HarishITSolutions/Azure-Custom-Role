@@ -190,7 +190,7 @@ resource "azurerm_management_group_policy_assignment" "initiative_assignment" {
   for_each = { for idx, p in local.flattened_initiative_assignment : idx => p }
 
   name                 = each.value.assignmentName
-  policy_definition_id = "/providers/Microsoft.Management/managementGroups/GEVernovaSandbox/providers/Microsoft.Authorization/policySetDefinitions/${each.value.initiativeID}"
+  policy_definition_id = "/providers/Microsoft.Management/managementGroups/${var.rootMG}/providers/Microsoft.Authorization/policySetDefinitions/${each.value.initiativeID}"
   management_group_id  = "/providers/Microsoft.Management/managementGroups/${each.value.mgName}"
   #depends_on           = [azurerm_role_assignment.roles, data.azuread_user.users, data.azuread_group.groups, data.azuread_service_principal.servicePrincipal]
   depends_on = [azurerm_role_assignment.roles]
@@ -221,7 +221,7 @@ resource "azurerm_management_group_policy_assignment" "custom_policy_assignment"
   for_each = { for idx, p in local.flattened_policy_assignment : idx => p }
 
   name                 = each.value.assignmentId
-  policy_definition_id = "/providers/Microsoft.Management/managementGroups/GEVernovaSandbox/providers/Microsoft.Authorization/policyDefinitions/${each.value.policyDefinitionName}"
+  policy_definition_id = "/providers/Microsoft.Management/managementGroups/${var.rootMG}/providers/Microsoft.Authorization/policyDefinitions/${each.value.policyDefinitionName}"
   management_group_id  = "/providers/Microsoft.Management/managementGroups/${each.value.mgName}"
   depends_on           = [azurerm_management_group_policy_assignment.initiative_assignment]
   location             = "EastUS"
