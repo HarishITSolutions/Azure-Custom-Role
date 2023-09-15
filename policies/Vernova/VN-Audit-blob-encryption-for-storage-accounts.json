@@ -1,6 +1,6 @@
 {
   "properties": {
-    "Name": "VN-Audit blob encryption for storage accounts",
+    "Name": "VN-Audit-blob-encryption-for-storage-accounts",
     "displayName": "VN-Audit blob encryption for storage accounts",
     "policyType": "Custom",
     "mode": "All",

@@ -1,6 +1,6 @@
 {
   "properties": {
-    "Name": "VN-Audit Storage Account Encryption in Transit",
+    "Name": "VN-Audit-Storage-Account-Encryption-in-Transit",
     "displayName": "VN-Audit Storage Account Encryption in Transit",
     "policyType": "Custom",
     "mode": "All",

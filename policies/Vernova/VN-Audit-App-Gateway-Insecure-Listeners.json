@@ -1,6 +1,6 @@
 {
   "properties": {
-    "Name": "VN-Audit App Gateway Insecure Listeners",
+    "Name": "VN-Audit-App-Gateway-Insecure-Listeners",
     "displayName": "VN-Audit App Gateway Insecure Listeners",
     "policyType": "Custom",
     "mode": "All",
