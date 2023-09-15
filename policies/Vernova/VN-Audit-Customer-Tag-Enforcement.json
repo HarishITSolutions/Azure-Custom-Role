@@ -1,6 +1,6 @@
 {
   "properties": {
-	"Name": "VN-Customer Tag Enforcement",
+	"Name": "VN-Audit-Customer-Tag-Enforcement",
     "displayName": "VN-Customer Tag Enforcement",
     "policyType": "Custom",
     "mode": "All",
@@ -9,20 +9,7 @@
       "version": "1.0.0",
       "category": "General"
     },
-    "parameters": {
-		"effect": {
-		  "type": "String",
-		  "metadata": {
-			"displayName": "Effect",
-			"description": "Enable or disable the execution of the policy"
-		  },
-		  "allowedValues": [
-			"Audit",
-			"Deny"
-		  ],
-		  "defaultValue": "Audit"
-		}
-	  },
+    "parameters": {},
     "policyRule": {
       "if": {
 		  "allOf": [
