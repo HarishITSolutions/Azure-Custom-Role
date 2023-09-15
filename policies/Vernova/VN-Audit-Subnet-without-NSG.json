@@ -1,6 +1,6 @@
 {
   "properties": {
-    "Name": "VN-Audit Subnet without NSG",
+    "Name": "VN-Audit-Subnet-without-NSG",
     "displayName": "VN-Audit Subnet without NSG",
     "policyType": "Custom",
     "mode": "All",
