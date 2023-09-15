@@ -11,3 +11,7 @@ variable "scope" {
 variable "sourceMGYAML" {
   type = string
 }
+
+variable "rootMG" {
+  type = string
+}
