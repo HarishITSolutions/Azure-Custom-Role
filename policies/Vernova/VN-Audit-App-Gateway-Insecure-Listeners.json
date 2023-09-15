@@ -1,7 +1,7 @@
 {
   "properties": {
     "Name": "VN-Audit-App-Gateway-Insecure-Listeners",
-    "displayName": "VN-Audit App Gateway Insecure Listeners",
+    "displayName": "VN-Audit-App-Gateway-Insecure-Listeners",
     "policyType": "Custom",
     "mode": "All",
     "description": "VN-Policy to block app gateway with insecure listeners. Listeners should be https only",
