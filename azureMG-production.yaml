@@ -5,7 +5,7 @@ managementGroups:
     GroupLevel: 0
     roleAssignmentsEnabled: true
     roleassignments:
-      - principal: "bb4f0972-7fbc-46e9-b78d-16c99c208131"
+      - principal: "526a5952-847d-4de9-92f4-65886db8536c"
         type: group
         role: Reader
       - principal: "119bc207-b57b-4976-b353-4944fa2e0cb6"
