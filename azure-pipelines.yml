@@ -100,6 +100,11 @@ variables:
       value: "sandbox-artifact"
     ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/Prod') }}:
       value: "prod-artifact"
+  - name: "Storage_tenant_id"
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/stage') }}:
+      value: "$(Storage_tenant_id_Sandbox)"
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/Prod') }}:
+      value: "$(Storage_tenant_id_prod)"
 
 stages:
   - stage: Build_Approval
@@ -145,7 +150,7 @@ stages:
           inputs:
             command: 'init'
             workingDirectory: '$(System.DefaultWorkingDirectory)'
-            commandOptions: '-reconfigure -backend-config="storage_account_name=$(Storage)" -backend-config="container_name=$(Container)" -backend-config="key=$(policyStateFile)" -backend-config="access_key=$(accessKey)"'
+            commandOptions: '-backend=true -reconfigure -backend-config="storage_account_name=$(Storage)" -backend-config="container_name=$(Container)" -backend-config="key=$(policyStateFile)" -backend-config="access_key=$(accessKey)"'
             allowTelemetryCollection: true
 
         - task: TerraformCLI@0
@@ -203,7 +208,7 @@ stages:
               az storage account network-rule remove --resource-group "$(RG)" --account-name "$(Storage)" --ip-address "$ip"
               Start-Sleep -Seconds 30
           displayName: 'Removal of agent IP in storage account'
-          continueOnError: false
+          condition: succeededOrFailed()
 
   - stage: MG_RA_Policy_INI_Assignments
     displayName: MG RA Policy and Initiative Assignment
@@ -229,7 +234,7 @@ stages:
           inputs:
             command: 'init'
             workingDirectory: '$(System.DefaultWorkingDirectory)'
-            commandOptions: '-reconfigure -backend-config="storage_account_name=$(Storage)" -backend-config="container_name=$(Container)" -backend-config="key=$(MGRAStateFile)" -backend-config="access_key=$(accessKey)"'
+            commandOptions: '-backend=true -reconfigure -backend-config="storage_account_name=$(Storage)" -backend-config="container_name=$(Container)" -backend-config="key=$(MGRAStateFile)" -backend-config="access_key=$(accessKey)"'
             allowTelemetryCollection: true
 
         - task: TerraformCLI@0
@@ -287,4 +292,4 @@ stages:
               az storage account network-rule remove --resource-group "$(RG)" --account-name "$(Storage)" --ip-address "$ip"
               Start-Sleep -Seconds 30
           displayName: 'Removal of agent IP in storage account'
-          continueOnError: false
+          condition: succeededOrFailed()

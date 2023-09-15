@@ -8,7 +8,8 @@ locals {
   flattened_policies = flatten([
     for mg in local.policySource.policyrootctrl : [
       for policy in mg.policies : {
-        mgName = mg.scope
+        mgName     = mg.scope
+        policyName = policy
         policyValue = jsondecode(
           file("${path.root}/policies/${mg.scope}/${policy}.json")
         )
@@ -19,7 +20,9 @@ locals {
 
 # Azure Policy Definition
 resource "azurerm_policy_definition" "policies" {
-  for_each = { for idx, p in local.flattened_policies : idx => p }
+  for_each = { for idx in local.flattened_policies :
+    "${idx.mgName}-${idx.policyName}" => idx
+  }
 
   name                = each.value.policyValue.properties.Name
   management_group_id = "/providers/Microsoft.Management/managementGroups/${each.value.mgName}"
@@ -34,12 +37,15 @@ resource "azurerm_policy_definition" "policies" {
   lifecycle {
     # Use ignore_changes to ignore changes in below attributes
     ignore_changes = [
+      policy_type,
+      mode,
       name,
       display_name,
       description,
       metadata,
       parameters,
-      policy_rule,
+      // policy_rule,
+      role_definition_ids,
       management_group_id
     ]
   }
@@ -62,8 +68,7 @@ locals {
 
 # Azure Policy Initiative
 resource "azurerm_policy_set_definition" "initiatives" {
-  for_each = {
-    for initiative in local.initiatives_mapping :
+  for_each = { for initiative in local.initiatives_mapping :
     "${initiative.mgName}-${initiative.initiativeName}" => initiative
   }
 
