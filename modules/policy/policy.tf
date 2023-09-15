@@ -39,7 +39,7 @@ resource "azurerm_policy_definition" "policies" {
     ignore_changes = [
       policy_type,
       mode,
-      name,
+      // name,
       display_name,
       description,
       metadata,
