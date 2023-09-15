@@ -29,6 +29,7 @@ managementGroups:
     builtinPolicyAssignment:
       - policyName: 
         assignmentName: 
+
   - Name: VN-Guardrails
     DisplayName: Guardrails
     ParentManagementGroup: Vernova
@@ -71,7 +72,8 @@ managementGroups:
     builtinPolicyAssignmentEnabled: false
     builtinPolicyAssignment:
       - policyName: 
-        assignmentName: 
+        assignmentName:
+
   - Name: VN-SpecialSubs
     DisplayName: SpecialSubs
     ParentManagementGroup: Vernova
@@ -181,6 +183,7 @@ managementGroups:
     builtinPolicyAssignment:
       - policyName: 
         assignmentName:
+
   - Name: VN-GR-AZURE-Limited-NonProd
     DisplayName: Non-Prod
     ParentManagementGroup: VN-Limited-Standard
@@ -202,6 +205,7 @@ managementGroups:
     builtinPolicyAssignment:
       - policyName: 
         assignmentName:
+
   - Name: VN-GR-AZURE-Limited-Prod
     DisplayName: Prod
     ParentManagementGroup: VN-Limited-Standard
@@ -223,6 +227,7 @@ managementGroups:
     builtinPolicyAssignment:
       - policyName: 
         assignmentName:
+
   - Name: VN-GE-Power-GR-Limited-EC
     DisplayName: Specialized
     ParentManagementGroup: VN-GE-Power-GR-Limited
@@ -244,6 +249,7 @@ managementGroups:
     builtinPolicyAssignment:
       - policyName: 
         assignmentName:
+
   - Name: VN-GE-Power-Portfolio-GR-Limited
     DisplayName: GE-Power-Portfolio-GR-Limited
     ParentManagementGroup: VN-GR-AZURE-Limited
@@ -264,7 +270,8 @@ managementGroups:
     builtinPolicyAssignmentEnabled: false
     builtinPolicyAssignment:
       - policyName: 
-        assignmentName:        
+        assignmentName:
+
   - Name: VN-GE-Nuclear-GR-Limited
     DisplayName: GE-Nuclear-GR-Limited
     ParentManagementGroup: VN-GE-Power-Portfolio-GR-Limited
@@ -285,7 +292,8 @@ managementGroups:
     builtinPolicyAssignmentEnabled: false
     builtinPolicyAssignment:
       - policyName: 
-        assignmentName:        
+        assignmentName:
+
   - Name: VN-GE-Power-Conversion-GR-Limited
     DisplayName: GE-Power-Conversion-GR-Limited
     ParentManagementGroup: VN-GE-Power-Portfolio-GR-Limited
@@ -306,7 +314,8 @@ managementGroups:
     builtinPolicyAssignmentEnabled: false
     builtinPolicyAssignment:
       - policyName: 
-        assignmentName:               
+        assignmentName:
+
   - Name: VN-GE-Steam-Power-GR-Limited
     DisplayName: GE-Steam-Power-GR-Limited
     ParentManagementGroup: VN-GE-Power-Portfolio-GR-Limited
@@ -327,7 +336,8 @@ managementGroups:
     builtinPolicyAssignmentEnabled: false
     builtinPolicyAssignment:
       - policyName: 
-        assignmentName:               
+        assignmentName:
+
   - Name: VN-GE-Renewable-Energy-GR-Limited
     DisplayName: GE-Renewable-Energy-GR-Limited
     ParentManagementGroup: VN-GR-AZURE-Limited
@@ -360,7 +370,8 @@ managementGroups:
     builtinPolicyAssignmentEnabled: false
     builtinPolicyAssignment:
       - policyName: 
-        assignmentName:               
+        assignmentName:
+
   - Name: VN-GE-Vernova-GR-Limited
     DisplayName: GE-Vernova-GR-Limited
     ParentManagementGroup: VN-GR-AZURE-Limited
@@ -381,7 +392,8 @@ managementGroups:
     builtinPolicyAssignmentEnabled: false
     builtinPolicyAssignment:
       - policyName: 
-        assignmentName:               
+        assignmentName:
+                      
   - Name: VN-SMO-Separation-Vernova-GR-Limited
     DisplayName: SMO-Separation-Vernova-GR-Limited
     ParentManagementGroup: VN-GR-AZURE-Limited
