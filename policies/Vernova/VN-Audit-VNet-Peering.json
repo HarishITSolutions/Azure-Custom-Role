@@ -1,6 +1,6 @@
 {
   "properties": {
-    "Name": "VN-Audit VNet Peering",
+    "Name": "VN-Audit-VNet-Peering",
     "displayName": "VN-Audit VNet Peering",
     "policyType": "Custom",
     "mode": "All",

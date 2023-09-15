@@ -1,6 +1,6 @@
 {
   "properties": {
-    "Name": "VN-Audit VNET Creation",
+    "Name": "VN-Audit-VNET-Creation",
     "displayName": "VN-Audit VNET Creation",
     "policyType": "Custom",
     "mode": "All",

@@ -1,6 +1,6 @@
 {
   "properties": {
-    "Name": "VN-Deny Express Route Circuit",
+    "Name": "VN-Deny-Express-Route-Circuit",
     "displayName": "VN-Deny Express Route Circuit",
     "policyType": "Custom",
     "mode": "All",

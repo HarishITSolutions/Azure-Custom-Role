@@ -1,6 +1,6 @@
 {
   "properties": {
-    "Name": "VN-Audit File Encryption in Storage account",
+    "Name": "VN-Audit-File-Encryption-in-Storage-account",
     "displayName": "VN-Audit File Encryption in Storage account",
     "policyType": "Custom",
     "mode": "All",

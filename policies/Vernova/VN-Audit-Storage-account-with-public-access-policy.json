@@ -1,6 +1,6 @@
 {
   "properties": {
-    "Name": "VN-Audit Storage account with public access policy",
+    "Name": "VN-Audit-Storage-account-with-public-access-policy",
     "displayName": "VN-Audit Storage account with public access policy",
     "policyType": "Custom",
     "mode": "All",
