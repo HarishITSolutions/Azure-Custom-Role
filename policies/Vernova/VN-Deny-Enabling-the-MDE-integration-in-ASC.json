@@ -1,6 +1,6 @@
 {
   "properties": {
-    "Name": "VN-Deny Enabling the MDE integration in ASC",
+    "Name": "VN-Deny-Enabling-the-MDE-integration-in-ASC",
     "displayName": "VN-Deny Enabling the MDE integration in ASC",
     "policyType": "Custom",
     "mode": "All",

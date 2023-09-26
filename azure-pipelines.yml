@@ -105,6 +105,11 @@ variables:
       value: "$(Storage_tenant_id_Sandbox)"
     ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/Prod') }}:
       value: "$(Storage_tenant_id_prod)"
+  - name: "rootMG"
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/stage') }}:
+      value: "GEVernovaSandbox"
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/Prod') }}:
+      value: "Vernova"
 
 stages:
   - stage: Build_Approval
@@ -166,7 +171,7 @@ stages:
           continueOnError: false
           inputs:
             command: 'plan'
-            commandOptions: '-target="module.PolicyandInitiativeCreation" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML)'
+            commandOptions: '-target="module.PolicyandInitiativeCreation" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML) -var tenantrootMG=$(rootMG)'
             allowTelemetryCollection: true
             workingDirectory: '$(System.DefaultWorkingDirectory)'
         
@@ -194,7 +199,7 @@ stages:
           continueOnError: false
           inputs:
             command: 'plan'
-            commandOptions: '-target="module.PolicyandInitiativeCreation" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML)'
+            commandOptions: '-target="module.PolicyandInitiativeCreation" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML) -var tenantrootMG=$(rootMG)'
             allowTelemetryCollection: true
             publishPlanResults: 'plan.out' 
         
@@ -250,7 +255,7 @@ stages:
           continueOnError: false
           inputs:
             command: 'plan'
-            commandOptions: '-target="module.MG-RA-POL-INI-Assignment" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML)'
+            commandOptions: '-target="module.MG-RA-POL-INI-Assignment" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML) -var tenantrootMG=$(rootMG)'
             allowTelemetryCollection: true
             workingDirectory: '$(System.DefaultWorkingDirectory)'
         
@@ -278,7 +283,7 @@ stages:
           continueOnError: false
           inputs:
             command: 'plan'
-            commandOptions: '-target="module.MG-RA-POL-INI-Assignment" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML)'
+            commandOptions: '-target="module.MG-RA-POL-INI-Assignment" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML) -var tenantrootMG=$(rootMG)'
             allowTelemetryCollection: true
             publishPlanResults: 'plan.out' 
 

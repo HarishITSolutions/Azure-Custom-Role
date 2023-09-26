@@ -1,7 +1,7 @@
 {
   "properties": {
-    "Name": "VN-Audit File Encryption in Storage account",
-    "displayName": "VN-Audit File Encryption in Storage account",
+    "Name": "VN-Audit-File-Encryption-in-Storage-account",
+    "displayName": "VN-Audit-File-Encryption-in-Storage-account",
     "policyType": "Custom",
     "mode": "All",
     "description": "VN-This policy ensures file encryption for storage accounts is turned on. It only applies to Microsoft.Storage resource types, not other storage providers.",

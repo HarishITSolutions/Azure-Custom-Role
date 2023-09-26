@@ -1,7 +1,7 @@
 {
   "properties": {
-	"Name": "VN-Customer Tag Enforcement",
-    "displayName": "VN-Customer Tag Enforcement",
+	"Name": "VN-Audit-Customer-Tag-Enforcement",
+    "displayName": "VN-Audit-Customer-Tag-Enforcement",
     "policyType": "Custom",
     "mode": "All",
     "description": "VN-This template enforces tags on resources created by customers to adhere to Guardrails Tagging Standard of having an env and uai tag.",
@@ -9,20 +9,7 @@
       "version": "1.0.0",
       "category": "General"
     },
-    "parameters": {
-		"effect": {
-		  "type": "String",
-		  "metadata": {
-			"displayName": "Effect",
-			"description": "Enable or disable the execution of the policy"
-		  },
-		  "allowedValues": [
-			"Audit",
-			"Deny"
-		  ],
-		  "defaultValue": "Audit"
-		}
-	  },
+    "parameters": {},
     "policyRule": {
       "if": {
 		  "allOf": [
