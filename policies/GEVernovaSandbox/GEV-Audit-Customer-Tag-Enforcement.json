@@ -9,7 +9,20 @@
       "version": "1.0.0",
       "category": "General"
     },
-    "parameters": {},
+    "parameters": {
+      "effect": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Enable or disable the execution of the policy"
+        },
+        "allowedValues": [
+          "Audit",
+          "Deny"
+        ],
+        "defaultValue": "Audit"
+      }
+    },
     "policyRule": {
       "if": {
 		  "allOf": [
@@ -66,7 +79,7 @@
 		  ]
 		},
       "then": {
-        "effect": "audit"
+        "effect": "[parameters('effect')]"
       }
     }
   }
