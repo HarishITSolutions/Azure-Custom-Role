@@ -1,3 +1,8 @@
+module "RoleAssignmentCreation" {
+  source     = "./modules/roleassignment/"
+}
+
+
 module "PolicyandInitiativeCreation" {
   source     = "./modules/policy/"
   sourceYAML = var.sourcePolicyYAML
