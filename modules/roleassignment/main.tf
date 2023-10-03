@@ -1,3 +1,7 @@
+locals {
+  management_groups_map = { for mg in var.scope : mg.Name => mg }
+}
+
 resource "azurerm_role_definition" "testcustomrole" {
   name        = "TestGeVernovaCirtIrAutomation"
   scope       = "/providers/Microsoft.Management/managementGroups/Vernova"
