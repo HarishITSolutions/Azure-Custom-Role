@@ -2,6 +2,15 @@ locals {
   croles_map = { for croles in var.scope : croles.Name => croles }
 }
 
+
+resource "azurerm_role_definition" "testcustomrole" {
+  for_each = { for croles in local.croles_map : croles.Name => croles }
+
+  name                       = each.value.RoleName
+  scope       = "/providers/Microsoft.Management/managementGroups/${each.value.scope}"
+}
+
+
 resource "azurerm_role_definition" "testcustomrole" {
   name        = "TestGeVernovaCirtIrAutomation"
   scope       = "/providers/Microsoft.Management/managementGroups/Vernova"
