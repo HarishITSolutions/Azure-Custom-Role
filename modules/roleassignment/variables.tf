@@ -8,6 +8,6 @@ variable "scope" {
   }))
 }
 
-variable "custroleYAML" {
+variable "sourcecustroleYAML" {
   type = string
 }
