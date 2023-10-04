@@ -6,15 +6,14 @@ locals {
 resource "azurerm_role_definition" "testcustomrole" {
   for_each = { for croles in local.croles_map : croles.Name => croles }
 
-  name                       = each.value.RoleName
+  name        = each.value.RoleName
   scope       = "/providers/Microsoft.Management/managementGroups/${each.value.scope}"
-}
+  description = "NeW Azure custom role for the GEV-CIRT incident response automation."
 
-
-resource "azurerm_role_definition" "testcustomrole" {
-  name        = "TestGeVernovaCirtIrAutomation"
-  scope       = "/providers/Microsoft.Management/managementGroups/Vernova"
-  description = "NEW Azure custom role for the GEV-CIRT incident response automation."
+// resource "azurerm_role_definition" "testcustomrole" {
+//   name        = "TestGeVernovaCirtIrAutomation"
+//   scope       = "/providers/Microsoft.Management/managementGroups/Vernova"
+//   description = "NEW Azure custom role for the GEV-CIRT incident response automation."
 
   permissions {
     actions     = [
