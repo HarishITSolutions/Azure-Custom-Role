@@ -1,6 +1,6 @@
 module "RoleAssignmentCreation" {
   source     = "./modules/roleassignment/"
-  sourcecustroleYAML = var.custroleYAML
+  sourcecustroleYAML = var.sourcecustrole-YAML
 }
 
 
