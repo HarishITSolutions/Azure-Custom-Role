@@ -1,5 +1,5 @@
 locals {
-  management_groups_map = { for mg in var.scope : mg.Name => mg }
+  croles_map = { for croles in var.scope : croles.Name => croles }
 }
 
 resource "azurerm_role_definition" "testcustomrole" {
