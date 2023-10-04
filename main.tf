@@ -3,6 +3,11 @@ module "RoleAssignmentCreation" {
   sourcecustroleYAML = var.sourcecustrole-YAML
 }
 
+locals {
+  roleSource = yamldecode(file("${path.root}/${var.sourcecustrole-YAML}"))
+  croles     = local.roleSource.CustomRoles
+}
+
 
 module "PolicyandInitiativeCreation" {
   source     = "./modules/policy/"
