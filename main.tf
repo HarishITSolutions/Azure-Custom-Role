@@ -1,5 +1,5 @@
 locals {
-  roleSource = yamldecode(file("${path.root}/modules/roleassignment/CustomRole.yml"))
+  roleSource = yamldecode(file("${path.root}/${var.sourcecustrole-YAML}"))
   croles     = local.roleSource.CustomRoles
 }
 
