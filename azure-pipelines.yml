@@ -110,6 +110,11 @@ variables:
       value: "GEVernovaSandbox"
     ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/Prod') }}:
       value: "Vernova"
+  - name: "sourcecustroleYAML"
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/stage') }}:
+      value: "$(sourcecustroleYAMLSandbox)"
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/Prod') }}:
+      value: "$(sourcecustroleYAMLProd)"
 
 stages:
   - stage: Build_Approval
