@@ -8,6 +8,6 @@ variable "scope" {
   }))
 }
 
-variable "sourceMGYAML" {
+variable "custmgmtYAML" {
   type = string
 }
