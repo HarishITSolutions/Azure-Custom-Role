@@ -1,10 +1,10 @@
 locals {
-  croles_map = { for croles in var.scope : croles.Name => croles }
+  croles_map = { for croles in var.scope : croles.RoleName => croles }
 }
 
 
 resource "azurerm_role_definition" "customrole" {
-  for_each = { for croles in local.croles_map : croles.Name => croles }
+  for_each = { for croles in local.croles_map : croles.RoleName => croles }
 
   name        = each.value.RoleName
   scope       = "/providers/Microsoft.Management/managementGroups/${each.value.Name}"
