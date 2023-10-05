@@ -3,7 +3,6 @@ locals {
   croles     = local.roleSource.CustomRoles
 }
 
-
 module "RoleAssignmentCreation" {
   source     = "./modules/roleassignment/"
   scope      = local.croles
