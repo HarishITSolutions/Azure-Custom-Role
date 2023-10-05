@@ -26,7 +26,7 @@ variable "sourcecustrole-YAML" {
   type = string
 }
 
-variable "tenantrootMG" {
-  type = string
-}
+// variable "tenantrootMG" {
+//   type = string
+// }
 
