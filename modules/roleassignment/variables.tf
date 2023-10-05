@@ -1,8 +1,8 @@
 variable "scope" {
-  description = "List of management groups"
+  description = "List of Custom Roles"
   type = list(object({
-    Name                  = string
-    DisplayName           = string
+    Name               = string
+    RoleName           = string
     // ParentManagementGroup = string
     // GroupLevel            = number
   }))
