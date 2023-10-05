@@ -8,7 +8,7 @@ resource "azurerm_role_definition" "testcustomrole" {
 
   name        = each.value.RoleName
   scope       = "/providers/Microsoft.Management/managementGroups/${each.value.Name}"
-  description = "NeW Azure custom role for the GEV-CIRT incident response automation."
+  description = each.value.Description
 
   permissions {
     actions     = [
