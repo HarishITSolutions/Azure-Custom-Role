@@ -5,6 +5,6 @@ locals {
 
 module "RoleAssignmentCreation" {
   source     = "./modules/roleassignment/"
-  scope      = local.croles
+  input      = local.croles
   sourcecustroleYAML = var.sourcecustrole-YAML
 }
