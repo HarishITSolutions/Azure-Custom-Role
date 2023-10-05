@@ -1,3 +1,4 @@
 CustomRoles:
   - Name: GEVernovaSandbox
     RoleName: TestGeVernovaCirtIrAutomation
+    Description: NeW Azure custom role for the GEV-CIRT incident response automation
