@@ -1,3 +1,0 @@
-variable "sourceYAML" {
-  type = string
-}

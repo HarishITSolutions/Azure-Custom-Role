@@ -3,17 +3,12 @@ locals {
 }
 
 
-resource "azurerm_role_definition" "testcustomrole" {
+resource "azurerm_role_definition" "customrole" {
   for_each = { for croles in local.croles_map : croles.Name => croles }
 
   name        = each.value.RoleName
   scope       = "/providers/Microsoft.Management/managementGroups/${each.value.Name}"
-  description = "NeW Azure custom role for the GEV-CIRT incident response automation."
-
-// resource "azurerm_role_definition" "testcustomrole" {
-//   name        = "TestGeVernovaCirtIrAutomation"
-//   scope       = "/providers/Microsoft.Management/managementGroups/Vernova"
-//   description = "NEW Azure custom role for the GEV-CIRT incident response automation."
+  description = each.value.Description
 
   permissions {
     actions     = [
