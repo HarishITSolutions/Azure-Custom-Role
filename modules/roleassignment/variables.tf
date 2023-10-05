@@ -1,7 +1,7 @@
 variable "input" {
   description = "List of Custom Roles"
   type = list(object({
-    Name               = string
+    scope              = string
     RoleName           = string
     Description        = string
     // GroupLevel            = number
