@@ -197,170 +197,170 @@ stages:
           displayName: 'Removal of agent IP in storage account'
           condition: succeededOrFailed()
 
-  - stage: Policy_Initiative_Deployement
-    displayName: Deployement of Policy and Initiative 
-    jobs:
-    - job: ContinuousIntegrationJob
-      displayName: Policy and Initiative Job
-      steps:     
-        - task: PowerShell@2
-          inputs:
-            targetType: 'inline'
-            script: |
-              az login --service-principal -u $(Storage_client_id) -p $(Storage_client_secret) --tenant $(Storage_tenant_id)
-              $ip = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
-              Write-Host "ip is : $ip"
-              az storage account network-rule add -g "$(RG)" --account-name "$(Storage)" --ip-address "$ip"
-              Start-Sleep -Seconds 30
-          displayName: 'Adding agent IP in storage account'
-          continueOnError: false
+  # - stage: Policy_Initiative_Deployement
+  #   displayName: Deployement of Policy and Initiative 
+  #   jobs:
+  #   - job: ContinuousIntegrationJob
+  #     displayName: Policy and Initiative Job
+  #     steps:     
+  #       - task: PowerShell@2
+  #         inputs:
+  #           targetType: 'inline'
+  #           script: |
+  #             az login --service-principal -u $(Storage_client_id) -p $(Storage_client_secret) --tenant $(Storage_tenant_id)
+  #             $ip = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
+  #             Write-Host "ip is : $ip"
+  #             az storage account network-rule add -g "$(RG)" --account-name "$(Storage)" --ip-address "$ip"
+  #             Start-Sleep -Seconds 30
+  #         displayName: 'Adding agent IP in storage account'
+  #         continueOnError: false
 
-        - task: TerraformCLI@0
-          displayName: 'Terraform Init'
-          continueOnError: false
-          inputs:
-            command: 'init'
-            workingDirectory: '$(System.DefaultWorkingDirectory)'
-            commandOptions: '-backend=true -reconfigure -backend-config="storage_account_name=$(Storage)" -backend-config="container_name=$(Container)" -backend-config="key=$(policyStateFile)" -backend-config="access_key=$(accessKey)"'
-            allowTelemetryCollection: true
+  #       - task: TerraformCLI@0
+  #         displayName: 'Terraform Init'
+  #         continueOnError: false
+  #         inputs:
+  #           command: 'init'
+  #           workingDirectory: '$(System.DefaultWorkingDirectory)'
+  #           commandOptions: '-backend=true -reconfigure -backend-config="storage_account_name=$(Storage)" -backend-config="container_name=$(Container)" -backend-config="key=$(policyStateFile)" -backend-config="access_key=$(accessKey)"'
+  #           allowTelemetryCollection: true
 
-        - task: TerraformCLI@0
-          displayName: 'Terraform Validate'
-          continueOnError: false
-          inputs:
-            command: 'validate'
-            allowTelemetryCollection: true
-            workingDirectory: '$(System.DefaultWorkingDirectory)'
+  #       - task: TerraformCLI@0
+  #         displayName: 'Terraform Validate'
+  #         continueOnError: false
+  #         inputs:
+  #           command: 'validate'
+  #           allowTelemetryCollection: true
+  #           workingDirectory: '$(System.DefaultWorkingDirectory)'
 
-        - task: TerraformCLI@0
-          displayName: 'Terraform Plan'
-          continueOnError: false
-          inputs:
-            command: 'plan'
-            commandOptions: '-target="module.PolicyandInitiativeCreation" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML) -var tenantrootMG=$(rootMG)'
-            allowTelemetryCollection: true
-            workingDirectory: '$(System.DefaultWorkingDirectory)'
+  #       - task: TerraformCLI@0
+  #         displayName: 'Terraform Plan'
+  #         continueOnError: false
+  #         inputs:
+  #           command: 'plan'
+  #           commandOptions: '-target="module.PolicyandInitiativeCreation" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML) -var tenantrootMG=$(rootMG)'
+  #           allowTelemetryCollection: true
+  #           workingDirectory: '$(System.DefaultWorkingDirectory)'
         
-        - task: ArchiveFiles@2
-          displayName: 'Create Plan Artifact'
-          continueOnError: false
-          inputs:
-            rootFolderOrFile: '$(Build.SourcesDirectory)'
-            includeRootFolder: false
-            archiveType: 'tar'
-            tarCompression: 'gz'
-            archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-policy-$(artifact).tgz'
-            replaceExistingArchive: true
+  #       - task: ArchiveFiles@2
+  #         displayName: 'Create Plan Artifact'
+  #         continueOnError: false
+  #         inputs:
+  #           rootFolderOrFile: '$(Build.SourcesDirectory)'
+  #           includeRootFolder: false
+  #           archiveType: 'tar'
+  #           tarCompression: 'gz'
+  #           archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-policy-$(artifact).tgz'
+  #           replaceExistingArchive: true
         
-        - task: PublishBuildArtifacts@1
-          displayName: 'Publish Plan Artifact'
-          continueOnError: false
-          inputs:
-            PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-            ArtifactName: '$(Build.BuildId)-policy-$(artifact)-tfplan'
-            publishLocation: 'Container'
+  #       - task: PublishBuildArtifacts@1
+  #         displayName: 'Publish Plan Artifact'
+  #         continueOnError: false
+  #         inputs:
+  #           PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+  #           ArtifactName: '$(Build.BuildId)-policy-$(artifact)-tfplan'
+  #           publishLocation: 'Container'
         
-        - task: TerraformCLI@0
-          displayName: 'Publish Plan to plan.out'
-          continueOnError: false
-          inputs:
-            command: 'plan'
-            commandOptions: '-target="module.PolicyandInitiativeCreation" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML) -var tenantrootMG=$(rootMG)'
-            allowTelemetryCollection: true
-            publishPlanResults: 'plan.out' 
+  #       - task: TerraformCLI@0
+  #         displayName: 'Publish Plan to plan.out'
+  #         continueOnError: false
+  #         inputs:
+  #           command: 'plan'
+  #           commandOptions: '-target="module.PolicyandInitiativeCreation" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML) -var tenantrootMG=$(rootMG)'
+  #           allowTelemetryCollection: true
+  #           publishPlanResults: 'plan.out' 
         
-        - task: PowerShell@2
-          inputs:
-            targetType: 'inline'
-            script: |
-              az login --service-principal -u $(Storage_client_id) -p $(Storage_client_secret) --tenant $(Storage_tenant_id)
-              $ip = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
-              Write-Host "ip is : $ip"
-              az storage account network-rule remove --resource-group "$(RG)" --account-name "$(Storage)" --ip-address "$ip"
-              Start-Sleep -Seconds 30
-          displayName: 'Removal of agent IP in storage account'
-          condition: succeededOrFailed()
+  #       - task: PowerShell@2
+  #         inputs:
+  #           targetType: 'inline'
+  #           script: |
+  #             az login --service-principal -u $(Storage_client_id) -p $(Storage_client_secret) --tenant $(Storage_tenant_id)
+  #             $ip = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
+  #             Write-Host "ip is : $ip"
+  #             az storage account network-rule remove --resource-group "$(RG)" --account-name "$(Storage)" --ip-address "$ip"
+  #             Start-Sleep -Seconds 30
+  #         displayName: 'Removal of agent IP in storage account'
+  #         condition: succeededOrFailed()
 
-  - stage: MG_RA_Policy_INI_Assignments
-    displayName: MG RA Policy and Initiative Assignment
-    jobs:
-    - job: ContinuousIntegrationJob
-      displayName: MG RA Policy INI Assignmnet Job
-      steps:
-        - task: PowerShell@2
-          inputs:
-            targetType: 'inline'
-            script: |
-              az login --service-principal -u $(Storage_client_id) -p $(Storage_client_secret) --tenant $(Storage_tenant_id)
-              $ip = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
-              Write-Host "ip is : $ip"
-              az storage account network-rule add -g "$(RG)" --account-name "$(Storage)" --ip-address "$ip"
-              Start-Sleep -Seconds 30
-          displayName: 'Adding agent IP in storage account'
-          continueOnError: false
+  # - stage: MG_RA_Policy_INI_Assignments
+  #   displayName: MG RA Policy and Initiative Assignment
+  #   jobs:
+  #   - job: ContinuousIntegrationJob
+  #     displayName: MG RA Policy INI Assignmnet Job
+  #     steps:
+  #       - task: PowerShell@2
+  #         inputs:
+  #           targetType: 'inline'
+  #           script: |
+  #             az login --service-principal -u $(Storage_client_id) -p $(Storage_client_secret) --tenant $(Storage_tenant_id)
+  #             $ip = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
+  #             Write-Host "ip is : $ip"
+  #             az storage account network-rule add -g "$(RG)" --account-name "$(Storage)" --ip-address "$ip"
+  #             Start-Sleep -Seconds 30
+  #         displayName: 'Adding agent IP in storage account'
+  #         continueOnError: false
 
-        - task: TerraformCLI@0
-          displayName: 'Terraform Init'
-          continueOnError: false
-          inputs:
-            command: 'init'
-            workingDirectory: '$(System.DefaultWorkingDirectory)'
-            commandOptions: '-backend=true -reconfigure -backend-config="storage_account_name=$(Storage)" -backend-config="container_name=$(Container)" -backend-config="key=$(MGRAStateFile)" -backend-config="access_key=$(accessKey)"'
-            allowTelemetryCollection: true
+  #       - task: TerraformCLI@0
+  #         displayName: 'Terraform Init'
+  #         continueOnError: false
+  #         inputs:
+  #           command: 'init'
+  #           workingDirectory: '$(System.DefaultWorkingDirectory)'
+  #           commandOptions: '-backend=true -reconfigure -backend-config="storage_account_name=$(Storage)" -backend-config="container_name=$(Container)" -backend-config="key=$(MGRAStateFile)" -backend-config="access_key=$(accessKey)"'
+  #           allowTelemetryCollection: true
 
-        - task: TerraformCLI@0
-          displayName: 'Terraform Validate'
-          continueOnError: false
-          inputs:
-            command: 'validate'
-            allowTelemetryCollection: true
-            workingDirectory: '$(System.DefaultWorkingDirectory)'
+  #       - task: TerraformCLI@0
+  #         displayName: 'Terraform Validate'
+  #         continueOnError: false
+  #         inputs:
+  #           command: 'validate'
+  #           allowTelemetryCollection: true
+  #           workingDirectory: '$(System.DefaultWorkingDirectory)'
 
-        - task: TerraformCLI@0
-          displayName: 'Terraform Plan'
-          continueOnError: false
-          inputs:
-            command: 'plan'
-            commandOptions: '-target="module.MG-RA-POL-INI-Assignment" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML) -var tenantrootMG=$(rootMG)'
-            allowTelemetryCollection: true
-            workingDirectory: '$(System.DefaultWorkingDirectory)'
+  #       - task: TerraformCLI@0
+  #         displayName: 'Terraform Plan'
+  #         continueOnError: false
+  #         inputs:
+  #           command: 'plan'
+  #           commandOptions: '-target="module.MG-RA-POL-INI-Assignment" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML) -var tenantrootMG=$(rootMG)'
+  #           allowTelemetryCollection: true
+  #           workingDirectory: '$(System.DefaultWorkingDirectory)'
         
-        - task: ArchiveFiles@2
-          displayName: 'Create Plan Artifact'
-          continueOnError: false
-          inputs:
-            rootFolderOrFile: '$(Build.SourcesDirectory)'
-            includeRootFolder: false
-            archiveType: 'tar'
-            tarCompression: 'gz'
-            archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-MG-$(artifact).tgz'
-            replaceExistingArchive: true
+  #       - task: ArchiveFiles@2
+  #         displayName: 'Create Plan Artifact'
+  #         continueOnError: false
+  #         inputs:
+  #           rootFolderOrFile: '$(Build.SourcesDirectory)'
+  #           includeRootFolder: false
+  #           archiveType: 'tar'
+  #           tarCompression: 'gz'
+  #           archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-MG-$(artifact).tgz'
+  #           replaceExistingArchive: true
         
-        - task: PublishBuildArtifacts@1
-          displayName: 'Publish Plan Artifact'
-          continueOnError: false
-          inputs:
-            PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-            ArtifactName: '$(Build.BuildId)-MG-$(artifact)-tfplan'
-            publishLocation: 'Container'
+  #       - task: PublishBuildArtifacts@1
+  #         displayName: 'Publish Plan Artifact'
+  #         continueOnError: false
+  #         inputs:
+  #           PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+  #           ArtifactName: '$(Build.BuildId)-MG-$(artifact)-tfplan'
+  #           publishLocation: 'Container'
         
-        - task: TerraformCLI@0
-          displayName: 'Publish Plan to plan.out'
-          continueOnError: false
-          inputs:
-            command: 'plan'
-            commandOptions: '-target="module.MG-RA-POL-INI-Assignment" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML) -var tenantrootMG=$(rootMG)'
-            allowTelemetryCollection: true
-            publishPlanResults: 'plan.out' 
+  #       - task: TerraformCLI@0
+  #         displayName: 'Publish Plan to plan.out'
+  #         continueOnError: false
+  #         inputs:
+  #           command: 'plan'
+  #           commandOptions: '-target="module.MG-RA-POL-INI-Assignment" -var sourcePolicyYAML=$(sourcePolicy-YAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret) -var sourceMG-YAML=$(sourceMGYAML) -var tenantrootMG=$(rootMG)'
+  #           allowTelemetryCollection: true
+  #           publishPlanResults: 'plan.out' 
 
-        - task: PowerShell@2
-          inputs:
-            targetType: 'inline'
-            script: |
-              az login --service-principal -u $(Storage_client_id) -p $(Storage_client_secret) --tenant $(Storage_tenant_id)
-              $ip = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
-              Write-Host "ip is : $ip"
-              az storage account network-rule remove --resource-group "$(RG)" --account-name "$(Storage)" --ip-address "$ip"
-              Start-Sleep -Seconds 30
-          displayName: 'Removal of agent IP in storage account'
-          condition: succeededOrFailed()
+  #       - task: PowerShell@2
+  #         inputs:
+  #           targetType: 'inline'
+  #           script: |
+  #             az login --service-principal -u $(Storage_client_id) -p $(Storage_client_secret) --tenant $(Storage_tenant_id)
+  #             $ip = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
+  #             Write-Host "ip is : $ip"
+  #             az storage account network-rule remove --resource-group "$(RG)" --account-name "$(Storage)" --ip-address "$ip"
+  #             Start-Sleep -Seconds 30
+  #         displayName: 'Removal of agent IP in storage account'
+  #         condition: succeededOrFailed()
