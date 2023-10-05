@@ -1,1 +1,1 @@
-Thie Pipeline creates a Magement Group with Role Assignment and Policies creation.
+Thie Pipeline creates a Magement Group with Role Assignment and Policies creation..
