@@ -1,5 +1,5 @@
 locals {
-  croles_map = { for croles in var.scope : croles.Name => croles }
+  croles_map = { for croles in var.scope : croles.RoleName => croles }
 }
 
 
