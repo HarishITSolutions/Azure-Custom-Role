@@ -1,6 +1,6 @@
 
 # Azure Pipeline that run basic continuous integration on a Terraform project.
-
+name : $(SourceBranchName)_$(Date:yyyyMMdd).$(Rev:r)
 trigger:
  branches:
    include:
