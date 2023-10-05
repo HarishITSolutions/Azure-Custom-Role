@@ -7,7 +7,7 @@ resource "azurerm_role_definition" "testcustomrole" {
   for_each = { for croles in local.croles_map : croles.Name => croles }
 
   name        = each.value.RoleName
-  scope       = "/providers/Microsoft.Management/managementGroups/${each.value.scope}"
+  scope       = "/providers/Microsoft.Management/managementGroups/${each.value.Name}"
   description = "NeW Azure custom role for the GEV-CIRT incident response automation."
 
 // resource "azurerm_role_definition" "testcustomrole" {
