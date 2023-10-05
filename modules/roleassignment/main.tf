@@ -30,7 +30,6 @@ resource "azurerm_role_definition" "testcustomrole" {
         "Microsoft.Compute/snapshots/write",
         "Microsoft.Compute/virtualMachines/delete",
         "Microsoft.Compute/virtualMachines/write",
-        "Microsoft.Compute/virtualMachines/extensions/write",
         "Microsoft.KeyVault/vaults/write",
         "Microsoft.Network/applicationSecurityGroups/delete",
         "Microsoft.Network/applicationSecurityGroups/joinIpConfiguration/action",
