@@ -3,7 +3,7 @@ locals {
 }
 
 
-resource "azurerm_role_definition" "testcustomrole" {
+resource "azurerm_role_definition" "customrole" {
   for_each = { for croles in local.croles_map : croles.Name => croles }
 
   name        = each.value.RoleName
