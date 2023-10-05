@@ -3,8 +3,8 @@ variable "scope" {
   type = list(object({
     Name                  = string
     DisplayName           = string
-    ParentManagementGroup = string
-    GroupLevel            = number
+    // ParentManagementGroup = string
+    // GroupLevel            = number
   }))
 }
 
