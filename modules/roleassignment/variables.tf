@@ -1,4 +1,4 @@
-variable "scope" {
+variable "input" {
   description = "List of Custom Roles"
   type = list(object({
     Name               = string
