@@ -10,11 +10,6 @@ resource "azurerm_role_definition" "testcustomrole" {
   scope       = "/providers/Microsoft.Management/managementGroups/${each.value.Name}"
   description = "NeW Azure custom role for the GEV-CIRT incident response automation."
 
-// resource "azurerm_role_definition" "testcustomrole" {
-//   name        = "TestGeVernovaCirtIrAutomation"
-//   scope       = "/providers/Microsoft.Management/managementGroups/Vernova"
-//   description = "NEW Azure custom role for the GEV-CIRT incident response automation."
-
   permissions {
     actions     = [
         "*/read",
