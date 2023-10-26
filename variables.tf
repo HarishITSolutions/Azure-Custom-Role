@@ -1,7 +1,3 @@
-variable "sourcePolicyYAML" {
-  type = string
-}
-
 variable "subscriptionID" {
   type = string
 }
@@ -18,11 +14,7 @@ variable "clientSecret" {
   type = string
 }
 
-variable "sourceMG-YAML" {
-  type = string
-}
-
-variable "tenantrootMG" {
+variable "sourcecustrole-YAML" {
   type = string
 }
 
