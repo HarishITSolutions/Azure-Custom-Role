@@ -1,3 +1,4 @@
 CustomRoles:
-  - Name: Vernova
-    RoleName: VernovaCirtIrAutomation
+  - RoleName: VernovaCirtIrAutomation
+    scope: Vernova
+    Description: NeW Azure custom role for the GEV-CIRT incident response automation
