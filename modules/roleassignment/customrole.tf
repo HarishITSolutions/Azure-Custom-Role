@@ -2,6 +2,13 @@ locals {
   croles_map = { for croles in var.input : croles.RoleName => croles }
 }
 
+// locals {
+//     # get json 
+//     perim = jsondecode(file("${path.module}/VernovaCirtIrAutomation.json"))
+
+//     // # get all users
+//     // all_users = [for user in local.user_data.users : user.user_name]
+// }
 
 resource "azurerm_role_definition" "customrole" {
   for_each = { for croles in local.croles_map : croles.RoleName => croles }
@@ -10,7 +17,7 @@ resource "azurerm_role_definition" "customrole" {
   scope       = "/providers/Microsoft.Management/managementGroups/${each.value.scope}"
   description = each.value.Description
   permissions {
-    actions     = 
+    actions     = jsondecode(file("${path.root}/roles/${each.value.RoleName}.json"))
   //       "*/read",
   //       "Microsoft.Authorization/locks/delete",
   //       "Microsoft.Authorization/locks/write",
@@ -42,9 +49,9 @@ resource "azurerm_role_definition" "customrole" {
   //       "Microsoft.Resources/subscriptions/resourceGroups/write",
   //       "Microsoft.Storage/storageAccounts/listKeys/action",
   //       "Microsoft.Compute/virtualMachines/extensions/write"
-  //   ]
-  //   not_actions = []
-  // }
+    // ]
+    not_actions = []
+  }
 
   assignable_scopes = []
 }
