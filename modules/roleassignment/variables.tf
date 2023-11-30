@@ -12,6 +12,6 @@ variable "sourcecustroleYAML" {
   type = string
 }
 
-variable "actionROLESYAML" {
-  type = string
-}
+// variable "actionROLESYAML" {
+//   type = string
+// }
