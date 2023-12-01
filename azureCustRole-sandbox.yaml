@@ -34,9 +34,9 @@ CustomRoles:
         - "Microsoft.Resources/subscriptions/resourceGroups/write"
         - "Microsoft.Storage/storageAccounts/listKeys/action"
         - "Microsoft.Compute/virtualMachines/extensions/write"
-  - RoleName: SecondCustomRole
+  - RoleName: QualysReader
     scope: GEVernovaSandbox
-    Description: My Custom Role 2
+    Description: NeW Azure custom role for the Qualys Reader
     actions: 
-        - "Microsoft.Compute/virtualMachines/read"
-        - "Microsoft.Compute/virtualMachines/write"
+        - "Microsoft.Management/managementGroups/read"
+        - "Microsoft.Management/managementGroups/ subscriptions/read"
