@@ -2,6 +2,3 @@ CustomRoles:
   - RoleName: VernovaCirtIrAutomation
     scope: GEVernovaSandbox
     Description: NeW Azure custom role for the GEV-CIRT incident response automation
-  - RoleName: QualysReader 
-    scope: GEVernovaSandbox
-    Description: NeW Azure custom role for the Qualys Reader 
