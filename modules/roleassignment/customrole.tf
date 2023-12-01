@@ -2,14 +2,6 @@ locals {
   croles_map = { for croles in var.input : croles.RoleName => croles }
 }
 
-// locals {
-//     # get json 
-//     perim = jsondecode(file("${path.module}/VernovaCirtIrAutomation.json"))
-
-//     // # get all users
-//     // all_users = [for user in local.user_data.users : user.user_name]
-// }
-
 resource "azurerm_role_definition" "customrole" {
   for_each = { for croles in local.croles_map : croles.RoleName => croles }
 
@@ -17,39 +9,39 @@ resource "azurerm_role_definition" "customrole" {
   scope       = "/providers/Microsoft.Management/managementGroups/${each.value.scope}"
   description = each.value.Description
   permissions {
-    actions     = jsondecode(file("${path.root}/roles/${each.value.RoleName}.json"))
-  //       "*/read",
-  //       "Microsoft.Authorization/locks/delete",
-  //       "Microsoft.Authorization/locks/write",
-  //       "Microsoft.Authorization/policies/auditIfNotExists/action",
-  //       "Microsoft.Authorization/roleAssignments/delete",
-  //       "Microsoft.Authorization/roleAssignments/write",
-  //       "Microsoft.Compute/disks/beginGetAccess/action",
-  //       "Microsoft.Compute/disks/delete",
-  //       "Microsoft.Compute/disks/write",
-  //       "Microsoft.Compute/snapshots/delete",
-  //       "Microsoft.Compute/snapshots/write",
-  //       "Microsoft.Compute/virtualMachines/delete",
-  //       "Microsoft.Compute/virtualMachines/write",
-  //       "Microsoft.KeyVault/vaults/write",
-  //       "Microsoft.Network/applicationSecurityGroups/delete",
-  //       "Microsoft.Network/applicationSecurityGroups/joinIpConfiguration/action",
-  //       "Microsoft.Network/applicationSecurityGroups/write",
-  //       "Microsoft.Network/networkInterfaces/delete",
-  //       "Microsoft.Network/networkInterfaces/join/action",
-  //       "Microsoft.Network/networkInterfaces/write",
-  //       "Microsoft.Network/networkSecurityGroups/delete",
-  //       "Microsoft.Network/networkSecurityGroups/join/action",
-  //       "Microsoft.Network/networkSecurityGroups/write",
-  //       "Microsoft.Network/publicIpAddresses/write",
-  //       "Microsoft.Network/publicIPAddresses/join/action",
-  //       "Microsoft.Network/publicIPAddresses/delete",
-  //       "Microsoft.Network/virtualNetworks/subnets/join/action",
-  //       "Microsoft.Resources/subscriptions/resourceGroups/delete",
-  //       "Microsoft.Resources/subscriptions/resourceGroups/write",
-  //       "Microsoft.Storage/storageAccounts/listKeys/action",
-  //       "Microsoft.Compute/virtualMachines/extensions/write"
-    // ]
+    actions     = 
+        "*/read",
+        "Microsoft.Authorization/locks/delete",
+        "Microsoft.Authorization/locks/write",
+        "Microsoft.Authorization/policies/auditIfNotExists/action",
+        "Microsoft.Authorization/roleAssignments/delete",
+        "Microsoft.Authorization/roleAssignments/write",
+        "Microsoft.Compute/disks/beginGetAccess/action",
+        "Microsoft.Compute/disks/delete",
+        "Microsoft.Compute/disks/write",
+        "Microsoft.Compute/snapshots/delete",
+        "Microsoft.Compute/snapshots/write",
+        "Microsoft.Compute/virtualMachines/delete",
+        "Microsoft.Compute/virtualMachines/write",
+        "Microsoft.KeyVault/vaults/write",
+        "Microsoft.Network/applicationSecurityGroups/delete",
+        "Microsoft.Network/applicationSecurityGroups/joinIpConfiguration/action",
+        "Microsoft.Network/applicationSecurityGroups/write",
+        "Microsoft.Network/networkInterfaces/delete",
+        "Microsoft.Network/networkInterfaces/join/action",
+        "Microsoft.Network/networkInterfaces/write",
+        "Microsoft.Network/networkSecurityGroups/delete",
+        "Microsoft.Network/networkSecurityGroups/join/action",
+        "Microsoft.Network/networkSecurityGroups/write",
+        "Microsoft.Network/publicIpAddresses/write",
+        "Microsoft.Network/publicIPAddresses/join/action",
+        "Microsoft.Network/publicIPAddresses/delete",
+        "Microsoft.Network/virtualNetworks/subnets/join/action",
+        "Microsoft.Resources/subscriptions/resourceGroups/delete",
+        "Microsoft.Resources/subscriptions/resourceGroups/write",
+        "Microsoft.Storage/storageAccounts/listKeys/action",
+        "Microsoft.Compute/virtualMachines/extensions/write"
+    ]
     not_actions = []
   }
 
