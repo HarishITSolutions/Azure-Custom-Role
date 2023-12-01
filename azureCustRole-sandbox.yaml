@@ -1,5 +1,5 @@
 CustomRoles:
-  - RoleName: VernovaCirtIrAutomation
+  - RoleName: TestGeVernovaCirtIrAutomation
     scope: GEVernovaSandbox
     Description: NeW Azure custom role for the GEV-CIRT incident response automation
     actions: 
@@ -39,4 +39,4 @@ CustomRoles:
     Description: NeW Azure custom role for the Qualys Reader
     actions: 
         - "Microsoft.Management/managementGroups/read"
-        - "Microsoft.Management/managementGroups/ subscriptions/read"
+        - "Microsoft.Management/managementGroups/subscriptions/read"
