@@ -152,14 +152,14 @@ stages:
             allowTelemetryCollection: true
             workingDirectory: '$(System.DefaultWorkingDirectory)'
 
-        # - task: TerraformCLI@0
-        #   displayName: 'Terraform Apply'
-        #   continueOnError: false
-        #   inputs:
-        #     command: 'apply'
-        #     commandOptions: '-target="module.RoleAssignmentCreation" -var sourcecustrole-YAML=$(sourcecustroleYAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret)'
-        #     allowTelemetryCollection: true
-        #     workingDirectory: '$(System.DefaultWorkingDirectory)'
+        - task: TerraformCLI@0
+          displayName: 'Terraform Apply'
+          continueOnError: false
+          inputs:
+            command: 'apply'
+            commandOptions: '-target="module.RoleAssignmentCreation" -var sourcecustrole-YAML=$(sourcecustroleYAML) -var subscriptionID=$(subscription_id) -var tenantID=$(tenant_id) -var clientID=$(client_id) -var clientSecret=$(client_secret)'
+            allowTelemetryCollection: true
+            workingDirectory: '$(System.DefaultWorkingDirectory)'
               
         - task: PowerShell@2
           inputs:
