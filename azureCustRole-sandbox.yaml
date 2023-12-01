@@ -1,8 +1,8 @@
-custom_roles:
-    - name: VernovaCirtIrAutomation
-      scope : GEVernovaSandbox
-      Description : NeW Azure custom role for the GEV-CIRT incident response automation
-      actions:
+CustomRoles:
+  - RoleName: TestGeVernovaCirtIrAutomation
+    scope: GEVernovaSandbox
+    Description: NeW Azure custom role for the GEV-CIRT incident response automation
+    actions: 
         - "*/read"
         - "Microsoft.Authorization/locks/delete"
         - "Microsoft.Authorization/locks/write"
@@ -34,10 +34,9 @@ custom_roles:
         - "Microsoft.Resources/subscriptions/resourceGroups/write"
         - "Microsoft.Storage/storageAccounts/listKeys/action"
         - "Microsoft.Compute/virtualMachines/extensions/write"
-  
-    - name: SecondCustomRole
-      scope : GEVernovaSandbox
-      Description : My Custom Role 2
-      actions:
+  - RoleName: SecondCustomRole
+    scope: GEVernovaSandbox
+    Description: My Custom Role 2
+    actions: 
         - "Microsoft.Compute/virtualMachines/read"
         - "Microsoft.Compute/virtualMachines/write"
