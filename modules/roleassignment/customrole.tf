@@ -1,3 +1,7 @@
+locals {
+  roles = yamldecode(file("${path.root}/${var.sourcecustrole-YAML}")).custom_roles
+}
+
 resource "azurerm_role_definition" "custom_roles" {
   for_each = { for role in local.roles : role.name => role }
 
