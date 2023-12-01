@@ -4,7 +4,7 @@ variable "input" {
     scope              = string
     RoleName           = string
     Description        = string
-    actions            = string
+    actions            = list(string)
   }))
 }
 
